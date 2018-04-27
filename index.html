@@ -2,15 +2,21 @@
 
 
 
+
+
+
   
 
 
-<html class="theme-next gemini use-motion" lang="zh-Hans">
+<html class="theme-next muse use-motion" lang="zh-CN">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
 <meta name="theme-color" content="#222">
+
+
+
 
 
 
@@ -38,10 +44,6 @@
 
 
 
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
 
 
 
@@ -50,46 +52,25 @@
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=6.2.0" rel="stylesheet" type="text/css" />
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.2.0">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.2.0">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.2.0">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="Hexo, NexT" />
+  <link rel="mask-icon" href="/images/logo.svg?v=6.2.0" color="#222">
 
 
 
 
 
 
-
-
-
-
-<meta name="description" content="����Ŭ������Լ��ı�̲���">
-<meta name="keywords" content="balabala">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Yongbosmart">
-<meta property="og:url" content="https://yongbosmart.github.io/index.html">
-<meta property="og:site_name" content="Yongbosmart">
-<meta property="og:description" content="����Ŭ������Լ��ı�̲���">
-<meta property="og:locale" content="zh-Hans">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Yongbosmart">
-<meta name="twitter:description" content="����Ŭ������Լ��ı�̲���">
 
 
 
@@ -97,16 +78,14 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Gemini',
-    version: '5.1.4',
+    scheme: 'Muse',
+    version: '6.2.0',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
     algolia: {
       applicationID: '',
       apiKey: '',
@@ -118,12 +97,37 @@
 </script>
 
 
+  
+
+
+
+
+  <meta name="description" content="Ŭ�������Լ���С����~">
+<meta name="keywords" content="balabala">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Yongbosmart">
+<meta property="og:url" content="https://yongbosmart.github.io/index.html">
+<meta property="og:site_name" content="Yongbosmart">
+<meta property="og:description" content="Ŭ�������Լ���С����~">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Yongbosmart">
+<meta name="twitter:description" content="Ŭ�������Լ���С����~">
+
+
+
+
+
 
   <link rel="canonical" href="https://yongbosmart.github.io/"/>
 
 
 
-
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
 
   <title>Yongbosmart</title>
   
@@ -135,9 +139,37 @@
 
 
 
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -154,19 +186,19 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Yongbosmart</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
       
-        <p class="site-subtitle">����Ŭ������Լ��ı�̲���</p>
+        <p class="site-subtitle"> Follow excellence ,and success will chase you</p>
       
   </div>
 
   <div class="site-nav-toggle">
-    <button>
+    <button aria-label="切换导航栏">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -174,45 +206,46 @@
   </div>
 </div>
 
-<nav class="site-nav">
-  
 
+
+
+<nav class="site-nav">
   
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
+          
+          <li class="menu-item menu-item-home menu-item-active">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
 
       
+      
     </ul>
+  
+
+  
+    
+
   
 
   
@@ -220,12 +253,20 @@
 
 
 
- </div>
+  
+
+
+
+</div>
     </header>
+
+    
+
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
@@ -238,6 +279,8 @@
   
   
 
+  
+
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
@@ -248,7 +291,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="yongbosmart">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/mylogo3.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -262,11 +305,21 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/26/算法作业-有向图/" itemprop="url">算法作业-有向图</a></h1>
+                <a class="post-title-link" href="/2018/03/26/算法作业-有向图/" itemprop="url">
+                  算法作业-有向图
+                </a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -274,13 +327,30 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-26T00:00:00+08:00">
-                2018-03-26
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2018-03-26 00:00:00" itemprop="dateCreated datePublished" datetime="2018-03-26T00:00:00+08:00">2018-03-26</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-04-27 15:50:40" itemprop="dateModified" datetime="2018-04-27T15:50:40+08:00">2018-04-27</time>
+              
             
           </span>
 
@@ -296,11 +366,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/日常练习/" itemprop="url" rel="index">
-                    <span itemprop="name">日常练习</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/日常练习/" itemprop="url" rel="index"><span itemprop="name">日常练习</span></a></span>
 
                 
                 
@@ -309,6 +375,17 @@
           
 
           
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2018/03/26/算法作业-有向图/#SOHUCS" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span id="url::https://yongbosmart.github.io/2018/03/26/算法作业-有向图/" class="cy_cmt_count" data-xid="2018/03/26/算法作业-有向图/" itemprop="commentsCount" ></span>
+                </a>
+              
             
           
 
@@ -336,44 +413,24 @@
       
         
           
-            <h2 id="算法作业"><a href="#算法作业" class="headerlink" title="算法作业"></a>算法作业</h2><p>​    近期算法布置了一篇课设，在这里描述一下，并晒一下代码。整体来说算法实验很简单，实现方法也很简单粗暴，不过练习一下图的写法吧。</p>
-<p>(PS.博主使用的是eclipse for C++，可以利用debug纠错)</p>
-<h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><ol>
-<li>生成100个点，500条边的有向图，任选一点为源点，计算s到其它点的距离。（用邻接链表存储）</li>
-<li>将上述有向图变成dag图，从中去掉一些边，不允许使用递归</li>
-<li>计算上述dag图中最长路径，并记录下路径</li>
-</ol>
-<h3 id="问题一"><a href="#问题一" class="headerlink" title="问题一"></a>问题一</h3><p>生成100个点，500条边的有向图，任选一点为源点，计算s到其它点的距离。（用邻接链表存储）</p>
-<h4 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h4><p>因为需要用邻接链表存储，因此需要用一个链表结构，基本结构如下：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	node* next=<span class="literal">NULL</span>;<span class="comment">//下一个</span></span><br><span class="line">	<span class="keyword">int</span> weight=<span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">int</span> ini=<span class="number">0</span>;<span class="comment">//入度</span></span><br><span class="line">	<span class="keyword">int</span> id=<span class="number">-1</span>;<span class="comment">//本node的编号</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(node* next,<span class="keyword">int</span> length,<span class="keyword">int</span> id)</span></span>&#123;<span class="comment">//初始化方法</span></span><br><span class="line">		<span class="keyword">this</span>-&gt;next=next;</span><br><span class="line">		<span class="keyword">this</span>-&gt;weight=length;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">int</span> length,<span class="keyword">int</span> id)</span></span>&#123;<span class="comment">//初始化方法</span></span><br><span class="line">		weight=length;</span><br><span class="line">		<span class="keyword">this</span>-&gt;id=id;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">int</span> id)</span></span>&#123;<span class="comment">//初始化方法</span></span><br><span class="line">		<span class="keyword">this</span>-&gt;id=id;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">existedge</span><span class="params">(<span class="keyword">int</span> i)</span></span>&#123;<span class="comment">//查看是否此边已存在。</span></span><br><span class="line">		node* current=<span class="keyword">this</span>;</span><br><span class="line">		<span class="keyword">if</span>(i==id)&#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">		&#125;<span class="comment">//自环</span></span><br><span class="line">		<span class="keyword">while</span>(current-&gt;next!=<span class="literal">NULL</span>)&#123;</span><br><span class="line">			<span class="keyword">if</span>(current-&gt;next-&gt;id==i)&#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			current=current-&gt;next;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>这里，我写的node的性质比较多，但是事实上是完全没有必要的，如我的小伙伴就只存了一个id，后来证明她这种做法更为合理。</p>
-<p>下面需要考虑建一个图需要什么样的方法，由于博主之前写过后缀树一类的，因此这个还是很easy的，</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Arithmex1</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	Arithmex1(<span class="keyword">int</span> , <span class="keyword">int</span> );</span><br><span class="line">	<span class="keyword">virtual</span> ~Arithmex1();</span><br><span class="line"></span><br><span class="line">		<span class="keyword">int</span> n=<span class="number">0</span>;<span class="comment">//顶点数</span></span><br><span class="line">		<span class="keyword">int</span> e=<span class="number">0</span>;<span class="comment">//边数</span></span><br><span class="line">		<span class="keyword">int</span> time=<span class="number">0</span>;</span><br><span class="line">		<span class="function"><span class="keyword">bool</span> <span class="title">create</span><span class="params">()</span> </span>;<span class="comment">//创建图，是否存在边</span></span><br><span class="line">		<span class="function"><span class="keyword">bool</span> <span class="title">insertEdge</span><span class="params">(<span class="keyword">int</span>,<span class="keyword">int</span>)</span></span>;</span><br><span class="line">			<span class="comment">//插入边</span></span><br><span class="line"></span><br><span class="line">		<span class="function"><span class="keyword">bool</span> <span class="title">eraseEdge</span><span class="params">(<span class="keyword">int</span>,<span class="keyword">int</span>)</span></span>;<span class="comment">//删除边</span></span><br><span class="line">		<span class="function"><span class="keyword">int</span> <span class="title">weight</span><span class="params">(<span class="keyword">int</span>,<span class="keyword">int</span>)</span></span>;<span class="comment">//某一边的权重</span></span><br><span class="line">		<span class="function"><span class="keyword">int</span> <span class="title">distance</span><span class="params">(<span class="keyword">int</span>)</span></span>;<span class="comment">//任选一点为源点，计算s到其它点的距离</span></span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span>)</span></span>;</span><br><span class="line">		<span class="function"><span class="keyword">int</span> <span class="title">maxdis</span><span class="params">()</span></span>;<span class="comment">//计算dag图中最长路径，并记录下路径</span></span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">dag</span><span class="params">()</span></span>;<span class="comment">//将图变成dag图</span></span><br><span class="line"><span class="comment">//		其他方法</span></span><br><span class="line">		<span class="function"><span class="keyword">bool</span> <span class="title">directed</span><span class="params">()</span></span>;</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span>;<span class="comment">//图的打印</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>下面开始图的主要代码：</p>
-<p>create方法：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> Arithmex1::create()&#123;</span><br><span class="line">		srand(<span class="number">10</span>);<span class="comment">//设置随机数种子</span></span><br><span class="line">		graph=<span class="keyword">new</span> node[n];<span class="comment">//是一个装了node（首）的数组</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">			graph[i].init(<span class="number">1</span>,i+<span class="number">1</span>);<span class="comment">//于是附上初值，权重为1，编号为i+1;</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">int</span> j=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">while</span>(j&lt;e)&#123;</span><br><span class="line">			<span class="keyword">int</span> tmp1=rand()%n+<span class="number">1</span>;<span class="comment">//对应ID</span></span><br><span class="line">			<span class="keyword">int</span> tmp2=rand()%n+<span class="number">1</span>;<span class="comment">//dui</span></span><br><span class="line">			<span class="keyword">if</span>(!graph[tmp1<span class="number">-1</span>].existedge(tmp2))&#123;</span><br><span class="line">				insertEdge(tmp1,tmp2);</span><br><span class="line">			&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">				<span class="keyword">continue</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			j++;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>insertEdge方法(简单的，链表插入的方法)：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> Arithmex1::insertEdge(<span class="keyword">int</span> a,<span class="keyword">int</span> b)&#123;<span class="comment">//插入边</span></span><br><span class="line">	<span class="keyword">if</span>(!graph[a<span class="number">-1</span>].existedge(b))&#123;</span><br><span class="line">		node* current=&amp;graph[a<span class="number">-1</span>];</span><br><span class="line">		<span class="keyword">while</span>(current-&gt;next!=<span class="literal">NULL</span>)&#123;</span><br><span class="line">			current=current-&gt;next;</span><br><span class="line">		&#125;</span><br><span class="line">		node *newnode=<span class="keyword">new</span> node();</span><br><span class="line">		newnode-&gt;init(<span class="number">1</span>,b);</span><br><span class="line">		current-&gt;next=newnode;</span><br><span class="line">		graph[b<span class="number">-1</span>].ini++;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>博主为了方便，写的方法比较粗暴，因此只是作为参考。值得注意的是，当我们以node来表示节点时，节点在存储空间内不止有一个。如下图：数组中有一个1，链表中2/4后也均有1，因此就像上面说的，<strong>在node struct中增加属性没有必要，且可能浪费空间，这时候一个好的做法是维护一个同等规模的数组来保存节点的属性</strong></p>
-<p><img src="/2018/03/26/算法作业-有向图/D:/hexo\hexo\source\img\desc1.png" alt="desc1"></p>
-<p>下面是需要计算源点s到图中各点的距离，显然可以用BFS,主要思路是维持一个数组存储长度，子节点的长度是父节点长度+1；</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> Arithmex1::distance(<span class="keyword">int</span> i)&#123;</span><br><span class="line">	<span class="keyword">int</span> source=i;</span><br><span class="line">	node* current=&amp;graph[source<span class="number">-1</span>];<span class="comment">//得到源点位置</span></span><br><span class="line">	<span class="keyword">int</span> tip[n];<span class="comment">//tip，标记源点</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;n;j++)&#123;<span class="comment">//标记，有没有被找到过</span></span><br><span class="line">		tip[j]=<span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> tis[n];<span class="comment">//tip，标记源点</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;n;j++)&#123;<span class="comment">//距离，有多远</span></span><br><span class="line">		tis[j]=<span class="number">-1</span>;<span class="comment">//开始认为不可达</span></span><br><span class="line">	&#125;</span><br><span class="line">	tip[source<span class="number">-1</span>]=<span class="number">-1</span>;<span class="comment">//设为首节点认为已标记</span></span><br><span class="line">	tis[source<span class="number">-1</span>]=<span class="number">0</span>;<span class="comment">//距源点为0</span></span><br><span class="line">	<span class="built_in">queue</span>&lt;node*&gt; tmp;</span><br><span class="line">	tmp.push(current);<span class="comment">//头结点</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span>(!tmp.empty())&#123;</span><br><span class="line">		node* tt=tmp.front();<span class="comment">//头结点</span></span><br><span class="line">		tt=&amp;graph[tt-&gt;id<span class="number">-1</span>];<span class="comment">//找到在链表中的位置</span></span><br><span class="line">		tmp.pop();</span><br><span class="line">		node* cnode=tt;</span><br><span class="line">		<span class="keyword">while</span>(cnode-&gt;next!=<span class="literal">NULL</span>)&#123;<span class="comment">//遍历其邻接链表</span></span><br><span class="line">			<span class="keyword">if</span>(tip[cnode-&gt;next-&gt;id<span class="number">-1</span>]!=<span class="number">-1</span>)&#123;<span class="comment">//如果没有做过标记</span></span><br><span class="line">				tmp.push(cnode-&gt;next);<span class="comment">//推入队列</span></span><br><span class="line">				tis[cnode-&gt;next-&gt;id<span class="number">-1</span>]=tis[tt-&gt;id<span class="number">-1</span>]+<span class="number">1</span>;</span><br><span class="line">				tip[cnode-&gt;next-&gt;id<span class="number">-1</span>]=<span class="number">-1</span>;<span class="comment">//同时做上标记，已扫描</span></span><br><span class="line"><span class="comment">//				cout&lt;&lt;cnode-&gt;next-&gt;id&lt;&lt;" "&lt;&lt;tis[cnode-&gt;next-&gt;id-1]&lt;&lt;" ]]";</span></span><br><span class="line"></span><br><span class="line">			&#125;</span><br><span class="line">			cnode=cnode-&gt;next;<span class="comment">//去下一个</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;graph[i].id&lt;&lt;<span class="string">"的距离是==&gt;  "</span>&lt;&lt;tis[i];</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="问题二"><a href="#问题二" class="headerlink" title="问题二"></a>问题二</h3><p>将上述有向图变成dag图，从中去掉一些边，不允许使用递归</p>
-<h4 id="问题分析-1"><a href="#问题分析-1" class="headerlink" title="问题分析"></a>问题分析</h4><p>这里的一个简单思路就是删除返回边。根据《算法导论》上的算法描述，即dfs时遇到灰色节点，边可被删除。难点主要在于白色、黑色、灰色（也可以是开始时间、结束时间）的判定。另一个难点在于不允许使用递归。这里面有很多种情况，需要仔细判定。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> Arithmex1::dfs(<span class="keyword">int</span> start)&#123;</span><br><span class="line">	<span class="comment">//链表属性</span></span><br><span class="line">	node* current=&amp;graph[start<span class="number">-1</span>];<span class="comment">//得到源点位置</span></span><br><span class="line">	<span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt; ppid;<span class="comment">//记录压入栈时的先驱点</span></span><br><span class="line">	<span class="built_in">stack</span>&lt;node*&gt; dfss;<span class="comment">//记录压入栈的node，有一个固定的id，只需要用id与遍历</span></span><br><span class="line">	ppid.push(<span class="number">-1</span>);<span class="comment">//起始点先驱点为-1</span></span><br><span class="line">	dfss.push(current);<span class="comment">//放入当前点</span></span><br><span class="line">	<span class="keyword">while</span>(!dfss.empty())&#123;</span><br><span class="line">		node* newnode=dfss.top();<span class="comment">//得到node</span></span><br><span class="line"><span class="comment">//		cout&lt;&lt;"新一轮循环"&lt;&lt;newnode-&gt;id&lt;&lt;endl;</span></span><br><span class="line">		dfss.pop();</span><br><span class="line">		<span class="keyword">int</span> tpid=ppid.top();<span class="comment">//当前点newnode押出栈时的先驱点</span></span><br><span class="line">		ppid.pop();<span class="comment">//当前节点先驱点</span></span><br><span class="line">		<span class="keyword">if</span>(pro[newnode-&gt;id<span class="number">-1</span>].color==<span class="number">0</span>)&#123;<span class="comment">//如果其颜色=0</span></span><br><span class="line">			pro[newnode-&gt;id<span class="number">-1</span>].color =<span class="number">1</span>;<span class="comment">//pop出，正式找其它点，变灰色</span></span><br><span class="line">			pro[newnode-&gt;id<span class="number">-1</span>].distime=++time;<span class="comment">//发现时间</span></span><br><span class="line">			node* current=&amp;graph[newnode-&gt;id<span class="number">-1</span>];<span class="comment">//找到图中它的位置就可以遍历链表</span></span><br><span class="line"></span><br><span class="line">			<span class="keyword">int</span> num=<span class="number">0</span>;<span class="comment">//是否变黑，只要push进去节点，说明都没有完成，完成的才变黑</span></span><br><span class="line"></span><br><span class="line">			<span class="keyword">while</span>(current!=<span class="literal">NULL</span>&amp;&amp;current-&gt;next!=<span class="literal">NULL</span>)&#123;<span class="comment">//遍历其邻接链表</span></span><br><span class="line"></span><br><span class="line">				<span class="keyword">if</span>(pro[current-&gt;next-&gt;id<span class="number">-1</span>].color ==<span class="number">0</span>)&#123;<span class="comment">//如果没有做过标记</span></span><br><span class="line"></span><br><span class="line">					pro[current-&gt;next-&gt;id<span class="number">-1</span>].pid=newnode-&gt;id;<span class="comment">//随时会变会更新的pid</span></span><br><span class="line">					dfss.push(current-&gt;next);<span class="comment">//压入栈</span></span><br><span class="line">					ppid.push(newnode-&gt;id);<span class="comment">//这个对应的pid</span></span><br><span class="line"><span class="comment">//					cout&lt;&lt;"放入"&lt;&lt;current-&gt;next-&gt;id&lt;&lt;endl;</span></span><br><span class="line">					num++;<span class="comment">//操作未完成</span></span><br><span class="line">				&#125;<span class="keyword">else</span> <span class="keyword">if</span>(pro[current-&gt;next-&gt;id<span class="number">-1</span>].color==<span class="number">1</span>)&#123;<span class="comment">//如果找到了灰色的，返回边。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//					cout&lt;&lt;current-&gt;id&lt;&lt;"shiyan"&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">//					cout&lt;&lt;current-&gt;next-&gt;id&lt;&lt;"shiyan"&lt;&lt;endl;</span></span><br><span class="line">					change=eraseEdge(newnode-&gt;id,current-&gt;next-&gt;id);<span class="comment">//删除</span></span><br><span class="line"><span class="comment">//					print();</span></span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">if</span>(!change)&#123;</span><br><span class="line"></span><br><span class="line">					current=current-&gt;next;</span><br><span class="line">				&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">					change=<span class="literal">false</span>;</span><br><span class="line">				&#125;</span><br><span class="line"></span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">			<span class="keyword">if</span>(num==<span class="number">0</span>)&#123;<span class="comment">//叶子节点或者无用节点，本节点可以为0</span></span><br><span class="line">				pro[newnode-&gt;id<span class="number">-1</span>].color=<span class="number">2</span>;<span class="comment">//黑色</span></span><br><span class="line">				pro[newnode-&gt;id<span class="number">-1</span>].fintime=++time;</span><br><span class="line">				<span class="comment">//开始追根溯源</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">				<span class="keyword">int</span> tmpid=pro[newnode-&gt;id<span class="number">-1</span>].pid;</span><br><span class="line">				<span class="keyword">if</span>(!ppid.empty())&#123;</span><br><span class="line"></span><br><span class="line">					<span class="keyword">while</span>(tmpid!=ppid.top())&#123;</span><br><span class="line"></span><br><span class="line">						pro[tmpid<span class="number">-1</span>].color=<span class="number">2</span>;</span><br><span class="line">						pro[tmpid<span class="number">-1</span>].fintime=++time;</span><br><span class="line">						tmpid=pro[tmpid<span class="number">-1</span>].pid;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">					pro[tmpid<span class="number">-1</span>].color=<span class="number">2</span>;</span><br><span class="line">					pro[tmpid<span class="number">-1</span>].fintime=++time;</span><br><span class="line">	<span class="comment">//				tmpid=pro[tmpid-1].pid;</span></span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;<span class="keyword">else</span> <span class="keyword">if</span>(pro[newnode-&gt;id<span class="number">-1</span>].color==<span class="number">2</span>)&#123;<span class="comment">//早之前已经发现</span></span><br><span class="line"></span><br><span class="line">			<span class="keyword">int</span> tmpid=tpid;</span><br><span class="line">			<span class="keyword">if</span>(!ppid.empty())&#123;</span><br><span class="line">				<span class="keyword">while</span>(tmpid!=ppid.top())&#123;</span><br><span class="line"><span class="comment">//					cout&lt;&lt;tmpid&lt;&lt;"pout"&lt;&lt;endl;</span></span><br><span class="line">					pro[tmpid<span class="number">-1</span>].color=<span class="number">2</span>;</span><br><span class="line">					pro[tmpid<span class="number">-1</span>].fintime=++time;</span><br><span class="line">					tmpid=pro[tmpid<span class="number">-1</span>].pid;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">				pro[tmpid<span class="number">-1</span>].color=<span class="number">2</span>;</span><br><span class="line">				pro[tmpid<span class="number">-1</span>].fintime=++time;</span><br><span class="line"></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>因为有的节点入度=0，即一次dfs会忽视它们，因此可以采用直接遍历的方法</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> Arithmex1::dag()&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(pro[i].color==<span class="number">0</span>)</span><br><span class="line">			dfs(i+<span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	print();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="问题三"><a href="#问题三" class="headerlink" title="问题三"></a>问题三</h3><p>计算上述dag图中最长路径，并记录下路径。</p>
-<h4 id="问题分析-2"><a href="#问题分析-2" class="headerlink" title="问题分析"></a>问题分析</h4><p>看到这个题，第一感觉是用拓扑序列，因为拓扑头一定是头结点。</p>
-<p>但是博主又想偷懒了，拓扑头怎么求？在上文中，我们已经求出了结束时间最晚的那个节点，无疑一定是拓扑头。但是这里，博主直接采用的入度为0的为拓扑头，（再维持一个数组添加入度属性啦，插入边入度+1，删除边入度-1），这里，只要从拓扑头开始bfs（<strong>注意，这里让求的是最长路径，因此无需判断bfs时此点有没有访问过，而且是有向无环图，所以不会死循环</strong>）</p>
-<p>这是一种比较简单的思路，却需要大量空间时间，另一种比较好的方法是完全用拓扑序列来实现。至于一些细节就不再赘述，代码如下：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> Arithmex1::maxdis()&#123;</span><br><span class="line">	<span class="keyword">int</span>* maxpid;</span><br><span class="line">	maxpid=<span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;n;j++)&#123;<span class="comment">//距离长短</span></span><br><span class="line">					maxpid[j]=<span class="number">-1</span>;</span><br><span class="line">				&#125;</span><br><span class="line">	<span class="keyword">int</span>* tmppid;</span><br><span class="line">	tmppid=<span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;n;j++)&#123;<span class="comment">//距离长短</span></span><br><span class="line">					tmppid[j]=<span class="number">-1</span>;</span><br><span class="line">				&#125;</span><br><span class="line">	<span class="keyword">int</span> lastid=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> realastid=<span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">int</span> maxdis=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> cc=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;<span class="comment">//遍历顶点</span></span><br><span class="line"><span class="comment">//		cout&lt;&lt;graph[i].ini&lt;&lt;endl;</span></span><br><span class="line">		<span class="keyword">if</span>((graph[i].ini==<span class="number">0</span>))&#123;<span class="comment">//入度==0</span></span><br><span class="line">			cc++;</span><br><span class="line">			<span class="keyword">int</span> tis[n];<span class="comment">//tip，标记源点</span></span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;n;j++)&#123;<span class="comment">//距离长短</span></span><br><span class="line">				tis[j]=<span class="number">-1</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			tis[i]=<span class="number">0</span>;<span class="comment">//到自己的距离为0</span></span><br><span class="line">			<span class="keyword">int</span> tmpdis=<span class="number">0</span>;</span><br><span class="line"><span class="comment">//			tis[i]=1;</span></span><br><span class="line">			node* current=&amp;graph[i];<span class="comment">//得到源点位置</span></span><br><span class="line">			<span class="built_in">queue</span>&lt;node*&gt; tmp;</span><br><span class="line">			tmp.push(current);<span class="comment">//头结点</span></span><br><span class="line"></span><br><span class="line">			<span class="keyword">while</span>(!tmp.empty())&#123;</span><br><span class="line">				node* tt=tmp.front();<span class="comment">//头结点</span></span><br><span class="line">				tt=&amp;graph[tt-&gt;id<span class="number">-1</span>];<span class="comment">//找到在链表中的位置</span></span><br><span class="line">				tmp.pop();</span><br><span class="line">				node* cnode=tt;</span><br><span class="line"></span><br><span class="line">				<span class="keyword">while</span>(cnode-&gt;next!=<span class="literal">NULL</span>)&#123;<span class="comment">//遍历其邻接链表</span></span><br><span class="line">					tmp.push(cnode-&gt;next);<span class="comment">//推入队列</span></span><br><span class="line">					tis[cnode-&gt;next-&gt;id<span class="number">-1</span>]=tis[tt-&gt;id<span class="number">-1</span>]+<span class="number">1</span>;</span><br><span class="line">					tmpdis=tis[cnode-&gt;next-&gt;id<span class="number">-1</span>];</span><br><span class="line">					lastid=cnode-&gt;next-&gt;id;</span><br><span class="line">					tmppid[cnode-&gt;next-&gt;id<span class="number">-1</span>]=tt-&gt;id;</span><br><span class="line">					cnode=cnode-&gt;next;<span class="comment">//去下一个</span></span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">if</span>(cnode-&gt;next==<span class="literal">NULL</span>)&#123;</span><br><span class="line">					lastid=cnode-&gt;id;</span><br><span class="line">				&#125;</span><br><span class="line"></span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">			<span class="keyword">if</span>(maxdis&lt;tmpdis)&#123;</span><br><span class="line">				realastid=lastid;</span><br><span class="line">				maxdis=tmpdis;</span><br><span class="line">				maxpid=tmppid;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;n;j++)&#123;<span class="comment">//距离长短</span></span><br><span class="line">					maxpid[j]=tmppid[j];</span><br><span class="line"><span class="comment">//					cout&lt;&lt;tmppid[j]&lt;&lt;"||"&lt;&lt;maxpid[j]&lt;&lt;" ";</span></span><br><span class="line">				&#125;</span><br><span class="line">				<span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">				tmppid=<span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;n;j++)&#123;<span class="comment">//距离长短</span></span><br><span class="line">					tmppid[j]=<span class="number">-1</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	tmppid=<span class="keyword">new</span> <span class="keyword">int</span>[maxdis+<span class="number">1</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;maxdis+<span class="number">1</span>;j++)&#123;<span class="comment">//距离长短</span></span><br><span class="line">		tmppid[j]=<span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(realastid!=<span class="number">-1</span>)lastid=realastid;</span><br><span class="line">	<span class="keyword">int</span> jianyan=lastid;</span><br><span class="line">	tmppid[maxdis]=lastid;</span><br><span class="line">	<span class="keyword">int</span> count=maxdis<span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span>(jianyan!=<span class="number">-1</span>)&#123;</span><br><span class="line">		jianyan=maxpid[jianyan<span class="number">-1</span>];</span><br><span class="line">		tmppid[count]=jianyan;</span><br><span class="line">		count--;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;maxdis+<span class="number">1</span>;j++)&#123;<span class="comment">//距离长短</span></span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;tmppid[j]&lt;&lt;<span class="string">" "</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> maxdis;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>更多完整代码参见<a href="https://github.com/yongbosmart" target="_blank" rel="noopener">https://github.com/yongbosmart</a></p>
-
-          
+          算法作业​    近期算法布置了一篇课设，在这里描述一下，并晒一下代码。整体来说算法实验很简单，实现方法也很简单粗暴，不过练习一下图的写法吧。
+(PS.博主使用的是eclipse for C++，可以利用debug纠错)
+问题描述
+生成100个点，500条边的有向图，任选一点为源点，计算s到其它点的
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/26/算法作业-有向图/#更多" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
+
+    
+
     
     
     
@@ -412,9 +469,6 @@
           </div>
           
 
-
-          
-
         </div>
         
           
@@ -439,57 +493,107 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
+              <img class="site-author-image" itemprop="image"
+                src="/images/mylogo3.jpg"
+                alt="yongbosmart" />
+            
               <p class="site-author-name" itemprop="name">yongbosmart</p>
-              <p class="site-description motion-element" itemprop="description">����Ŭ������Լ��ı�̲���</p>
+              <p class="site-description motion-element" itemprop="description">Ŭ�������Լ���С����~</p>
           </div>
 
-          <nav class="site-state motion-element">
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
 
-            
-              <div class="site-state-item site-state-posts">
               
-                <a href="/archives/">
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">分类</span>
+                  
+                </div>
               
-                  <span class="site-state-item-count">1</span>
-                  <span class="site-state-item-name">日志</span>
-                </a>
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/yongbosmart" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:yongbosmart@gmail.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.zhihu.com/people/yongbosmart/activities" target="_blank" title="֪��"><i class="fa fa-fw fa-globe"></i>֪��</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
               </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-categories">
+              <ul class="links-of-blogroll-list">
                 
-                  <span class="site-state-item-count">1</span>
-                  <span class="site-state-item-name">分类</span>
+                  <li class="links-of-blogroll-item">
+                    <a href="http://example.com/" title="Title" target="_blank">Title</a>
+                  </li>
                 
-              </div>
+              </ul>
+            </div>
+          
+
+          
             
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">2</span>
-                  <span class="site-state-item-name">标签</span>
-                
-              </div>
-            
-
-          </nav>
-
           
-
-          
-
-          
-          
-
-          
-          
-
           
 
         </div>
@@ -510,16 +614,20 @@
     <footer id="footer" class="footer">
       <div class="footer-inner">
         <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
-  <span class="with-love">
+  <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">yongbosmart</span>
 
   
+
+  
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.4.1</div>
 
 
 
@@ -527,12 +635,13 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Muse</a> v6.2.0</div>
 
 
 
 
         
+
 
 
 
@@ -571,7 +680,11 @@
 
 
 
-  
+
+
+
+
+
 
 
 
@@ -591,16 +704,6 @@
 
   
   
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
     <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
   
 
@@ -609,45 +712,29 @@
     <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
   
 
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
 
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=6.2.0"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=6.2.0"></script>
 
 
 
   
   
 
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
-
-
-
   
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.2.0"></script>
 
 
 
   
-
-
-  
-
 
 
 
@@ -668,7 +755,9 @@
 
 
 
-
+  
+    <script id="cy_cmt_num" src="https://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=cytAlxwFo"></script>
+  
 
 
 
@@ -689,6 +778,12 @@
   
 
   
+
+  
+  
+
+  
+
   
 
   
