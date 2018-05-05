@@ -1,0 +1,10 @@
+title: 算法作业-有向图
+date: 2018-03-26
+categories: 
+- 日常练习
+author: yongbo
+excerpt: 一个算法作业程序
+tags:
+    - 算法
+    - 日常练习
+top: 1
