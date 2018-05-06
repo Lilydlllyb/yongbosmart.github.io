@@ -120,7 +120,7 @@
 <meta property="og:image" content="https://img-blog.csdn.net/20170826103627189?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvTWFoYWJoYXJhdGFf/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 <meta property="og:image" content="https://img-blog.csdn.net/20170826102203530?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvTWFoYWJoYXJhdGFf/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 <meta property="og:image" content="https://img-blog.csdn.net/20170826102651551?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvTWFoYWJoYXJhdGFf/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:updated_time" content="2018-05-06T07:58:34.646Z">
+<meta property="og:updated_time" content="2018-05-06T08:06:54.854Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="半边数据结构&amp;网格细分与简化">
 <meta name="twitter:description" content="半边数据结构&amp;amp;网格细分参考博客： https://blog.csdn.net/lafengxiaoyu/article/details/51524361 https://blog.csdn.net/outtt/article/details/78544053 http://www.cnblogs.com/shushen/p/5251070.html 对于表面网络来说，其重要的特点在于拓扑，">
@@ -355,7 +355,7 @@
                 
               
 
-              <time title="创建时间：2018-05-06 00:00:00 / 修改时间：15:58:34" itemprop="dateCreated datePublished" datetime="2018-05-06T00:00:00+08:00">2018-05-06</time>
+              <time title="创建时间：2018-05-06 00:00:00 / 修改时间：16:06:54" itemprop="dateCreated datePublished" datetime="2018-05-06T00:00:00+08:00">2018-05-06</time>
             
 
             
@@ -454,18 +454,18 @@
 <p>2.网格内部V-顶点位置：</p>
 <p>　　设内部顶点v0的相邻点为v1、v2，…，v2n，则该顶点更新后位置为<img src="/2018/05/06/计算机图形学-半边数据结构/778572-20160307165322772-1642245811.jpg" alt="img">，其中α、β、γ分别为α = 1 - β - γ。</p>
 <p>3.网格边界V-顶点位置：</p>
-<p>　　设边界顶点v0的两个相邻点为v1、v2，则该顶点更新后位置为v = $\frac{3}{4}$ ×v0 + $\frac{1}{8}$ ×(v1 + v2)。</p>
+<p>　　设边界顶点v0的两个相邻点为v1、v2，则该顶点更新后位置为v = $\frac{3}{4}$$ ×v0 + $$\frac{1}{8}$×(v1 + v2)。</p>
 <p>4.网格内部E-顶点位置：</p>
-<p>　　设内部边的两个端点为v0、v1，与该边相邻的两个四边形顶点分别为v0、v1、v2、v3和v0、v1、v4、v5，则新增加的顶点位置为v =  $\frac{1}{4}$ (v0 + v1 + vf1 + vf2) =  $\frac{3}{8}$ (v0 + v1) +  $\frac{1}{16}$ (v2 + v3 + v4 + v5)。</p>
+<p>　　设内部边的两个端点为v0、v1，与该边相邻的两个四边形顶点分别为v0、v1、v2、v3和v0、v1、v4、v5，则新增加的顶点位置为v =   $\frac{1}{4}$  (v0 + v1 + vf1 + vf2) =   $\frac{3}{8}$  (v0 + v1) +  $\frac{1}{16}$  (v2 + v3 + v4 + v5)。</p>
 <p>5.网格边界E-顶点位置：</p>
-<p>　　设边界边的两个端点为v0、v1，则新增加的顶点位置为v =  $\frac{1}{2}$ (v0 + v1)。</p>
+<p>　　设边界边的两个端点为v0、v1，则新增加的顶点位置为v =   $\frac{1}{2}​$   (v0 + v1)。</p>
 <h4 id="Loop-subdivision"><a href="#Loop-subdivision" class="headerlink" title="Loop subdivision"></a>Loop subdivision</h4><p>Loop细分是一种三角形网格的细分法则，它按照1-4三角形分裂，每条边计算生成一个新的顶点，同时每个原始顶点更新位置。下图为Loop细分格式的细分掩膜，对于新增加的顶点位置以及原始顶点位置更新规则如下：</p>
 <p><img src="/2018/05/06/计算机图形学-半边数据结构/778572-20160307165148085-190617796.jpg" alt="img"></p>
 <p>1.网格内部V-顶点位置：</p>
 <p>　　设内部顶点v0的相邻点为v1、v2，…，vn，则该顶点更新后位置为<img src="/2018/05/06/计算机图形学-半边数据结构/778572-20160307165221257-190078282.jpg" alt="img">，其中<img src="/2018/05/06/计算机图形学-半边数据结构/778572-20160307165237241-1432841958.jpg" alt="img">。</p>
 <p><img src="https://img-blog.csdn.net/20170826103506397?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvTWFoYWJoYXJhdGFf/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="img"></p>
 <p>2.网格边界V-顶点位置：</p>
-<p>　　设边界顶点v0的两个相邻点为v1、v2，则该顶点更新后位置为 v = $\frac{3}{4}$ ×v0 + $\frac{1}{8}$ ×(v1 + v2)。。</p>
+<p>　　设边界顶点v0的两个相邻点为v1、v2，则该顶点更新后位置为 v =  $\frac{3}{4}$  ×v0 +  $\frac{1}{8}$  ×(v1 + v2)。。</p>
 <p><img src="https://img-blog.csdn.net/20170826103627189?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvTWFoYWJoYXJhdGFf/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="img"></p>
 <p>3.网格内部E-顶点位置（新增点）：</p>
 <p>　　设内部边的两个端点为v0、v1，相对的两个顶点为v2、v3，则新增加的顶点位置为v =  $\frac{3}{8}$ <em>(v0 + v1) + $\frac{1}{8}$</em>(v2 + v3)。</p>
@@ -924,6 +924,36 @@
   
 
   
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+  
+
 
   
   
