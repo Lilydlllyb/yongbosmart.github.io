@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.2.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon2.ico?v=6.2.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.2.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.2.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="半边数据结构&amp;amp;网格细分参考博客： https://blog.csdn.net/lafengxiaoyu/article/details/51524361 https://blog.csdn.net/outtt/article/details/78544053 http://www.cnblogs.com">
+<meta name="keywords" content="日常练习,计算机图形学">
+<meta property="og:type" content="article">
+<meta property="og:title" content="半边数据结构&amp;网格细分与简化">
+<meta property="og:url" content="https://yongbosmart.github.io/2018/05/06/计算机图形学-半边数据结构/index.html">
+<meta property="og:site_name" content="Yongbosmart">
+<meta property="og:description" content="半边数据结构&amp;amp;网格细分参考博客： https://blog.csdn.net/lafengxiaoyu/article/details/51524361 https://blog.csdn.net/outtt/article/details/78544053 http://www.cnblogs.com/shushen/p/5251070.html 对于表面网络来说，其重要的特点在于拓扑，">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://yongbosmart.github.io/2018/05/06/计算机图形学-半边数据结构/img/halfedge.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/778572/201603/778572-20160307165055554-2123276712.jpg">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/778572/201603/778572-20160307165322772-1642245811.jpg">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/778572/201603/778572-20160307165148085-190617796.jpg">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/778572/201603/778572-20160307165221257-190078282.jpg">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/778572/201603/778572-20160307165237241-1432841958.jpg">
+<meta property="og:image" content="https://img-blog.csdn.net/20170826103506397?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvTWFoYWJoYXJhdGFf/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="https://img-blog.csdn.net/20170826103627189?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvTWFoYWJoYXJhdGFf/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="https://img-blog.csdn.net/20170826102203530?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvTWFoYWJoYXJhdGFf/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="https://img-blog.csdn.net/20170826102651551?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvTWFoYWJoYXJhdGFf/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:updated_time" content="2018-05-06T07:50:11.030Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="半边数据结构&amp;网格细分与简化">
+<meta name="twitter:description" content="半边数据结构&amp;amp;网格细分参考博客： https://blog.csdn.net/lafengxiaoyu/article/details/51524361 https://blog.csdn.net/outtt/article/details/78544053 http://www.cnblogs.com/shushen/p/5251070.html 对于表面网络来说，其重要的特点在于拓扑，">
+<meta name="twitter:image" content="https://yongbosmart.github.io/2018/05/06/计算机图形学-半边数据结构/img/halfedge.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://yongbosmart.github.io/2018/05/06/计算机图形学-半边数据结构/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>半边数据结构&网格细分与简化 | Yongbosmart</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Yongbosmart</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"> Follow excellence ,and success will chase you</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签<span class="badge">5</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类<span class="badge">3</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档<span class="badge">6</span></a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yongbosmart.github.io/2018/05/06/计算机图形学-半边数据结构/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yongbosmart">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/mylogo3.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yongbosmart">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">半边数据结构&网格细分与简化
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-05-06 00:00:00 / 修改时间：15:50:11" itemprop="dateCreated datePublished" datetime="2018-05-06T00:00:00+08:00">2018-05-06</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机图形学/" itemprop="url" rel="index"><span itemprop="name">计算机图形学</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2018/05/06/计算机图形学-半边数据结构/#SOHUCS" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2018/05/06/计算机图形学-半边数据结构/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="半边数据结构-amp-网格细分"><a href="#半边数据结构-amp-网格细分" class="headerlink" title="半边数据结构&amp;网格细分"></a>半边数据结构&amp;网格细分</h2><p>参考博客：</p>
+<p><a href="https://blog.csdn.net/lafengxiaoyu/article/details/51524361" target="_blank" rel="noopener">https://blog.csdn.net/lafengxiaoyu/article/details/51524361</a></p>
+<p><a href="https://blog.csdn.net/outtt/article/details/78544053" target="_blank" rel="noopener">https://blog.csdn.net/outtt/article/details/78544053</a></p>
+<p><a href="http://www.cnblogs.com/shushen/p/5251070.html" target="_blank" rel="noopener">http://www.cnblogs.com/shushen/p/5251070.html</a></p>
+<p>对于表面网络来说，其重要的特点在于拓扑，也就是<strong>曲面是如何表达的</strong>，而不是其顶点的位置。拓扑的不同造就了不同的数据结构和标准，不同的拓扑，其进行网格查询和编辑的性能也不同。<br>计算机图形学上，通常说的流形是一种几何模型表面（但不是所有的），即二维流形，对应拓扑流形。如果网格的每个边最多被两个面片共用，那么这个网格就是流形网络，否则称为非流形网络。</p>
+<h3 id="半边数据结构："><a href="#半边数据结构：" class="headerlink" title="半边数据结构："></a>半边数据结构：</h3><p>最大特点是半边，每个边分为两个半边，每个半边都是一个有向边，方向相反。如果一个边被两个面片公用，则每个面片都能各自拥有一个半边。如果一个边仅被一个面片占用（边界边），则这个面片仅拥有该边的其中一个半边，另一个半边为闲置状态。<strong>每一条半边仅存储它的起点指针</strong></p>
+<p><img src="/2018/05/06/计算机图形学-半边数据结构/img/halfedge.png" alt="halfedge"></p>
+<p>半边数据结构仅支持流形网络。</p>
+<p>半边数据结构的三个重要的数据结构——顶点、半边、面片 </p>
+<ul>
+<li>顶点(Vertex)：包含出半边（OutgoingHalfedge）的指针或索引</li>
+</ul>
+<p>在半边数据结构中的点储存着x，y，z的位置和以其为起始点的半边的指针。在任意给定的点上存在超过一条我们可以选择的半边，但是我们只需要选择其中一条并且是哪一条没关系，在下面的查询方法中我们会看到解释。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">HE_vert</span>  </span></span><br><span class="line"><span class="class">    &#123;</span>  </span><br><span class="line">  </span><br><span class="line">        <span class="keyword">float</span> x;  </span><br><span class="line">        <span class="keyword">float</span> y;  </span><br><span class="line">        <span class="keyword">float</span> z;  </span><br><span class="line">  </span><br><span class="line">        HE_edge* edge;  <span class="comment">// one of the half-edges emantating from the vertex  </span></span><br><span class="line">      </span><br><span class="line">    &#125;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>半边(HalfEdge)：包含终点（StartVertex）、邻接面(AdjacentFace)、下一条半边(NextHalfedge)、相反边（opposite）的指针或索引</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">HE_edge</span>  </span></span><br><span class="line"><span class="class">   &#123;</span>  </span><br><span class="line">  </span><br><span class="line">       HE_vert* vert;   <span class="comment">// vertex at the end of the half-edge  </span></span><br><span class="line">       HE_edge* pair;   <span class="comment">// oppositely oriented adjacent half-edge   </span></span><br><span class="line">       HE_face* face;   <span class="comment">// face the half-edge borders  </span></span><br><span class="line">       HE_edge* next;   <span class="comment">// next half-edge around the face  </span></span><br><span class="line">     &#125;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>面片(Face)：包含一条起始边（FirstHalfedge）的指针或索引对于一个半边数据结构的简单形式，一个面仅仅需要储存一个围绕它的边的指针，在一些特定场合可能要求我们储存比如材质和法向一类的信息。和上面一样，虽然有很多边围绕着面，我们只需要储存其中一条，而无所谓是哪一条</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">HE_face</span>  </span></span><br><span class="line"><span class="class">    &#123;</span>  </span><br><span class="line">  </span><br><span class="line">        HE_edge* edge;  <span class="comment">// one of the half-edges bordering the face  </span></span><br><span class="line">  </span><br><span class="line">    &#125;;</span><br></pre></td></tr></table></figure>
+<p>现在问题来了。顶点可能有两条或以上的出半边，而顶点的数据表达只有一条出半边，那这条出半边是哪一条？半边的下一条半边又是哪一条？面片的起始半边又是哪一条？通过某个网格的数据结构图（如图1）能看得出这些信息吗？ </p>
+<p>答：事实上，半边数据结构的网格的构建通常是通过面列表来创建的，也就是说，正常的构建半边数据结构网格是通过一个一个面片的添加来构建的。</p>
+<p>所以面的添加顺序就决定了点边面结构的信息，添加面的方法通常是addFace(a,b,c,…)，a,b,c…参数是该面片按其某条环路顺序排列的顶点的指针或索引。<strong>注意，环路可以是顺时针或者逆时针，决定了该面片的方向（法向量的方向）。</strong></p>
+<h3 id="三维网格细分算法："><a href="#三维网格细分算法：" class="headerlink" title="三维网格细分算法："></a>三维网格细分算法：</h3><h4 id="Catmull-Clark-subdivision"><a href="#Catmull-Clark-subdivision" class="headerlink" title="Catmull-Clark subdivision"></a>Catmull-Clark subdivision</h4><p>Catmull-Clark细分是一种四边形网格的细分法则，每个面计算生成一个新的顶点，每条边计算生成一个新的顶点，同时每个原始顶点更新位置。</p>
+<p><img src="https://images2015.cnblogs.com/blog/778572/201603/778572-20160307165055554-2123276712.jpg" alt="img"></p>
+<p>1.网格内部F-顶点位置：</p>
+<p>　　设四边形的四个顶点为v0、v1、v2、v3，则新增加的顶点位置为v = $\frac{1}{4}$ ×(v0 + v1 + v2 + v3)。</p>
+<p>2.网格内部V-顶点位置：</p>
+<p>　　设内部顶点v0的相邻点为v1、v2，…，v2n，则该顶点更新后位置为<img src="https://images2015.cnblogs.com/blog/778572/201603/778572-20160307165322772-1642245811.jpg" alt="img">，其中α、β、γ分别为α = 1 - β - γ。</p>
+<p>3.网格边界V-顶点位置：</p>
+<p>　　设边界顶点v0的两个相邻点为v1、v2，则该顶点更新后位置为v = $\frac{3}{4}$ ×v0 + $\frac{1}{8}$ ×(v1 + v2)。</p>
+<p>4.网格内部E-顶点位置：</p>
+<p>　　设内部边的两个端点为v0、v1，与该边相邻的两个四边形顶点分别为v0、v1、v2、v3和v0、v1、v4、v5，则新增加的顶点位置为v =  $\frac{1}{4}$ (v0 + v1 + vf1 + vf2) =  $\frac{3}{8}$ (v0 + v1) +  $\frac{1}{16}$ (v2 + v3 + v4 + v5)。</p>
+<p>5.网格边界E-顶点位置：</p>
+<p>　　设边界边的两个端点为v0、v1，则新增加的顶点位置为v =  $\frac{1}{2}$ (v0 + v1)。</p>
+<h4 id="Loop-subdivision"><a href="#Loop-subdivision" class="headerlink" title="Loop subdivision"></a>Loop subdivision</h4><p>Loop细分是一种三角形网格的细分法则，它按照1-4三角形分裂，每条边计算生成一个新的顶点，同时每个原始顶点更新位置。下图为Loop细分格式的细分掩膜，对于新增加的顶点位置以及原始顶点位置更新规则如下：</p>
+<p><img src="https://images2015.cnblogs.com/blog/778572/201603/778572-20160307165148085-190617796.jpg" alt="img"></p>
+<p>1.网格内部V-顶点位置：</p>
+<p>　　设内部顶点v0的相邻点为v1、v2，…，vn，则该顶点更新后位置为<img src="https://images2015.cnblogs.com/blog/778572/201603/778572-20160307165221257-190078282.jpg" alt="img">，其中<img src="https://images2015.cnblogs.com/blog/778572/201603/778572-20160307165237241-1432841958.jpg" alt="img">。</p>
+<p><img src="https://img-blog.csdn.net/20170826103506397?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvTWFoYWJoYXJhdGFf/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="img"></p>
+<p>2.网格边界V-顶点位置：</p>
+<p>　　设边界顶点v0的两个相邻点为v1、v2，则该顶点更新后位置为 v = $\frac{3}{4}$ ×v0 + $\frac{1}{8}$ ×(v1 + v2)。。</p>
+<p><img src="https://img-blog.csdn.net/20170826103627189?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvTWFoYWJoYXJhdGFf/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="img"></p>
+<p>3.网格内部E-顶点位置（新增点）：</p>
+<p>　　设内部边的两个端点为v0、v1，相对的两个顶点为v2、v3，则新增加的顶点位置为v =  $\frac{3}{8}$ <em>(v0 + v1) + $\frac{1}{8}$</em>(v2 + v3)。</p>
+<p><img src="https://img-blog.csdn.net/20170826102203530?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvTWFoYWJoYXJhdGFf/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="img"></p>
+<p>网格内部某条边的两个端点为v0、v1，共享这条边的两个三角形的面是（v0，v1，v2）和（v0，v1，v3）</p>
+<p>4.网格边界E-顶点位置（新增点）：</p>
+<p>　　设边界边的两个端点为v0、v1，则新增加的顶点位置为v = $\frac{1}{2}$×(v0 + v1)。</p>
+<p><img src="https://img-blog.csdn.net/20170826102651551?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvTWFoYWJoYXJhdGFf/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="img"></p>
+<p>### </p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/日常练习/" rel="tag"># 日常练习</a>
+          
+            <a href="/tags/计算机图形学/" rel="tag"># 计算机图形学</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/27/Hibernate学习（1)/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="SOHUCS"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/mylogo3.jpg"
+                alt="yongbosmart" />
+            
+              <p class="site-author-name" itemprop="name">yongbosmart</p>
+              <p class="site-description motion-element" itemprop="description">Follow excellence ,and success will chase U</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/yongbosmart" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:yongbosmart@gmail.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.zhihu.com/people/yongbosmart/activities" target="_blank" title="Zhihu"><i class="fa fa-fw fa-globe"></i>Zhihu</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://wx1900.github.io/" title="Xu Wang" target="_blank">Xu Wang</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#半边数据结构-amp-网格细分"><span class="nav-number">1.</span> <span class="nav-text">半边数据结构&网格细分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#半边数据结构："><span class="nav-number">1.1.</span> <span class="nav-text">半边数据结构：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三维网格细分算法："><span class="nav-number">1.2.</span> <span class="nav-text">三维网格细分算法：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Catmull-Clark-subdivision"><span class="nav-number">1.2.1.</span> <span class="nav-text">Catmull-Clark subdivision</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Loop-subdivision"><span class="nav-number">1.2.2.</span> <span class="nav-text">Loop subdivision</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yongbosmart</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.4.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Muse</a> v6.2.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="true"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.2.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.2.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.2.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.2.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.2.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+  
+    <script type="text/javascript">
+    (function(){
+      var appid = 'cytAlxwFo';
+      var conf = 'a73591f0905614cd29cfe66d353f1924';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
+        window.changyan.api.config({appid:appid,conf:conf})});
+      }
+    })();
+    </script>
+    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
