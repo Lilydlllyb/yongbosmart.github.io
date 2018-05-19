@@ -439,14 +439,13 @@
 <li><p>每个用户生成自己的公钥(对于用户A)</p>
 <ul>
 <li>选择一个密钥，(私钥)：数字 $x_{A}$&lt;q</li>
-<li>计算公钥：$y<em>{A}=g^{x</em>{A}}\mod q$</li>
+<li>计算公钥：$y_{A}=g^{x_{A}}\mod q$</li>
 <li>每个用户公开公钥</li>
 </ul>
 </li>
 <li><p>则用户A&amp;B共享的会话密钥是$K_{AB}$</p>
-<p>$$K<em>{AB}=g^{x</em>{A}· x_{B}} \mod q$$</p>
-<p>​       $$=y<em>{A}^{x</em>{B}}\mod q$$   (B可以计算出来)</p>
-<p>​       $$=y<em>{B}^{x</em>{A}}\mod q$$   (A可以计算出来)</p>
+<script type="math/tex; mode=display">K_{AB}=g^{x_{A}· x_{B}} \mod q</script><p>​       <script type="math/tex">=y_{A}^{x_{B}}\mod q</script>   (B可以计算出来)</p>
+<p>​       <script type="math/tex">=y_{B}^{x_{A}}\mod q</script>   (A可以计算出来)</p>
 </li>
 </ul>
 <p>From WIKI：</p>
@@ -466,7 +465,7 @@
 <h5 id="密钥生成"><a href="#密钥生成" class="headerlink" title="密钥生成"></a>密钥生成</h5><p>密钥生成步骤如下：</p>
 <ul>
 <li>Alice利用生成元 $g$ 产生一个 q,阶循环群 $G$,的有效描述。该循环群需要满足一定的安全性质。</li>
-<li>Alice从 ${1,\cdots,q-1}$中随机选择一个 $x$。</li>
+<li>Alice从 $\{1,\cdots,q-1\}$中随机选择一个 $x$。</li>
 <li>Alice计算 $h:=g^{x} \mod q $。</li>
 <li>Alice公开$h$,以及 $G,q,g$ 的描述作为其公钥，并保留 $x$ 作为其私钥。私钥必须保密。</li>
 </ul>
@@ -475,12 +474,12 @@
 <ul>
 <li><p>将信息表示成一个整数M，其中$1\leq M \leq q-1$，以分组密码序列的方式来发送信息，其中每个分块的长度不小于整数q。</p>
 </li>
-<li><p>Bob从  ${1,\cdots,q-1}$ 随机选择一个 $y$。（私钥）</p>
+<li><p>Bob从  $\{1,\cdots,q-1\}$ 随机选择一个 $y$。（私钥）</p>
 </li>
 <li><p>然后计算 密钥$K=h^{y} \mod q$。（会话密钥）</p>
 </li>
-<li><p>将M加密成明文对$(C<em>{1}，C</em>{2})$，其中</p>
-<p>$C<em>{1}=g^{y} \mod q  ; C</em>{2}=K\cdot M \mod q $（公钥，加密的信息）</p>
+<li><p>将M加密成明文对$(C_{1}，C_{2})$，其中</p>
+<p>$C_{1}=g^{y} \mod q  ; C_{2}=K\cdot M \mod q $（公钥，加密的信息）</p>
 </li>
 </ul>
 <h5 id="解密"><a href="#解密" class="headerlink" title="解密"></a>解密</h5><p>Alice利用自己的私钥进行解密。</p>
