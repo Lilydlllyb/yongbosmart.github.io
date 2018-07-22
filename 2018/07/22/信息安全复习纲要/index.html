@@ -1,0 +1,1627 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-corner-indicator.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.2.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon2.ico?v=6.2.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.2.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.2.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="信息安全学习总结&amp;amp;复习纲要by yongbo 基本概念 密码算法和协议又可以分为4个主要的领域：  对称加密：用于加密任意大小的数据块或数据流的内容，包括消息、文件、加密密钥、口令。 非对称加密：用户加密小的数据库，如原来加密密钥或者hash值。 数据完整性算法：用于保护数据块（如一条消息）的内容免于修">
+<meta name="keywords" content="课堂笔记,信息安全">
+<meta property="og:type" content="article">
+<meta property="og:title" content="信息安全学习总结&amp;复习纲要">
+<meta property="og:url" content="https://yongbosmart.github.io/2018/07/22/信息安全复习纲要/index.html">
+<meta property="og:site_name" content="Yongbosmart">
+<meta property="og:description" content="信息安全学习总结&amp;amp;复习纲要by yongbo 基本概念 密码算法和协议又可以分为4个主要的领域：  对称加密：用于加密任意大小的数据块或数据流的内容，包括消息、文件、加密密钥、口令。 非对称加密：用户加密小的数据库，如原来加密密钥或者hash值。 数据完整性算法：用于保护数据块（如一条消息）的内容免于修改。 认证协议：有许多基于密码算法的认证方案，用于认证实体的真实性。   CIA三元组，">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://yongbosmart.github.io/2018/07/22/信息安全复习纲要/信息安全/对称加密模型.png">
+<meta property="og:image" content="https://yongbosmart.github.io/2018/07/22/信息安全复习纲要/信息安全/对称加密.png">
+<meta property="og:image" content="https://yongbosmart.github.io/2018/07/22/信息安全复习纲要/信息安全/playfair例题.png">
+<meta property="og:image" content="https://yongbosmart.github.io/2018/07/22/信息安全复习纲要/信息安全/字母表.png">
+<meta property="og:image" content="https://yongbosmart.github.io/2018/07/22/信息安全复习纲要/信息安全/DES.png">
+<meta property="og:image" content="https://yongbosmart.github.io/2018/07/22/信息安全复习纲要/信息安全/网络结构Feistel.png">
+<meta property="og:image" content="https://yongbosmart.github.io/2018/07/22/信息安全复习纲要/信息安全/DES加密.png">
+<meta property="og:image" content="https://yongbosmart.github.io/2018/07/22/信息安全复习纲要/信息安全/IP置换.png">
+<meta property="og:image" content="https://yongbosmart.github.io/2018/07/22/信息安全复习纲要/信息安全/DES结构.png">
+<meta property="og:image" content="https://yongbosmart.github.io/2018/07/22/信息安全复习纲要/信息安全/扩展置换与置换P.png">
+<meta property="og:image" content="https://yongbosmart.github.io/2018/07/22/信息安全复习纲要/信息安全/S盒.png">
+<meta property="og:image" content="https://yongbosmart.github.io/2018/07/22/信息安全复习纲要/信息安全/密钥生成算法.png">
+<meta property="og:image" content="https://yongbosmart.github.io/2018/07/22/信息安全复习纲要/信息安全/ECB.png">
+<meta property="og:image" content="https://yongbosmart.github.io/2018/07/22/信息安全复习纲要/信息安全/CBC.png">
+<meta property="og:image" content="https://yongbosmart.github.io/2018/07/22/信息安全复习纲要/信息安全/群环域.png">
+<meta property="og:image" content="https://yongbosmart.github.io/2018/07/22/信息安全复习纲要/信息安全/单向陷门函数.png">
+<meta property="og:image" content="https://yongbosmart.github.io/2018/07/22/信息安全复习纲要/信息安全/复杂性.png">
+<meta property="og:image" content="https://yongbosmart.github.io/2018/07/22/信息安全复习纲要/信息安全/计算.png">
+<meta property="og:image" content="https://yongbosmart.github.io/2018/07/22/信息安全复习纲要/信息安全/TIM图片20180518085502.png">
+<meta property="og:image" content="https://yongbosmart.github.io/2018/07/22/信息安全复习纲要/信息安全/椭圆曲线需要满足的条件.png">
+<meta property="og:image" content="https://yongbosmart.github.io/2018/07/22/信息安全复习纲要/信息安全/椭圆曲线加解密.png">
+<meta property="og:image" content="https://yongbosmart.github.io/2018/07/22/信息安全复习纲要/信息安全/协议分析.png">
+<meta property="og:image" content="https://yongbosmart.github.io/2018/07/22/信息安全复习纲要/信息安全/scheme改进.png">
+<meta property="og:image" content="https://yongbosmart.github.io/2018/07/22/信息安全复习纲要/信息安全/协议分析2.png">
+<meta property="og:image" content="https://yongbosmart.github.io/2018/07/22/信息安全复习纲要/信息安全/协议分析3.png">
+<meta property="og:updated_time" content="2018-07-22T02:45:00.853Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="信息安全学习总结&amp;复习纲要">
+<meta name="twitter:description" content="信息安全学习总结&amp;amp;复习纲要by yongbo 基本概念 密码算法和协议又可以分为4个主要的领域：  对称加密：用于加密任意大小的数据块或数据流的内容，包括消息、文件、加密密钥、口令。 非对称加密：用户加密小的数据库，如原来加密密钥或者hash值。 数据完整性算法：用于保护数据块（如一条消息）的内容免于修改。 认证协议：有许多基于密码算法的认证方案，用于认证实体的真实性。   CIA三元组，">
+<meta name="twitter:image" content="https://yongbosmart.github.io/2018/07/22/信息安全复习纲要/信息安全/对称加密模型.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://yongbosmart.github.io/2018/07/22/信息安全复习纲要/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>信息安全学习总结&复习纲要 | Yongbosmart</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Yongbosmart</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"> Follow excellence ,and success will chase you</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签<span class="badge">7</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类<span class="badge">4</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档<span class="badge">7</span></a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yongbosmart.github.io/2018/07/22/信息安全复习纲要/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yongbosmart">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/mylogo3.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yongbosmart">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">信息安全学习总结&复习纲要
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-07-22 00:00:00 / 修改时间：10:45:00" itemprop="dateCreated datePublished" datetime="2018-07-22T00:00:00+08:00">2018-07-22</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/信息安全/" itemprop="url" rel="index"><span itemprop="name">信息安全</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2018/07/22/信息安全复习纲要/#SOHUCS" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2018/07/22/信息安全复习纲要/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="信息安全学习总结-amp-复习纲要"><a href="#信息安全学习总结-amp-复习纲要" class="headerlink" title="信息安全学习总结&amp;复习纲要"></a>信息安全学习总结&amp;复习纲要</h2><p>by yongbo</p>
+<h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><ul>
+<li><p>密码算法和协议又可以分为4个主要的领域：</p>
+<ul>
+<li>对称加密：用于加密任意大小的数据块或数据流的内容，包括消息、文件、加密密钥、口令。</li>
+<li>非对称加密：用户加密小的数据库，如原来加密密钥或者hash值。</li>
+<li>数据完整性算法：用于保护数据块（如一条消息）的内容免于修改。</li>
+<li>认证协议：有许多基于密码算法的认证方案，用于认证实体的真实性。</li>
+</ul>
+</li>
+<li><p>CIA三元组，数据、信息和计算服务的基本安全目标：</p>
+<ul>
+<li>保密性：对信息的访问和公开进行授权限制，包括保护个人隐私和秘密信息。保密性缺失的定义是信息的<strong>非授权泄露</strong>。</li>
+<li>完整性：防止对信息的不恰当修改或破坏，包括确保信息的不可否认性和真实性。完整性缺失的定义是对信息的<strong>非授权修改和毁坏</strong>。</li>
+<li>可用性：确保对信息的及时和可靠的访问和使用。可用性的缺失是对信息和信息系统访问和使用的中断。</li>
+</ul>
+<p>（真实性，可追溯性（追溯到负有安全责任的一方））</p>
+</li>
+<li><p>passive attacks（被动攻击）</p>
+<p>对传输进行窃听和检测。攻击者的目标是获得传输的信息。（信息内容的泄露，流量分析）（难以检测可防止）</p>
+</li>
+<li><p>active attacks（主动攻击）</p>
+<p>对数据流进行修改或伪造数据流。（伪装，重播（再次发送），信息修改，拒绝服务）（难以预防可检测）</p>
+</li>
+<li><p>访问控制：限制和控制那些通过通信连接对主机和应用进行访问的能力。</p>
+</li>
+<li><p>数据保密性：防止传输的数据遭到被动攻击。</p>
+<p>数据完整性：与主动攻击有关</p>
+<p>不可否认性：接收方能证明消息是由发送方发出，发送方也能证明消息是被接收方收到。</p>
+</li>
+</ul>
+<h3 id="传统加密技术"><a href="#传统加密技术" class="headerlink" title="传统加密技术"></a>传统加密技术</h3><ul>
+<li><p>对称加密：至今仍是最为广泛的加密模型，代表：DES和AES。</p>
+<p>采用单钥密码系统的加密方法，同一个密钥可以同时用作信息的加密和解密，这种加密方法称为对称加密，也称为单密钥加密。 </p>
+</li>
+<li><p>5个基本模型</p>
+<p>plaintext 明文：原始可理解的消息或数据，是算法的输入。</p>
+<p>加密算法：加密算法对明文进行各种替代和变换。</p>
+<p>密钥：加密算法的输入。<strong>密钥独立于明文和算法</strong>。算法根据所用的特定密钥而产生不同的输出。算法所用的确切代替和变换也依靠密钥。</p>
+<p>密文：作为算法的输出，看起来完全随机而杂乱的消息，依赖于明文和密钥。</p>
+<p>解密算法：本质上是加密算法的逆运算。输入密文和密钥，输出原始明文。</p>
+<p>•plaintext - the original message </p>
+<p>•ciphertext - the coded message </p>
+<p>•cipher - algorithm for transforming plaintext to ciphertext </p>
+<p>•key - info used in cipher known only to sender/receiver </p>
+<p>•encipher (encrypt)（加密） - converting plaintext to ciphertext </p>
+<p>•decipher (decrypt) （解密）- recovering ciphertext from plaintext</p>
+<p>•cryptography （密码学）- study of encryption principles/methods</p>
+<p>•cryptanalysis (code-breaking) - the study of principles/ methods of deciphering ciphertext without knowing key</p>
+<p>•cryptology - the field of both cryptography and cryptanalysis</p>
+</li>
+</ul>
+<p><img src="/2018/07/22/信息安全复习纲要/信息安全/对称加密模型.png" alt="对称加密模型"></p>
+<p>$Y=E(K,X), X=D(K,Y)$</p>
+<p><img src="/2018/07/22/信息安全复习纲要/信息安全/对称加密.png" alt="对称加密"></p>
+<p>对加密信息的攻击类型</p>
+<p>•ciphertext only （唯密文攻击，最容易防范）</p>
+<p>•only know algorithm / ciphertext, statistical, can identify plaintext </p>
+<p>•known plaintext （已知明文）</p>
+<p>•know/suspect plaintext &amp; ciphertext to attack cipher </p>
+<p>•chosen plaintext （选择明文）</p>
+<p>•select plaintext and obtain ciphertext to attack cipher</p>
+<p>•chosen ciphertext </p>
+<p>•select ciphertext and obtain plaintext to attack cipher</p>
+<p>•chosen text </p>
+<p>•select either plaintext or ciphertext to en/decrypt to attack cipher</p>
+<ul>
+<li>加密算法满足以下两点，可以认为是计算上安全的：<ul>
+<li>破译密码的代价超出密文信息的价值</li>
+<li>破译密码的时间超出密文信息的有效期</li>
+</ul>
+</li>
+</ul>
+<h4 id="代替技术"><a href="#代替技术" class="headerlink" title="代替技术"></a>代替技术</h4><p>将明文字母替换成其他字母、数字和符合的方法。</p>
+<h5 id="Caesar密码"><a href="#Caesar密码" class="headerlink" title="Caesar密码"></a>Caesar密码</h5><p>对字母表中的每个字母，用它之后的第三个字母来代替。eg:a-&gt;d</p>
+<p>可以扩展到移n位，有25种可能的密钥。公式(将字母对应成数字)$C=E(k,p)=(p+k)\mod 26\\ p=D(k,C)=(C-k)\mod26$</p>
+<p>caesar密码的三个重要特征使得可以采用穷举攻击分析方法：</p>
+<p>1.已知加密和解密算法</p>
+<p>2.需测试的密钥只有25个</p>
+<p>3.明文所用的语言是已知的，且其意义易于识别。</p>
+<h5 id="Monoalphabetic-Cipher-单表替代密码"><a href="#Monoalphabetic-Cipher-单表替代密码" class="headerlink" title="Monoalphabetic Cipher  单表替代密码"></a>Monoalphabetic Cipher  单表替代密码</h5><p>替代密码是指先建立一个替换表，加密时将需要加密的明文依次通过查表，替换为相应的字符，明文字符被逐个替换后，生成无任何意义的字符串，即密文，替代密码的密钥就是其替换表 。 （单表有一个固定的替换表）</p>
+<p>将得到的密文上26个字母的任意置换。（一个具有n个元素的集合有n!个置换。）密钥数目大大增加（eg,26!&gt;4×$10^{26}$)</p>
+<p>但是仍不安全，问题是语言特征规律。</p>
+<p>•human languages are redundant </p>
+<p>•letters are not equally commonly used </p>
+<p>单表代替密码，带有原始字母使用频率的一些统计学特征，</p>
+<p>有两种方法可以减少代替密码里明文结构在密文中的残留度：</p>
+<p>1.对明文中的多个字母一起加密。</p>
+<p>2.采用多表代替密码</p>
+<h5 id="playfair-密码（多字母代替密码）"><a href="#playfair-密码（多字母代替密码）" class="headerlink" title="playfair 密码（多字母代替密码）"></a>playfair 密码（多字母代替密码）</h5><p>最著名的<strong>多字母</strong>代替密码，它把明文中的双字母音节作为一个单元并将其转换成密文的“双字母音节”。</p>
+<p>基于一个由密钥词构成的5×5字母矩阵。</p>
+<p>本例使用的密钥词是monarchy。填充矩阵的方法是：首先将密钥词（去掉重复字母）从左向右，从上到下填在矩阵格子里。再将剩余的字母（除去密钥词里的字母）一次填在矩阵的格子里。I/J认为是一个字母。</p>
+<p>（如果一种语言字母超过25个，可以去掉使用频率最少的一个。如，法语一般去掉w或k，德语则是把i和j合起来当成一个字母看待。英语中z使用最少，可以去掉它。 ）</p>
+<p><img src="/2018/07/22/信息安全复习纲要/信息安全/playfair例题.png" alt="playfair例题"></p>
+<p>（1）如果该<strong>字母对</strong>的两个字母是相同的，那么在它们之间加一个填充字母，比如x。balloon$\to$ba lx lo on</p>
+<p>(2)落在矩阵同一行的明文字母对中的字母由其右边的字母来代替。每行最右边的一个字母就用该列最左边的字母来代替。ar-&gt;RM</p>
+<p>(3) 落在矩阵同一列的明文字母对中的字母由其下面的字母来代替，每行最下面的一个字母，就该用该列最上面的字母来代替。比如mu$\to$CM</p>
+<p>(4) 其他的每组明文字母对中的字母，按如下方式代替，该字母所在行为<strong>(该字母的)</strong>密文所在行，另一个字母所在列为（该字母的）密文所在列。hs$\to$BP，ea$\to$IM/JM</p>
+<p>（5）•如果最后剩下一个单个的不成对的字母，不加密 b</p>
+<p>有26×26=675个字母对</p>
+<p>认为比较安全，但仍然相对容易攻破。因为它的密文仍然完好地保留了明文语言的大部分结构特征。</p>
+<h5 id="多表代替密码（Vigenere密码）"><a href="#多表代替密码（Vigenere密码）" class="headerlink" title="多表代替密码（Vigenere密码）"></a>多表代替密码（Vigenere密码）</h5><p>对简单单表代替的改进方法是在明文消息中采用不同的单表代替。这种方法一般称之为多表代替密码。所有这些方法都有以下的共同特征：</p>
+<p>（1）采用相关的单表代替规则集。</p>
+<p>（2）密钥决定给定变换的具体规则。</p>
+<p>最简单最著名的多表加密算法：Vigenere密码。在单一恺撒密码的基础上扩展出多表密码 </p>
+<p><strong>如何使用字母表加解密，如果知道密钥长度，能否进行解密</strong> </p>
+<p><img src="/2018/07/22/信息安全复习纲要/信息安全/字母表.png" alt="字母表"></p>
+<p>TO BE OR NOT TO BE THAT IS THE QUESTION</p>
+<p>当选定RELATIONS作为密钥时，加密过程是：明文一个字母为T，第一个密钥字母为R，因此可以找到在R行中代替T的为K，依此类推，得出对应关系如下：</p>
+<p>密钥:RELAT IONSR ELATI ONSRE LATIO NSREL</p>
+<p>明文:TOBEO RNOTT OBETH ATIST HEQUE STION</p>
+<p>密文:KSMEH ZBBLK SMEMP OGAJX SEJCS FLZSY</p>
+<p>又如：</p>
+<p>在维吉尼亚（Vigenère）的密码中，发件人和收件人必须使用同一个关键词或者同一文字章节，即密钥。这个关键词或文字章节中的字母告诉他们怎么样才能前后改变字母的位置来获得该段信息中的每个字母的正确对应位置。比如如果关键字“BIG”被使用了，发件人将把信息按三个字母的顺序排列。第一个三字母单词的第一个字母将应当向前移动一个位置（因为B是排在A后面的字母），第二个字母需要向前移动8位（I是A后面第8个字母），而第三个字母需要向前移动6位（G是A后面第6个字母）。然后，文字就可以按下面的顺序来进行加密了：</p>
+<p>未加密文字：THE BUTCHER THE BAKER AND THE CANDLESTICK MAKER。（屠夫、面包师和蜡烛匠）。</p>
+<p>关键密钥：BIG BIGBIGB IGB IGBIG BIG BIG BIGBIGBIGBI GBIGB</p>
+<p>加密文字：UPK CCZDPKS BNF JGLMX BVJ UPK DITETKTBODS SBSKS</p>
+<p><strong>密钥</strong></p>
+<p>如果知道“BIG”就是密钥，收件人就可以很容易地通过相应的位置改变字母位置，从而译出经过加密的文字。</p>
+<p>每个明文都有多个密文字母，因此，字母的频率不太明显</p>
+<p>但不是完全失去了</p>
+<p>1）可以通过字母频率来确定使用的方法:单表法还是Vigenere密码</p>
+<p>2）有时可以推断出key大小（破译能否取得进展将取决于能否判定密钥词的长度）如果两个相同的明文序列之间的距离是密钥词长度的整数倍，那么产生的密文序列也是相同的。</p>
+<h5 id="一次一密"><a href="#一次一密" class="headerlink" title="一次一密"></a>一次一密</h5><p>不可被攻破的，使用与消息一样长且无重复的随机密钥来加密消息。加密一次后丢弃不用。它产生的随机输出与明文没有任何关系，因为密文不包含明文的任何信息，所以无法可破。</p>
+<p>（无条件安全，不可破译）</p>
+<p>两大难点：a.产生大规模的随机密钥有实现困难。b.更令人担忧的是密钥的分配和保护。</p>
+<p>一次一密是唯一的具有完善保密的密码体制。</p>
+<h4 id="其它（置换密码，轮转机，隐写术）"><a href="#其它（置换密码，轮转机，隐写术）" class="headerlink" title="其它（置换密码，轮转机，隐写术）"></a>其它（置换密码，轮转机，隐写术）</h4><p>置换密码是一种通过一定规则改变字符串中字符的顺序从而实现加密的密码算法。常见的是将明文字符串按照n个一行形成矩阵，然后再按列读出 。（可以双重，多重置换）</p>
+<h3 id="块密码和数据加密标准（DES"><a href="#块密码和数据加密标准（DES" class="headerlink" title="块密码和数据加密标准（DES)"></a>块密码和数据加密标准（DES)</h3><p>流密码和块密码（分组密码）</p>
+<p>流密码每次加密数据流的一位或一个字节。分组密码是将一个明文分组作为整体加密，通常得到与明文等长的密文分组，一般分组大小是64位或128位（高级加密标准）。</p>
+<p>分组越长意味着安全性越高。</p>
+<ul>
+<li><p>现代块密码</p>
+<p>用途广泛，包括保密和身份验证，主要是DES(分组密码设计准则)</p>
+</li>
+</ul>
+<p><strong>一种思想(加解密过程）</strong>：A$\oplus B =C$      $C\oplus B=A$(根据异或的性质)</p>
+<p>•LS-1:          cycled left shift 1 bit</p>
+<p>•LS-2:          cycled left shift 2 bit</p>
+<p> •IP = (n2, n6 , n3 , n1 , n4 , n8 , n5 , n7 )n1放在了第四个位置</p>
+<p>​             1    2     3     4      5     6     7     8</p>
+<p>•$IP^{-1}$=(n4, n1 , n3 , n5 , n7 , n2 , n8 , n6 )n4就放在第一个位置</p>
+<p>​             1    2     3     4      5     6     7     8</p>
+<p>(n6放在第8个位置，n1放在第二个位置，与上面对应)</p>
+<p>•$IP^{-1}$( IP( X ) )=X</p>
+<p>代替：明文被密文代替</p>
+<p>置换：明文元素序列置换。</p>
+<p>扩散：明文 和 密文之间统计关系变得复杂</p>
+<p>混淆： 密文和 加密密钥之间 统计关系变复杂。</p>
+<p>DES算法把64位的明文输入块变为64位的密文输出块,它所使用的密钥也是64位（实际用到了56位，第8、16、24、32、40、48、56、64位是校验位， 使得每个密钥都有奇数个1）</p>
+<p>DES是以64bit明文为一个单位来进行加密的，这个64bit的单位称为分组。</p>
+<p><strong>上一轮如何加密得到下一轮64bit，函数怎么来的，加完密如何解密。不一定考怎么设计，但是最关键结构！！</strong></p>
+<h4 id="Feistel-密码（DES基本结构）"><a href="#Feistel-密码（DES基本结构）" class="headerlink" title="Feistel 密码（DES基本结构）"></a>Feistel 密码（DES基本结构）</h4><p>基本公式：$f_{k}=(L\oplus F(R,SK),R)$</p>
+<p>L:左四位输入；R:右四位输入；SK:8位子密钥；F:映射函数</p>
+<p><strong>本质上实现了输入和输出的非线性 </strong></p>
+<p>在这里，加密的各个步骤称为轮，整个加密步骤就是进行若干次轮的循环。（多轮网络，难以破解）DES是一种16轮循环的Feistel网络。</p>
+<p><img src="/2018/07/22/信息安全复习纲要/信息安全/DES.png" alt="DES"></p>
+<p>Feistel 密码的流程，也是DES的一次循环过程。</p>
+<p>输入分为左边和右边各32bit，子密钥是本轮加密使用的密钥，子密钥是一个局部密钥，仅在一轮中使用。</p>
+<p>轮函数根据右侧和子密钥生成对左侧的加密序列，它是<strong>密码系统的核心</strong>，将轮函数的输出（用于加密的序列），与左侧进行xor，从而得到加密的效果。而输入的右侧原样输出。</p>
+<p>这样右侧没有进行加密，因此需要用不同的子密钥对一轮进行处理，并在两轮处理之间，将左侧和右侧数据对调，最后一轮结束之后不需要对调。（课本得到LE16,Re16之后，进行对调后再输出了LE17,RE17，但是在解密时依旧用的是LE16，RE16)</p>
+<p><strong>解密</strong>：只要按照相反的顺序使用子密钥就可以了。（用相同的子密钥运行两次Feistel就能将数据还原（左右侧不对调的情况下），根据$\oplus$的相关性质）</p>
+<p>特点：feistel轮数可以任意叠加；轮函数使用任何函数都可以正确解密；加密和解密可以用完全相同的结构实现。</p>
+<p><img src="/2018/07/22/信息安全复习纲要/信息安全/网络结构Feistel.png" alt="网络结构Feistel"></p>
+<h4 id="DES加密"><a href="#DES加密" class="headerlink" title="DES加密"></a>DES加密</h4><p><img src="/2018/07/22/信息安全复习纲要/信息安全/DES加密.png" alt="DES加密"></p>
+<p>事实上，明文处理经历了3个阶段：</p>
+<p>64位明文经过初始置换Ip被重新排列。然后进入16轮相同函数的作用，每轮作用都有置换和代替。最后一轮输出有64位，左半部分和右半部分对调后输出。最后预输出再被与初始置换IP互逆的置换$IP^{-1}$作用产生64位密文。除了初始与末尾的置换，DES结构与Feistel结构相同。</p>
+<p>图中右半部分给出了使用56位密钥的过程，密钥经过一个置换后，在经过循环左移和一个置换分别的都各轮的子密钥$K_{i}$用于各轮的迭代。每轮置换函数一样，但由于循环移位使子密钥不同。</p>
+<p><strong>雪崩效应</strong>：明文或密钥的微小改变将对密文产生很大的影响是任何加密算法需要的一个好性质。明文密钥某一位变化$\to$密文很多位变化</p>
+<p>DES的强度：</p>
+<p>56位密钥一共有$2^{56}种情况,7.2\times10^{16}$</p>
+<h4 id="DES过程"><a href="#DES过程" class="headerlink" title="DES过程"></a>DES过程</h4><h5 id="初始置换IP及其逆置换-IP-1"><a href="#初始置换IP及其逆置换-IP-1" class="headerlink" title="初始置换IP及其逆置换$IP^{-1}$"></a>初始置换IP及其逆置换$IP^{-1}$</h5><p><img src="/2018/07/22/信息安全复习纲要/信息安全/IP置换.png" alt="IP置换"></p>
+<p>IP置换就是将一个分组的64bits按照IP表按位重排。看第一个ip表，表示的意思是将64位明文P的第58位放在第1位，把原来的第50位调到第2位。$IP^{-1}$正好将IP调整的位置调回原位</p>
+<h5 id="函数F-·-·-的细节"><a href="#函数F-·-·-的细节" class="headerlink" title="函数F(·,·)的细节"></a>函数F(·,·)的细节</h5><p><img src="/2018/07/22/信息安全复习纲要/信息安全/DES结构.png" alt="DES结构"></p>
+<p>E置换-》XOR-》S盒-》P置换</p>
+<ul>
+<li>扩展置换E与P置换</li>
+</ul>
+<p>扩展置换的功能是把$R_{i-1}$传来的32bits扩展为48bits，以便与48bits的子密钥$K_{i}$进行异或运算。</p>
+<p>P盒置换是将S盒输出的32位结果又来一次置换。【置换规则和IP相同】<img src="/2018/07/22/信息安全复习纲要/信息安全/扩展置换与置换P.png" alt="扩展置换与置换P"></p>
+<ul>
+<li>S盒变换</li>
+</ul>
+<p>S盒变换又称压缩替换，通过S盒将48位输入变换成32位输出。是DES中唯一的非线性结构。DES算法中用了8个结构相似的S盒，每个S盒能够将6位的输入变成4位的输出。8个则将48位-》32位。</p>
+<p>【6位数字，取第一位和最后一位作为行号，取中间四位作为列号，找到S盒中对应的&lt;16的数，转化为4位2进制<img src="/2018/07/22/信息安全复习纲要/信息安全/S盒.png" alt="S盒">】</p>
+<h5 id="轮密钥是怎样生成的"><a href="#轮密钥是怎样生成的" class="headerlink" title="轮密钥是怎样生成的"></a>轮密钥是怎样生成的</h5><p>初始密钥：56bit+8bit校验</p>
+<p><img src="/2018/07/22/信息安全复习纲要/信息安全/密钥生成算法.png" alt="密钥生成算法"></p>
+<p>置换PC-1:将初始密钥中不在8的整数倍位置上的数，置换到56位上，置换规则同IP等相似，有置换表。</p>
+<p>置换PC-2：一个压缩置换，将56位的输入压缩变换成48位。有置换表。</p>
+<p>附：3DES 加密$C=E_{k1}(D_{k2}(E_{k1}(P)))$</p>
+<p>解密$P=D_{k1}(E_{k2}(D_{k1}(C)))$</p>
+<h4 id="分组密码的模式"><a href="#分组密码的模式" class="headerlink" title="分组密码的模式"></a>分组密码的模式</h4><p><strong>模式</strong>分组密码只能加密固定长度的明文。如果需要加密任意长度的明文，就需要对分组密码进行迭代，而分组密码的迭代方法就称为分组密码的“模式”。</p>
+<p>ECB,CBC,CFB,OFB,CTR</p>
+<p>明文分组：作为加密对象的明文，=分组密码算法的分组长度</p>
+<p>密文分组：分组密码算法将明文分组加密之后所产生的密文。</p>
+<h5 id="ECB"><a href="#ECB" class="headerlink" title="ECB"></a>ECB</h5><p>ECB：电子密码本。直接分块加密。在ECB模式中，将明文分组加密之后的结果将直接成为密文分组。</p>
+<p><img src="/2018/07/22/信息安全复习纲要/信息安全/ECB.png" alt="ECB"></p>
+<p>快速高效，可以同时处理。</p>
+<p>信息的重复会显示出来</p>
+<p>不安全：攻击者可以改变密文分组的顺序，当接受者对密文进行解密时，由于密文分组的顺序变了，解密出的明文顺序也会不对。<strong>这时，攻击者无需破译密码，既可以操纵明文</strong>。除此之外，攻击者还可以将密文分组进行删除、复制等操作。（if有消息认证码可以检测，but用其它模式不会出现这样的问题）</p>
+<h5 id="CBC模式（密文分组链接模式）"><a href="#CBC模式（密文分组链接模式）" class="headerlink" title="CBC模式（密文分组链接模式）"></a>CBC模式（密文分组链接模式）</h5><p>密文分组像链条一样相互连接在一起。</p>
+<p>首先将明文分组与前一个密文分组进行XOR运算，然后再进行加密。</p>
+<p> 前面的块作为后面的块的输入——连在一起 •</p>
+<p>需要一个初始的64位数据（向量）即IV</p>
+<p>一般来说，每次加密时都会随机产生一个不同的比特序列来作为初始化向量。</p>
+<p><img src="/2018/07/22/信息安全复习纲要/信息安全/CBC.png" alt="CBC"></p>
+<p>与ECB区别：ECB模式只进行了加密，而CBC模式则在加密前进行了一次XOR</p>
+<p>特点：</p>
+<p>安全性较好，加密过程是<strong>串行</strong>的，无法被并行化。<strong>解密可以并行化</strong>。</p>
+<p>每个密文块都依赖于所有的消息块，因此，消息中的更改会影响更改后的所有密文块以及原始块。</p>
+<p>但是，如果IV是明文发送的，攻击者可以更改第一个块的位，并更改IV以补偿，因此IV必须是一个固定值(如EFTPOS)，或者必须在消息其余部分之前以ECB模式加密发送 【？？？即可对初始化向量进行攻击】</p>
+<p>在消息的末尾，通过填充已知的非数据值(如null)或使用填充大小为pad size的pad last块来处理可能的最后短块</p>
+<p>如。[b1 b2 b3 0 0 0 0 0 0 5] &lt;- 3数据字节，然后5字节pad+计数</p>
+<h3 id="数论和有限域"><a href="#数论和有限域" class="headerlink" title="数论和有限域"></a>数论和有限域</h3><p>b|a: b整除a,b是a的因子。</p>
+<p>a|b,b|c,则a|c。</p>
+<h4 id="欧几里得算法-Euclid-amp-GCD"><a href="#欧几里得算法-Euclid-amp-GCD" class="headerlink" title="欧几里得算法 Euclid &amp; GCD"></a>欧几里得算法 Euclid &amp; GCD</h4><p>:arrow_forward: 两个整数称为互素的，如果它们唯一的正整数公因子为1.</p>
+<p>▶️ gcd(a,b):a,b的最大公因子。gcd(0,0)=0.</p>
+<p>gcd(a,b)=max[k,其中k|a且k|b]</p>
+<p>所求最大公因子为正数，一般来说gcd(a,b)=gcd(|a|,|b|),同样，因为0可被所有非零整数整除，所以gcd(a,0)=|a|。</p>
+<p><strong>如果gcd(a,b)=1,那么a和b互素</strong></p>
+<p>▶️ 【基于java】： a mod b（仅正数）和a%b（结果有正有负）相差不多，均表示求余数。$a\equiv b \mod c$ (a,b模c同余)</p>
+<p>▶️ 欧几里得算法</p>
+<p>d= GCD(a,b) = GCD(b, a mod b)  （b ，a和b的余数）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">A=a, B=b</span><br><span class="line"><span class="keyword">while</span> B&gt;<span class="number">0</span></span><br><span class="line">  R = A mod B</span><br><span class="line">  A = B, B = R</span><br><span class="line"><span class="keyword">return</span> A （B=<span class="number">0</span>,返回A)</span><br><span class="line"><span class="function">Example <span class="title">GCD</span><span class="params">(<span class="number">1970</span>,<span class="number">1066</span>)</span></span></span><br><span class="line"><span class="function">1970 </span>= <span class="number">1</span> x <span class="number">1066</span> + <span class="number">904</span> 	gcd(<span class="number">1066</span>, <span class="number">904</span>)</span><br><span class="line"><span class="number">1066</span> = <span class="number">1</span> x <span class="number">904</span> + <span class="number">162</span> 	gcd(<span class="number">904</span>, <span class="number">162</span>)</span><br><span class="line"><span class="number">904</span> = <span class="number">5</span> x <span class="number">162</span> + <span class="number">94</span> 		gcd(<span class="number">162</span>, <span class="number">94</span>)</span><br><span class="line"><span class="number">162</span> = <span class="number">1</span> x <span class="number">94</span> + <span class="number">68</span> 		gcd(<span class="number">94</span>, <span class="number">68</span>)</span><br><span class="line"><span class="number">94</span> = <span class="number">1</span> x <span class="number">68</span> + <span class="number">26</span> 		gcd(<span class="number">68</span>, <span class="number">26</span>)</span><br><span class="line"><span class="number">68</span> = <span class="number">2</span> x <span class="number">26</span> + <span class="number">16</span> 		gcd(<span class="number">26</span>, <span class="number">16</span>)</span><br><span class="line"><span class="number">26</span> = <span class="number">1</span> x <span class="number">16</span> + <span class="number">10</span> 		gcd(<span class="number">16</span>, <span class="number">10</span>)</span><br><span class="line"><span class="number">16</span> = <span class="number">1</span> x <span class="number">10</span> + <span class="number">6</span> 		gcd(<span class="number">10</span>, <span class="number">6</span>)</span><br><span class="line"><span class="number">10</span> = <span class="number">1</span> x <span class="number">6</span> + <span class="number">4</span> 			gcd(<span class="number">6</span>, <span class="number">4</span>)</span><br><span class="line"><span class="number">6</span> = <span class="number">1</span> x <span class="number">4</span> + <span class="number">2</span> 			gcd(<span class="number">4</span>, <span class="number">2</span>)</span><br><span class="line"><span class="number">4</span> = <span class="number">2</span> x <span class="number">2</span> + <span class="number">0</span> 			gcd(<span class="number">2</span>, <span class="number">0</span>)[一直到余数=<span class="number">0</span>，这里结果为<span class="number">2</span>]</span><br></pre></td></tr></table></figure>
+<h4 id="模运算"><a href="#模运算" class="headerlink" title="模运算"></a>模运算</h4><p>:arrow_forward:a模n：a除以n所得的余数。</p>
+<p>$11\mod 7=4,  \quad-11\mod 7=3; \\ 73\equiv 4(mod23) \to 73-4=23\times3  \\ 21\equiv -9(\mod 10) \to 21-(-9)=10\times 3 $</p>
+<p>如果$a\equiv 0(\mod n)$,则n|a。</p>
+<p>:arrow_forward:(a+b) mod n = [a mod n + b mod n] mod n  </p>
+<p>(a-b) mod n = [a mod n - b mod n] mod n  </p>
+<p>(a×b) mod n = [a mod n × b mod n] mod n  </p>
+<h4 id="乘法逆"><a href="#乘法逆" class="headerlink" title="乘法逆"></a>乘法逆</h4><p>a的乘法逆元：与a相乘得到单位元的值。</p>
+<h4 id="群、环、域"><a href="#群、环、域" class="headerlink" title="群、环、域"></a>群、环、域</h4><p>:arrow_forward:群<g,·>，二元运算的集合。满足1封闭性，2结合律，3单位元，4逆元。如果群的元素个数有限，则成为有限群。群的<strong>阶</strong>就等于群中元素的个数。否则，称为该群为无限群。</g,·></p>
+<p>如果群满足5交换律，称为交换群，即阿贝尔群。</p>
+<p><strong>求幂运算为重复运用群中的运算</strong>。</p>
+<p>:arrow_forward:环{R,+,×}一个有两个二元运算的集合。a封闭率b结合律c分配率。</p>
+<p>乘法交d换律和乘法e单位元。f无零因子：如果R中有元素a、b，且ab=0,则必有a=0或b=0。</p>
+<p>:arrow_forward:域，整环，满足12345+abcdef，</p>
+<p>存在乘法逆元，$aa^{-1}=e$</p>
+<p><img src="/2018/07/22/信息安全复习纲要/信息安全/群环域.png" alt="群环域"></p>
+<h4 id="有限域"><a href="#有限域" class="headerlink" title="有限域"></a>有限域</h4><p>$GF(大素数)，GF(2^{n})$</p>
+<p>有限域的阶（元素的个数）必须是<strong>一个素数的幂$p^{n}$,n为正整数</strong>。阶为$p^{n}$的有限域一把记为$GF(p^{n})$,n=1,GF(p),与n&gt;1时有着不同的结构。</p>
+<p>Galois fields(伽罗瓦域)  </p>
+<ul>
+<li>–GF(p)    ( for n=1)</li>
+<li>–$–GF(2^n)   (for \quad p=2 )$   (for p=2 )</li>
+</ul>
+<p>GF(p)是整数集合{0,1, … , p-1} （整数集合$Z_p$) ,运算是模p的算术运算</p>
+<p><strong>如果a和b互素，则b有模a的乘法逆元</strong>。【注意：互素是前提】</p>
+<p>即如果gcd(a,b)=1,那么b有模a的乘法逆元。对于b&lt;a,存在$b^{-1}&lt;a$，使$bb^{-1}=1\mod a$</p>
+<p>(ax+by) mod a = [ax mod a + by moda ] mod a  =by mod 1</p>
+<p>$y=b^{-1}$，因此用扩展欧几里得算法。</p>
+<h5 id="扩展的欧几里得算法及求乘法逆元"><a href="#扩展的欧几里得算法及求乘法逆元" class="headerlink" title="扩展的欧几里得算法及求乘法逆元"></a>扩展的欧几里得算法及求乘法逆元</h5><p>不仅计算出最大公因子d，还应该计算出另外两个整数x,y,它们满足如下方程：</p>
+<p>$ax+by=d=gcd(a,b)$(其中，x和y具有<strong>相反的正负号</strong>。)</p>
+<p>递推公式：$x_{i}=x_{i-2}-q_{i}x_{i-1}$和$y_{i}=y_{i-2}-q_{i}y_{i-1}$</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">余数</th>
+<th>公式</th>
+<th>x,y</th>
+<th>满足</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"></td>
+<td></td>
+<td>$x_{-1}=1;y_{-1}=0$</td>
+<td>$a=ax_{-1}+by_{-1}$</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td></td>
+<td>$x_{0}=0;y_{0}=1$</td>
+<td>$b=ax_{0}+by_{0}$</td>
+</tr>
+<tr>
+<td style="text-align:left">$r_{1}=a\mod b$</td>
+<td>$a=q_{1}b+r_{1}$</td>
+<td>$x_{1}=x_{-1}-q_{1}x_{0}\\y_{1}=y_{-1}-q_{1}y_{0}$</td>
+<td>$r_{1}=ax_{1}+by_{1}$</td>
+</tr>
+<tr>
+<td style="text-align:left">$r_{n}=r_{n-2}\mod r_{n-1}$</td>
+<td>$r_{n-2}=q_{n}r_{n-1}+r_{n}$</td>
+<td>$x_{n}=x_{n-2}-q_{n}x_{n-1}\\y_{n}=y_{n-2}-q_{n}y_{n-1}$</td>
+<td>$r_{n}=ax_{n}+by_{n}$</td>
+</tr>
+<tr>
+<td style="text-align:left">$r_{n+1}=r_{n-1}\mod r_{n}=0$</td>
+<td>$r_{n-1}=q_{n+1}r_{n}+0$</td>
+<td></td>
+<td>$d=gcd(a,b)=r_{n}\\x=x_{n}\quad y=y_{n}$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>对于求乘法逆的例子，由于要求a,b为素数，最后的结果一般如下：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>待处理余数</th>
+<th>公式</th>
+<th>x</th>
+<th>y</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$r_{n}=1$</td>
+<td>$r_{n-2}=q_{n}r_{n-2}+1$</td>
+<td>$x_{n}=x_{n-2}-q_{n}x_{n-1}$</td>
+<td>$y_{n}=y_{n-2}-q_{n}y_{n-1}$</td>
+</tr>
+<tr>
+<td>d=1</td>
+<td></td>
+<td>$x=x_n$:heavy_check_mark:</td>
+<td>$y=y_n$✔️</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>对于任意的n,如果运用扩展欧几里得算法可以用于求取$Z_{n}$内的乘法逆元。如果运用扩展欧几里得算法于方程nx+by=d，并且得到d=1,则在$Z_{n}$内有$y=b^{-1}$</p>
+<h3 id="公钥密码学与RSA"><a href="#公钥密码学与RSA" class="headerlink" title="公钥密码学与RSA"></a>公钥密码学与RSA</h3><p>解决密钥分发的几种方法：</p>
+<p>1.通过事先共享密钥解决   2.通过密钥分配中心（KDC)</p>
+<p>3.通过Diffie-Hellman  4.通过公钥密码来解决</p>
+<p>轮转机/DES基于替换，置换方法上。</p>
+<p>公钥密码非对称，使用两个独立的密钥。公钥密码的处理过程不比传统密码中的那些过程更简单，也并不比之更有效。</p>
+<p>【公钥密码学-》密码学界唯一&amp;最伟大的一次革命】</p>
+<h4 id="基本概念："><a href="#基本概念：" class="headerlink" title="基本概念："></a>基本概念：</h4><ul>
+<li>非对称密钥：两个密钥：公钥和私钥，用来实现互补运算，即加密和解密，或者生成签名与验证签名。</li>
+<li>公钥证书：认证机构将用户的姓名和公钥绑定在一起，用户用自己的私钥对数字文件签名后，可以通过证书识别签名者。签名者是唯一拥有与证书上对应的私钥的用户。</li>
+<li>公钥密码（非对称密码）算法：公钥，私钥。从公钥中推出私钥在计算上不可行。</li>
+<li>公钥（Public Key）与私钥（Private Key）是通过一种算法得到的一个密钥对（即一个公钥和一个私钥），公钥是密钥对中公开的部分，私钥则是非公开的部分。</li>
+<li>公钥通常用于加密会话密钥、验证数字签名，或加密可以用相应的私钥解密的数据。通过这种算法得到的密钥对能保证在世界范围内是唯一的。使用这个密钥对的时候，如果用其中一个密钥加密一段数据，必须用另一个密钥解密。 </li>
+</ul>
+<p>特定：<strong>加解密算法相同，密钥不同；发送方和接收方拥有不同密钥，两密钥之一必须保密，知道算法和其中一个密钥不能推出另一个密钥</strong></p>
+<p>:arrow_forward:加密：公钥加密，私钥解密【消息】</p>
+<p>:arrow_forward:签名：私钥加密，公钥认证【解密】</p>
+<p>可以既保密又认证，eg:a -&gt; b, PUb{s,PRa}.</p>
+<p>   【加密，解密，密钥交换】</p>
+<p>寻找合适的单向陷门函数是公钥密码体制应用的关键。</p>
+<h4 id="对公钥密码的要求"><a href="#对公钥密码的要求" class="headerlink" title="对公钥密码的要求"></a>对公钥密码的要求</h4><p>公钥对的生成很容易。</p>
+<p>加密在计算上很容易(知道明文M和KU)。</p>
+<p>解密在计算上很容易(知道密文C和KR)。</p>
+<p>从KU中找到KR是不可行的。</p>
+<p>从KU和密文中找到明文是不可行的。</p>
+<p>加密和解密函数顺序是可交换的</p>
+<p><img src="/2018/07/22/信息安全复习纲要/信息安全/单向陷门函数.png" alt="单向陷门函数"></p>
+<p>【为防止穷举攻击，用较长的密钥，但是加解密比较慢】</p>
+<h4 id="RSA算法"><a href="#RSA算法" class="headerlink" title="RSA算法"></a>RSA算法</h4><p>明文和密文均是0至n-1之间的证书，n的大小通常为1024位的2进制，或309位的十进制。</p>
+<h5 id="生成RSA密钥"><a href="#生成RSA密钥" class="headerlink" title="生成RSA密钥"></a>生成RSA密钥</h5><p>每个用户生成一个私钥/公钥对，通过：</p>
+<ul>
+<li><p>随机选择两个大素数p,q;【保密的，选定的】</p>
+</li>
+<li><p>计算系统的模量：N=pq 【公开的，计算得到的】</p>
+<ul>
+<li>注意有$\phi(N)$ =(p-1)(q-1)【比N小又与N互素的数的个数】</li>
+</ul>
+</li>
+<li><p>随机选择e,满足gcd($\phi(N),e$)=1；1&lt;e&lt;$\phi(N)$ 【公开的，选定的】</p>
+</li>
+<li><p>解出d,d满足$d\equiv e^{-1}(\mod \phi(N))$【保密的，计算得出的(扩展欧几里得算法?)】</p>
+<p>即 ed=1mod $\phi(N)$且1&lt;d&lt;$\phi(N)$ 【ed互为模$\phi(N)$的乘法逆】</p>
+</li>
+<li><p>公布公钥{e,N}；保存私钥{d,N}</p>
+</li>
+</ul>
+<p>【乘法幂回顾】</p>
+<p><strong>如果a和b互素，则b有模a的乘法逆元</strong>。【注意：互素是前提】</p>
+<p>即如果gcd(a,b)=1,那么b有模a的乘法逆元。对于b&lt;a,存在$b^{-1}&lt;a$，使$bb^{-1}=1\mod a$</p>
+<h5 id="RSA的使用"><a href="#RSA的使用" class="headerlink" title="RSA的使用"></a>RSA的使用</h5><p>明文分组M和密文分组C:</p>
+<p>$C=M^e \mod n；(0\leq M&lt;N) \\ M=C^d \mod n =(M^e \mod n)^d \mod n =M^{ed} \mod n (0\leq C&lt;N)$</p>
+<p>因此，有$M^{ed} \mod n =M$</p>
+<p>PPT:$C^d = (M^e)^d = M^{1+k.ø(N)} = M^1.(M^{ø(N)})^{k} = M^1.(1)^k = M1 = M mod N =M $</p>
+<h5 id="RSA浅析"><a href="#RSA浅析" class="headerlink" title="RSA浅析"></a>RSA浅析</h5><p>【欧拉定理】数论中的欧拉定理（费马-欧拉定理），表明，若n,a为正整数，且n,a互质，则$a^{\phi(n)}\equiv 1 \mod n$</p>
+<p>在RSA中，N=pq,$\phi(N)=(p-1)(q-1)$选择mod N互逆的ed,得到$ed=1+k\phi(N)$</p>
+<h5 id="RSA证明"><a href="#RSA证明" class="headerlink" title="RSA证明"></a>RSA证明</h5><p>$M^{ed} \mod n =M$</p>
+<p>1.M和p不互素，p可以整除M。则M mod p=0，$M^{ed}\mod p=0$</p>
+<p>2.M和p互素，根据欧拉公式，$M^{\phi(p)} \mod p=1$</p>
+<p>$M^{ed}\mod p=M^{1+k\phi(p)}\mod p\\=(M\mod p)\times ((M^{(p-1)})^{k(q-1)}\mod p)\\=(M\mod p)\times ((M^{\phi(p)})^{k(q-1)}\mod p)\\=(M\mod p)\times 1^{k(q-1)}=M\mod p$</p>
+<p>由于p和q对称，且p,q均为素数。</p>
+<p>则同样有$M^{ed}\mod q=M \mod q$</p>
+<p>由于pq互质，pq=N，则根据中国余数定理：$M^{ed} \mod N=M$</p>
+<p>(0$\leq$M&lt;N,大于n（1024bit）可能会有部分解不出来)</p>
+<p>【中国余数定理】$如果n_1,n_2,\cdots n_k两两互质，n=n_1n_2n_3\cdots n_k,则对于所有的整数x和a,\\x\equiv a(\mod n_i)当且仅当 x\equiv a(\mod n)$</p>
+<p>[错误证明，差点一错再错，而且是一个重点🔼  TAT 😭 ]</p>
+<p>2.M和N互素，根据欧拉公式，$M^{\phi(N)} \mod N=1$</p>
+<p>$M^{ed}\mod n=M^{1+k\phi(n)}\mod n\\=(M\mod n)\times ((M^{(p-1)})^{k(q-1)}\mod n)\\=(M\mod n)\times ((M^{\phi(p)})^{k(q-1)}\mod n)\\=(M\mod n)\times 1^{k(q-1)}=M\mod n$</p>
+<h5 id="RSA计算及技巧"><a href="#RSA计算及技巧" class="headerlink" title="RSA计算及技巧"></a>RSA计算及技巧</h5><p><img src="/2018/07/22/信息安全复习纲要/信息安全/复杂性.png" alt="复杂性"></p>
+<p><img src="/2018/07/22/信息安全复习纲要/信息安全/计算.png" alt="计算"></p>
+<h5 id="RSA安全性"><a href="#RSA安全性" class="headerlink" title="RSA安全性"></a>RSA安全性</h5><p>关键在于大数的分解，当N（1024bit）很大时，分解成两个素数很难</p>
+<p>如何选择素数pq? pq最好不相差太大【PPT P30,米勒什么什么算法检验】</p>
+<p>（求d和求pq是否等价暂无定论）</p>
+<p>3种攻击：1.暴力密钥搜索：（找密钥d),但是e,dN位数较高，难以实现</p>
+<p>2.数学攻击，分解N,暂无对大整数进行质因数分解的高效算法。【指在求pq】</p>
+<p>3.时间攻击【通过隐藏时间信息防范】</p>
+<p>（不知道P和Q,只知道ø(N)也是可以破解的 ？？）</p>
+<p>RSA明文具备的性质</p>
+<p>证明RSA,可恢复</p>
+<p>在 mod n范围内进行计算</p>
+<h3 id="密钥管理及其它公钥密码体制"><a href="#密钥管理及其它公钥密码体制" class="headerlink" title="密钥管理及其它公钥密码体制"></a>密钥管理及其它公钥密码体制</h3><h4 id="离散对数问题"><a href="#离散对数问题" class="headerlink" title="离散对数问题"></a>离散对数问题</h4><p>在整数中，<strong>离散对数</strong>是一种基于同余运算和原根的一种对数运算。而在实数中对数的定义 $log_b a$ 是指对于给定的 <em>a</em> 和 <em>b</em>，有一个数 <em>x</em>，使得$b^{x}$ = <em>a</em>。相同地在任何群 <em>G</em>中可为所有整数 <em>k</em>定义一个幂数为$b^{k}$，而<strong>离散对数</strong>是 $log_b a$指使得$b^{x}$ = <em>a的</em> 整数 <em>k</em>。</p>
+<p>离散对数在一些特殊情况下可以快速计算。然而，通常没有具非常效率的方法来计算它们。公钥密码学中几个重要算法的基础，是假设寻找离散对数的问题解，在仔细选择过的群中，并不存在有效率的求解算法。</p>
+<h4 id="Diffie-Hellman-密钥交换"><a href="#Diffie-Hellman-密钥交换" class="headerlink" title="Diffie-Hellman 密钥交换"></a>Diffie-Hellman 密钥交换</h4><p>Diffie-Hellman是一种建立密钥的方法，而不是加密方法。然而，它所产生的密钥可用于加密、进一步的密钥管理或任何其它的加密方式。Diffie-Hellman密钥交换算法及其优化首次发表的公开密钥算法出现在Diffie和Hellman的论文中，这篇影响深远的论文奠定了公开密钥密码编码学。 【第一个公钥密码系统，可以进行密钥交换】</p>
+<h5 id="安全性"><a href="#安全性" class="headerlink" title="安全性"></a>安全性</h5><p>这种密钥交换技术的目的在于使得<strong>两个用户安全地交换一个秘密密钥以便用于以后的报文加密</strong>. Diffie-Hellman密钥交换算法的有效性<strong>依赖于计算离散对数的难度</strong> 。</p>
+<p>:aries: 【单纯D-H依旧难以预防中间人攻击，仍需要对公钥拥有者的身份进行验证】</p>
+<p>:star:<strong>PPT例题【P21】</strong></p>
+<h5 id="主要过程"><a href="#主要过程" class="headerlink" title="主要过程"></a>主要过程</h5><ul>
+<li><p>所有用户都知道的全局参数</p>
+<ul>
+<li>大素数q</li>
+<li>g :  用来模q的原始根</li>
+</ul>
+</li>
+<li><p>每个用户生成自己的公钥(对于用户A)</p>
+<ul>
+<li>选择一个密钥，(私钥)：数字 $x_{A}$&lt;q</li>
+<li>计算公钥：$y_{A}=g^{x_{A}}\mod q$</li>
+<li>每个用户公开公钥</li>
+</ul>
+</li>
+<li><p>则用户A&amp;B共享的会话密钥是$K_{AB}$</p>
+<script type="math/tex; mode=display">K_{AB}=g^{x_{A}· x_{B}} \mod q</script><p>​       <script type="math/tex">=y_{A}^{x_{B}}\mod q</script>   (B可以计算出来)</p>
+<p>​       <script type="math/tex">=y_{B}^{x_{A}}\mod q</script>   (A可以计算出来)</p>
+</li>
+</ul>
+<p>From WIKI：</p>
+<p>最简单，最早提出的这个协议使用一个质数<em>p</em>的整数模n乘法群)以及其原根<em>g</em>。下面展示这个算法，绿色表示非秘密信息, <strong>红色粗体</strong>表示秘密信息</p>
+<p><img src="/2018/07/22/信息安全复习纲要/信息安全/TIM图片20180518085502.png" alt="TIM图片20180518085502"></p>
+<ol>
+<li>爱丽丝和鲍伯写上一个有限循环群 G 和它的一个生成元 g。 （这通常在协议开始很久以前就已经规定好； g是公开的，并可以被所有的攻击者看到。）</li>
+<li>爱丽丝选择一个随机自然数 a(很大) 并且将 $g^{a}\mod p$（大素数）发送给鲍伯。</li>
+<li>鲍伯选择一个随机自然数 b （很大）并且将 $g^{b}\mod p$发送给爱丽丝。</li>
+<li>爱丽丝 计算 $(g^{b})^{a} \mod p$  。</li>
+<li>鲍伯 计算  $(g^{a})^{b} \mod p$  。</li>
+</ol>
+<p>爱丽丝和鲍伯就同时协商出群元素$g^{ab}$，它可以被用作共享秘密。$(g^{b})^{a}$和$(g^{a})^{b}$因为群乘法交换的。  </p>
+<h5 id="算法解释"><a href="#算法解释" class="headerlink" title="算法解释"></a>算法解释</h5><p>爱丽丝和鲍伯最终都得到了同样的值，因为在模p下$g^{ab}$和 $g^{ba}$ 相等。 注意a, b 和 $g^{ab}= g^{ba} \mod p$ 是秘密的。 其他所有的值 – p, g, $g^{a} \mod p$, 以及 $g^{b}\mod p $– 都可以在公共信道上传递。 一旦爱丽丝和鲍伯得出了公共秘密，他们就可以把它用作对称密钥，以进行双方的加密通讯，因为这个密钥只有他们才能得到。</p>
+<h4 id="Elgamal密码体制"><a href="#Elgamal密码体制" class="headerlink" title="Elgamal密码体制"></a>Elgamal密码体制</h4><p>1984年，T.Elgamal提出了一种基于离散对数的公开密钥体制，是一个基于迪菲-赫尔曼密钥交换的非对称加密算法。ElGamal密码体系应用于一些技术标准中，如数字签名标准（DSS）和S/MIME电子邮件标准。与Diffie-Hellman一样，ElGamal的系统用户也是共同选择一个素数q，$g$是q的素跟。</p>
+<h5 id="算法描述"><a href="#算法描述" class="headerlink" title="算法描述"></a>算法描述</h5><p>ElGamal加密算法由三部分组成：密钥生成、加密和解密。</p>
+<h5 id="密钥生成"><a href="#密钥生成" class="headerlink" title="密钥生成"></a>密钥生成</h5><p>密钥生成步骤如下：</p>
+<ul>
+<li>Alice利用生成元 $g$ 产生一个 q,阶循环群 $G$,的有效描述。该循环群需要满足一定的安全性质。</li>
+<li>Alice从 $\{1,\cdots,q-1\}$中随机选择一个 $x$。</li>
+<li>Alice计算 $h:=g^{x} \mod q $。</li>
+<li>Alice公开$h$,以及 $G,q,g$ 的描述作为其公钥，并保留 $x$ 作为其私钥。私钥必须保密。</li>
+</ul>
+<h5 id="加密"><a href="#加密" class="headerlink" title="加密"></a>加密</h5><p>其他用户可以通过Alice的公钥进行加密。</p>
+<p>用Alice的公钥 $(G,q,g,h)$向她加密一条消息 m的加密算法工作方式如下：</p>
+<ul>
+<li><p>将信息表示成一个整数M，其中$1\leq M \leq q-1$，以分组密码序列的方式来发送信息，其中每个分块的长度不小于整数q。</p>
+</li>
+<li><p>Bob从  $\{1,\cdots,q-1\}$ 随机选择一个 $y$。（私钥）</p>
+</li>
+<li><p>然后计算 密钥$K=h^{y} \mod q$。（会话密钥）</p>
+</li>
+<li><p>将M加密成明文对$(C_{1}，C_{2})$，其中</p>
+<p>$C_{1}=g^{y} \mod q  ; C_{2}=K\cdot M \mod q $（公钥，加密的信息）</p>
+</li>
+</ul>
+<h5 id="解密"><a href="#解密" class="headerlink" title="解密"></a>解密</h5><p>Alice利用自己的私钥进行解密。</p>
+<ul>
+<li>得到密钥：$K=(C_{1})^{x} \mod q$</li>
+<li><p>得到消息$M = (C_{2}K^{-1}) \mod q$</p>
+<p>如果信息必须分组，然后以加密的密钥块序列发送，那么每个分块要有唯一的x（私钥）。如果x用于多个分块，则利用信息的分块$M_{1}$，攻击者会计算出其他块。</p>
+</li>
+</ul>
+<p>ElGamal的安全性是基于计算离散对数的困难性之上。</p>
+<h4 id="椭圆曲线密码"><a href="#椭圆曲线密码" class="headerlink" title="椭圆曲线密码"></a>椭圆曲线密码</h4><p>【本章节很多内容已经在课本上圈圈画画了，包括比较重要的计算】</p>
+<p>Elliptic Curve Cryptography</p>
+<p>什么样的公式可以被称为椭圆曲线，ECC加解密过程，ECC与RSA的对比，ECC的相关计算</p>
+<p>我们将椭圆曲线的方程限制为以下形式：</p>
+<p>$y^{2}=x^{3}+ax+b$</p>
+<p><img src="/2018/07/22/信息安全复习纲要/信息安全/椭圆曲线需要满足的条件.png" alt="椭圆曲线需要满足的条件"></p>
+<h5 id="加密解密-课本230"><a href="#加密解密-课本230" class="headerlink" title="加密解密[课本230]"></a>加密解密[课本230]</h5><p>考虑如下等式：<br>  K=kG  [其中 K,G为Ep(a,b)上的点，k为小于n（n是点G的阶）的整数]<br>  给定k和G，根据加法法则，计算K很容易；但<br>  给定K和G，求k就相对困难了。<br>  这就是椭圆曲线加密算法采用的难题。我们把点G称为基点（base point），k（k&lt;n，n为基点G的阶）称为私有密钥（privte key），K称为公开密钥（public key)。</p>
+<p> 现在我们描述一个利用椭圆曲线进行加密通信的过程：<br>1、用户A选定一条椭圆曲线Ep(a,b)，并取椭圆曲线上一点，作为基点G。<br>2、用户A选择一个私有密钥k，并生成公开密钥K=kG。<br>3、用户A将Ep(a,b)和点K，G传给用户B。<br>4、用户B接到信息后 ，将待传输的明文编码到Ep(a,b)上一点M（编码方法很多，这里不作讨论），并产生一个随机整数r（r&lt;n）。<br>5、用户B计算点$C_1 =M+rK；C_2 =rG$。<br>6、用户B将$C_1 、C_2 $传给用户A。<br>7、用户A接到信息后，计算$C_1 -kC_2$ ，结果就是点M。因为<br>    $ C_1 -kC_2 =M+rK-k(rG)=M+rK-r(kG)=M$<br>   再对点M进行解码就可以得到明文。</p>
+<p>通过K、G 求k 或通过C_2 、G求r 都是相对困难的</p>
+<p><img src="/2018/07/22/信息安全复习纲要/信息安全/椭圆曲线加解密.png" alt="椭圆曲线加解密"></p>
+<h5 id="实现密钥交换D-H"><a href="#实现密钥交换D-H" class="headerlink" title="实现密钥交换D_H"></a>实现密钥交换D_H</h5><p>A-&gt;a-(私钥)&gt;aG（公钥）</p>
+<p>B-&gt;b(私钥)-&gt;bG</p>
+<p>会话密钥：abG</p>
+<h3 id="消息认证和Hash函数"><a href="#消息认证和Hash函数" class="headerlink" title="消息认证和Hash函数"></a>消息认证和Hash函数</h3><h4 id="Hash-函数简介"><a href="#Hash-函数简介" class="headerlink" title="Hash 函数简介"></a>Hash 函数简介</h4><p>首要目标-》保证数据完整性。</p>
+<p>【消息认证】确保收到的信息和发送时一样（即没有修改、插入、删除重放等）通常还需保证发送方身份真实有效。当Hash函数提供消息认证功能时，Hash函数值通常称为<strong>消息摘要</strong>。</p>
+<p>为防止中间人攻击，要对生成的hash值进行加密。更一般的，消息认证通过MAC实现，即带密钥的hash函数。</p>
+<p>两种简单的hash函数，1.分组后直接异或。2.分组后，每一组循环左移，再与上一次hash值异或。</p>
+<p>但都是容易被破解的：就是如果每一个比特取反，异或后结果还是一样的。因此移位也是很容易找到两个不同的消息有一样的hash值。</p>
+<p>但两个都不安全。另一种采用CBC的方式，由于异或可以任意顺序计算，因此改变密文分组的顺序不会造成影响。</p>
+<h4 id="Hash-函数的要求"><a href="#Hash-函数的要求" class="headerlink" title="Hash 函数的要求"></a>Hash 函数的要求</h4><p>1 可以应用于任何大小的消息M<br>2 产生固定长度的输出h【任意长度-》（输出）固定长度】<br>3 对于任何消息M，都很容易计算h= H(M)</p>
+<p>4 给定h，不可求x 即 h (x)=h求x是不可行的   【单向性质】<br>5 给定分块x求出y不可行的，其中H(y)=H(x)      【抗弱碰撞性】<br>6 找到任何满足H(y)=H(x)的偶对<x,y>在计算上是不可行的    【抗强碰撞性】（对hash函数要求高）</x,y></p>
+<p>抗弱碰撞性包括抗强碰撞性。</p>
+<p>MD5：哈希算法的一种，常用于文件的唯一标识。用于确保信息传输完整一致。MD5的作用是让大容量信息在用数字签名软件签署私人密钥前被”压缩”成一种保密的格式（就是把一个任意长度的字节串变换成一定长的十六进制数字串）</p>
+<p>SHA1:是使用最广泛的hash算法的一种，建立在MD4只上，输出为160位hash值。</p>
+<p>安全哈希算法主要适用于数字签名标准里面定义的数字签名算法。对于长度小于2^64位的消息，SHA1会产生一个160位的消息摘要。当接收到消息的时候，这个消息摘要可以用来验证数据的完整性。在传输的过程中，数据很可能会发生变化，那么这时候就会产生不同的消息摘要。</p>
+<h4 id="对hash函数的两种攻击方式"><a href="#对hash函数的两种攻击方式" class="headerlink" title="对hash函数的两种攻击方式"></a>对hash函数的两种攻击方式</h4><ul>
+<li><p>暴力破解</p>
+</li>
+<li><p>生日攻击</p>
+</li>
+</ul>
+<p>A发送消息x, 第三方产生$2^{\frac{m}{2}}$种变式x’,且每一种变式表达相同意义，存hash值。同时伪造消息y,造y的变式y’，且也表达同样的意义。然后计算H(y’),并与任意的H(x’)进行比对，直到找到某个H(y’)=H(x’)</p>
+<p>则攻击者将变式x‘给A获取签名，然后将签名附在y’后发给接收方。</p>
+<p>代价数量级，2^{m/2}</p>
+<p>找到两个不同的消息，具有相同的hash值。利用“两个集合相交”问题的原理生成散列函数碰撞，达到目的的攻击称为生日攻击，也称为平方根攻击 。</p>
+<p>这种攻击对Hash函数提出了一个必要的安全条件，即消息摘要必须足够长。 </p>
+<p>【试图破解强碰撞性】</p>
+<h4 id="单向散列函数无法解决的问题"><a href="#单向散列函数无法解决的问题" class="headerlink" title="单向散列函数无法解决的问题"></a>单向散列函数无法解决的问题</h4><p>能够辨别出“篡改”，但无法辨别“伪装”。用于认证的技术-&gt;数字签名，消息认证码。认证需要使用<strong>密钥</strong>【只有Alice才知道的秘密信息】</p>
+<h3 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h3><h4 id="密钥分发"><a href="#密钥分发" class="headerlink" title="密钥分发"></a>密钥分发</h4><ul>
+<li>基于对称加密的对称密钥分发</li>
+</ul>
+<p>用户和KDC(密钥分发中心)共享密钥，分为密钥分发步骤和认证步骤。</p>
+<p>密钥分发步骤，a提出请求，KDC把密钥给A并把B的消息也给它，然后a发给b并进行密钥认证。【认证得到的是同一个会话密钥】，可以记得用f(Na)</p>
+<ul>
+<li>基于非对称加密的对称密钥分发</li>
+</ul>
+<p>即用公钥私钥交换会话密钥，注意中间人攻击。【公钥少用于大数据块的加密，多用于小数据快】</p>
+<p>确认保密性和身份认证的密钥分发</p>
+<p>【随机数可以确认身份哦】</p>
+<ul>
+<li>公钥分发</li>
+</ul>
+<p>公开可访问的目录</p>
+<p>里面有{姓名，公钥},但是攻击者盗用管理员私钥后gg</p>
+<p>公钥证书</p>
+<p>通信双方通过证书来交换密钥，证书保护公钥和公钥拥有者的标志。由可信的第三方进行签名。【1.关于分发2.协商会话密钥】</p>
+<h4 id="消息认证"><a href="#消息认证" class="headerlink" title="消息认证"></a>消息认证</h4><p>【伪装-内容修改-消息顺序修改-重放攻击重播】</p>
+<p>可以用hash，Mac，消息加密【加密后的消息作为认证】</p>
+<p>消息加密作为认证，因为密钥仅两方共有，不过不可识别随机码，但是可以增加错误控制。校验码，让明文是易于识别的结构。</p>
+<p>消息认证码：MAC:确认消息完整性并对消息进行认证的技术。</p>
+<p>消息认证码的输入包括任意长度的消息 和 一个发送者接收者之间共享的密钥。</p>
+<p>同时发送消息和mac值，接收方用同样的密钥得到Mac进行比对。</p>
+<p>MAC=C(K,M)，C:MAC函数</p>
+<p>1）判断消息未修改<strong>2）由于有密钥，所以可以确定消息来自真正的发送方。</strong>3）序列号保证消息顺序正确。</p>
+<h5 id="MAC函数应当有以下要求"><a href="#MAC函数应当有以下要求" class="headerlink" title="MAC函数应当有以下要求"></a>MAC函数应当有以下要求</h5><p>1.若攻击者已知M和MAC(K,M)，构造MAC(K,M’)=MAC(K,M)计算上不可行</p>
+<p>2.MAC(K,M)均匀分布，MAC(K,M’)=MAC(K,M)概率是$2^{-n}$[阻止基于明文的选择攻击]</p>
+<p>3.已知M’=f(M),M’是M已知的变换，比如讲M一位多位取反等。要求</p>
+<p>Pr[MAC(K,M’)=MAC(K,M)]=$2^{-n}$[认证算法对消息某部分或位不应当比其他部分或位更弱]</p>
+<p>【能不能用会话密钥进行认证呢？假如发送的是随机的内容，随机码，会话密钥不太好进行认证；负荷比较大，要求完全解密】</p>
+<ul>
+<li><p>应用实例</p>
+<ul>
+<li>IPSEC</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>SSL/TLS</li>
+</ul>
+<ul>
+<li><p>实现方式</p>
+<ul>
+<li>单向散列函数 HMAC</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>使用分组密码实现消息认证码。</li>
+</ul>
+<ul>
+<li><p>会遭受的攻击</p>
+<ul>
+<li>重放攻击 解决方法【加一个递增序号】【加时间戳】【加随机数】</li>
+<li>暴力攻击&amp;生日攻击</li>
+</ul>
+</li>
+</ul>
+<p>消息认证码无法解决的问题：对第三方证明消息的发送者、eg，b向c证明消息确实是由a发送的；防止否认：a可能会否认自己向b发送过这个消息。</p>
+<p>用数字签名解决。</p>
+<h4 id="数字签名【防止发送方否认】"><a href="#数字签名【防止发送方否认】" class="headerlink" title="数字签名【防止发送方否认】"></a>数字签名【防止发送方否认】</h4><p>生成签名  验证签名。数字签名对签名密钥【私钥】和验证密钥【公钥】进行了区分，使用验证密钥是无法生成签名的。签名密钥只能由签名的人持有，而验证密钥任何需要验证签名的人都可以持有。</p>
+<p>1.直接对消息签名</p>
+<p>2.对消息的散列值签名</p>
+<p>【签名把签名和特定的消息绑定在一起】</p>
+<p>消息认证可以保护信息交换双方不受第三方的攻击，但是它不能处理通信自身双方发生的攻击，如发送方否认。在收发双方不能完全信任的情况下，用数字签名，数字签名需要有以下几点特征：</p>
+<p>1.它必须能验证签名者，签名日期和时间；2.它必须能认证被签的消息内容。3.签名应该由第三方仲裁，以解决政治。</p>
+<p>因此数字签名具有认证功能。</p>
+<h5 id="数字签名的性质"><a href="#数字签名的性质" class="headerlink" title="数字签名的性质"></a>数字签名的性质</h5><p>• must depend on the message signed【取决于消息】<br>• must use information unique to sender【用了与发送方唯一相关的信息】<br>– to prevent both forgery and denial【防止伪造和否认】<br>• must be relatively easy to produce【易于生成】<br>• must be relatively easy to recognize &amp; verify【相对容易认证/确认】<br>• be computationally infeasible to forge【伪造数字签名计算不可行，无论是从给定的数字签名伪造消息，还是从给定的消息伪造数字签名】<br>    – with new message for existing digital signature<br>    – with fraudulent digital signature for given message<br>• be practical save digital signature in storage【实际保存数字签名存储】</p>
+<p>直接数字签名，只涉及通信双方，签名在内层，发生争执时，第三方查看签名。</p>
+<p>缺点：发送方可以谎称私钥丢失或者被盗。因此需要一个时间戳，并在密钥被泄密后及时汇报。【不过不可以防止时间戳造假】</p>
+<h5 id="用户认证"><a href="#用户认证" class="headerlink" title="用户认证"></a>用户认证</h5><p>Arbitrated Digital Signatures 仲裁数字签名，有第三方。</p>
+<p>涉及到仲裁者A的使用：-验证任何已签名的消息-然后注明日期并发送给收件人</p>
+<p>•要求对仲裁者有适当程度的信任</p>
+<p>•可以使用私有或公钥算法实现</p>
+<p>•仲裁者可能看到信息，也可能看不到</p>
+<p>【认证用户身份一般需要的工具  1.你本身性质body you are（DNA)   2.你有什么（令牌，like id，门禁卡什么的） 3.你知道什么 remember什么 密码什么的】【有的时候这几种可以同时使用】</p>
+<p>认证协议：用于说服对方以交换会话密钥。可以是单向or双向。机密性-》会话密钥。及时性-》需要防止重放攻击。</p>
+<p>重放攻击：复制并重新发送有效的签名的消息。防止措施：使用序号（不常用）；时间戳（需要统一时钟）；【挑战/应答】随机码 [挑战/应答，随机码]不适用于无连接类型的传输。</p>
+<p>{因为在无连接传输之前的握手开销。实质上是否定了无连接传输的主要优点。}</p>
+<h6 id="基于对称加密的远程用户认证"><a href="#基于对称加密的远程用户认证" class="headerlink" title="基于对称加密的远程用户认证"></a>基于对称加密的远程用户认证</h6><ul>
+<li>双向认证</li>
+<li><strong>双向认证协议能使通信双方互相认证彼此身份并交换会话密钥</strong></li>
+</ul>
+<p>在分布式环境中，可以用一个两层的对称加密密钥。该方案需要可信的密钥分发中心（KDC)参与，每一方和KDC之间都共享一个密钥（称为主密钥）。KDC负责产生两者的会话密钥，并用主密钥来保证会话密钥的安全分发。 </p>
+<p><img src="/2018/07/22/信息安全复习纲要/信息安全/协议分析.png" alt="协议分析"></p>
+<p>步骤4反映b收到密钥，步骤5使b明确自己和a的密钥一样【第三步可能会被重放】或者会话密钥泄露，第三方截获步骤四，伪装a发送步骤五。</p>
+<p><img src="/2018/07/22/信息安全复习纲要/信息安全/scheme改进.png" alt="scheme改进"></p>
+<p><strong>注意这里时间戳也加密了。第二步的随机数换成了时间戳。</strong></p>
+<p>【时间戳，用时间确定】</p>
+<p>需要保证时钟同步。</p>
+<p>可以只根据b的时间订，可以看一下课本P346.</p>
+<p><strong>总的来说，主要注意：随机数-》除了防止重放，另一个作用是消息确实来源于自己，或消息和自己有关</strong></p>
+<p><strong>随机数，防止重放+消息和发送方有关。时间戳，防止重放，时间双方均可验证；或者随机数加密验证ks更具有代表性吧</strong></p>
+<p>看以下：因为时间戳需要重复利用，因此用随机数。</p>
+<p><img src="/2018/07/22/信息安全复习纲要/信息安全/协议分析2.png" alt="协议分析2"></p>
+<h6 id="Kerberos【单向认证】"><a href="#Kerberos【单向认证】" class="headerlink" title="Kerberos【单向认证】"></a>Kerberos【单向认证】</h6><p>单向认证：电子邮件式，接收者确认信息来自发送者。</p>
+<p>一种方法【对称密钥】：</p>
+<ol>
+<li>A→KDC: ID A || IDB || N 1</li>
+<li>KDC→A: E Ka [Ks || ID B || N 1 || E Kb [Ks||ID A ] ]</li>
+<li>A→B: E Kb [Ks||ID A ] || E Ks [M]</li>
+</ol>
+<p>不能抵抗重放攻击，也可以添加时间戳，但是电子邮件可能延误。</p>
+<p>一种方法 非对称密钥</p>
+<p>A→B: E KUb [Ks] || E Ks [M] (保密性)<br>A→B: M || E KRa [H(M)] || E KRas [T||ID A ||KU a ] （认证性，后半部分是证书）<br>可以看做a的证书，对a的公钥的签名<br>认证a的</p>
+<p>Kerberos通过提供一个集中的授权服务器来负责用户对服务器的认证和服务器对用户的认证。Kerberos仅仅依赖于对称加密体制而没有使用公钥加密体制。</p>
+<p>在一个开放的网络环境中，所有用户都可以向任一服务器请求服务。每个服务器为了认证用户的合法性就必须知道每一个用户口令。显然网络规模越大维护越复杂，所以引入：<br>认证服务器（AS）：它将所有用户的口令集中存放在本地数据库中；而且它与每一个应用服务器共享一个唯一的密钥。（密钥通过物理的或其他安全的方式分发）<br>客户端（C）：代替用户与服务器进行信息交换。<br>票据（Ticket） ：身份或权利的证明。<br>Ticket 由 AS 以数据报形式发放给 C。</p>
+<p>票据许可服务器 （TGS）向已经通过TGS认证的用户发放服务Ticket。用户首先向AS请求一张票据许可票 Ticket tgs ，并将它保存在 C 中。每当用<br>户要求一种新的服务时，客户便用这张能认证自己的 Ticket tgs  向TGS发出申请。TGS给用户发回一张针对某种特定服务的服务许可票据 Ticket V，客户将保留每一个Ticket V ，在每次请求相同服务时提供给服务器 V 来认证。</p>
+<p>功能特性分析</p>
+<ul>
+<li>可信的第三方Kerberos服务器<ul>
+<li>所需的密钥分配和管理变简单</li>
+<li>AS负担认证工作，减轻应用服务器负担</li>
+<li>安全相关数据集中管理和保护，使攻击者入侵难以成功</li>
+</ul>
+</li>
+<li>Ticket<ul>
+<li>使AS（TGS）的认证结果和会话密钥安全传给C和TGS（应用服务器）</li>
+<li>生存期内可重用，减少认证开销，提高方便性</li>
+</ul>
+</li>
+<li>共享密钥<ul>
+<li>为认证提供安全依据</li>
+</ul>
+</li>
+<li>TGS<ul>
+<li>降低用户口令的使用频度，提供更好的口令保护</li>
+<li>减轻AS负担，提高系统效率</li>
+</ul>
+</li>
+<li>Session Key<ul>
+<li>防止非法用户窃得Ticket进行重放攻击</li>
+<li>提供了对服务器的认证</li>
+</ul>
+</li>
+<li>时间戳<ul>
+<li>防止对Ticket和认证符的重放攻击</li>
+</ul>
+</li>
+</ul>
+<p>局限性分析<br>Kerberos服务器易受攻击<br>– 它的安全性决定了整个系统得安全性，若此关键环节发生问题，危害是灾难性的。<br> 口令攻击<br>– 对手截获基于口令的密钥加密的内容，采用暴力破解成功后，得到口令也就到该用户的全部资源<br>域间认证复杂<br>完全没有任何非对称加密的技术，有一些局限性，可以用非对称加密算法避免</p>
+<h6 id="用于非对称加密的远程用户认证"><a href="#用于非对称加密的远程用户认证" class="headerlink" title="用于非对称加密的远程用户认证"></a>用于非对称加密的远程用户认证</h6><p>双向认证</p>
+<p>需要保证是正确的公钥，使用central Authentication Server (AS)，时间戳。【看课本吧360页】</p>
+<p><img src="/2018/07/22/信息安全复习纲要/信息安全/协议分析3.png" alt="协议分析3"></p>
+<p>改进，在56步中的证书里，加入IDa，保证请求唯一来自于A</p>
+<h5 id="对数字签名的攻击"><a href="#对数字签名的攻击" class="headerlink" title="对数字签名的攻击"></a>对数字签名的攻击</h5><ul>
+<li><p>中间人攻击</p>
+</li>
+<li><p>对单向散列函数的攻击</p>
+</li>
+<li>利用数字签名攻击公钥密码</li>
+</ul>
+<p><strong>数字签名无法解决的问题：</strong>用于验证签名的公钥必须属于真正的发送者。确认公钥是否合法——证书！。</p>
+<p>证书：就是把公钥当成一个消息，由一个可信的第三方对其签名后得到的公钥。PKI【公钥基础设施】</p>
+<h4 id="证书"><a href="#证书" class="headerlink" title="证书"></a>证书</h4><p>公钥证书PKC  由认证机构（CA）施加数字签名</p>
+<p>对证书的攻击</p>
+<p>1.在公钥注册之前攻击。即a发送公钥去认证是，e将a的公钥替换成自己的。【so a在认证时应该将自己的公钥用认证机构公钥加密】</p>
+<p>2.攻击者伪装成认证机构进行攻击。自己成立一个认证机构，给自己的公钥颁发证书，并声称是“Bob”的公钥【要注意的证书的颁发机构】</p>
+<h4 id="SSL-TLS"><a href="#SSL-TLS" class="headerlink" title="SSL\TLS"></a>SSL\TLS</h4><p> SSL记录协议<br>–建立在可靠的传输协议(如TCP)之上<br>–它提供连接安全性，有两个特点<br>• 保密性，使用了对称加密算法<br>• 完整性，使用HMAC算法<br>–用来封装高层的协议<br>• SSL握手协议<br>–客户和服务器之间相互鉴别<br>–协商加密算法和密钥<br>–它提供连接安全性，有三个特点<br>• 身份鉴别，至少对一方实现鉴别，也可以是双向鉴别<br>• 协商得到的共享密钥是安全的，中间人不能够知道<br>• 协商过程是可靠的</p>
+<h3 id="零知识证明"><a href="#零知识证明" class="headerlink" title="零知识证明"></a>零知识证明</h3><p>它指的是证明者能够在不向验证者提供任何有用的信息的情况下，使验证者相信某个论断是正确的。零知识证明实质上是一种涉及两方或更多方的协议，即两方或更多方完成一项任务所需采取的一系列步骤。证明者向验证者证明并使其相信自己知道或拥有某一消息，但证明过程不能向验证者泄漏任何关于被证明消息的信息。大量事实证明，零知识证明在密码学中非常有用。如果能够将零知识证明用于验证，将可以有效解决许多问题。 </p>
+<p>（1）完备性。如果证明方和验证方都是诚实的，并遵循证明过程的每一步，进行正确的计算，那么这个证明一定是成功的，验证方一定能够接受证明方。<br>（2）合理性。没有人能够假冒证明方，使这个证明成功。<br>（3）零知识性。证明过程执行完之后，验证方只获得了“证明方拥有这个知识”这条信息，而没有获得关于这个知识本身的任何一点信息。</p>
+<p>“零知识证明”是密码学中存在于“证明者（prover，以下用P代替）”和“验证者（verifier，以下用V代替）”双方的一种协议，这种协议的要求是：</p>
+<ol>
+<li>P使得V相信其拥有某知识</li>
+<li>V不能从证明过程中得到知识的任何信息</li>
+</ol>
+<p>为了使得V相信P拥有知识，证明须满足，</p>
+<ol>
+<li><strong>完备性</strong>：如果P确实拥有知识，那么证明成功的概率大于2/3</li>
+<li><strong>可靠性</strong>：如果P并不拥有知识，那么证明成功的概率小于1/3</li>
+</ol>
+<p>若证明满足上面的条件，则通过反复多次的证明，就能使得V相信P拥有知识的概率趋近1，P不拥有知识的概率趋近0。</p>
+<p>（零知识(ness性):验证者除了知道陈述是真实的之外，没有学到任何信息 ）</p>
+<p>图的三色问题，是指找到这样一种染色方法，将图的顶点用三种颜色中的一种染色，并使得相邻顶点不同色。假如P找到了图G满足三色问题的一种染色方法，想要证明给V，他应该怎么做呢(O.O)? </p>
+<ol>
+<li>P随机选择一种颜色的置换方式（如红-蓝，蓝-黄，黄-红），将原来的染色方案按照颜色置换重新染色。将染色过后的G放在密封的信封里发给V。 </li>
+<li>随机选择图中的一条边，并要求P打开这条边的两个顶点。 </li>
+<li>P打开相应的信封，展示顶点的颜色。</li>
+<li>如果展示的顶点颜色不同，则V接受证明。</li>
+</ol>
+<p>完备性：如果P确实有三染色方案，那么证明必然成功。</p>
+<p>可靠性：如果P没有三染色方案，那么他的染色方案中至少有一条边是顶点同色的。假设图G有n条边，那么证明失败的概率至少是1/n。如果证明进行m次，那么P人品爆表蒙混过关的概率就会小于(1-1/n)^m，当m足够大，这个概率就趋近于0。</p>
+<p>而由于每次的随机颜色置换，V无法从揭示的边中获得任何染色方案的信息。因此这个证明是零知识证明。至于如何构造这样的“信封”，使得V在P开启信封前不能看到信封中的内容，而P也无法通过不同的”拆封”方式而操纵信封中的内容，这就是另外一种密码协议“承诺协议”的范围了。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/课堂笔记/" rel="tag"># 课堂笔记</a>
+          
+            <a href="/tags/信息安全/" rel="tag"># 信息安全</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/18/Diffie-Hellman 密钥交换/" rel="next" title="Diffie-Hellman 密钥交换&ElGamal协议的安全密钥交换">
+                <i class="fa fa-chevron-left"></i> Diffie-Hellman 密钥交换&ElGamal协议的安全密钥交换
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="SOHUCS"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/mylogo3.jpg"
+                alt="yongbosmart" />
+            
+              <p class="site-author-name" itemprop="name">yongbosmart</p>
+              <p class="site-description motion-element" itemprop="description">Follow excellence ,and success will chase U</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/yongbosmart" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:yongbosmart@gmail.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.zhihu.com/people/yongbosmart/activities" target="_blank" title="Zhihu"><i class="fa fa-fw fa-globe"></i>Zhihu</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://wx1900.github.io/" title="Xu Wang" target="_blank">Xu Wang</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://qiongli97.github.io/" title="Qiong Li" target="_blank">Qiong Li</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://nazinanuoni.github.io/" title="Huii" target="_blank">Huii</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#信息安全学习总结-amp-复习纲要"><span class="nav-number">1.</span> <span class="nav-text">信息安全学习总结&复习纲要</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本概念"><span class="nav-number">1.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#传统加密技术"><span class="nav-number">1.2.</span> <span class="nav-text">传统加密技术</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#代替技术"><span class="nav-number">1.2.1.</span> <span class="nav-text">代替技术</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Caesar密码"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">Caesar密码</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Monoalphabetic-Cipher-单表替代密码"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">Monoalphabetic Cipher  单表替代密码</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#playfair-密码（多字母代替密码）"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">playfair 密码（多字母代替密码）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#多表代替密码（Vigenere密码）"><span class="nav-number">1.2.1.4.</span> <span class="nav-text">多表代替密码（Vigenere密码）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#一次一密"><span class="nav-number">1.2.1.5.</span> <span class="nav-text">一次一密</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其它（置换密码，轮转机，隐写术）"><span class="nav-number">1.2.2.</span> <span class="nav-text">其它（置换密码，轮转机，隐写术）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#块密码和数据加密标准（DES"><span class="nav-number">1.3.</span> <span class="nav-text">块密码和数据加密标准（DES)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Feistel-密码（DES基本结构）"><span class="nav-number">1.3.1.</span> <span class="nav-text">Feistel 密码（DES基本结构）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DES加密"><span class="nav-number">1.3.2.</span> <span class="nav-text">DES加密</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DES过程"><span class="nav-number">1.3.3.</span> <span class="nav-text">DES过程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#初始置换IP及其逆置换-IP-1"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">初始置换IP及其逆置换$IP^{-1}$</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#函数F-·-·-的细节"><span class="nav-number">1.3.3.2.</span> <span class="nav-text">函数F(·,·)的细节</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#轮密钥是怎样生成的"><span class="nav-number">1.3.3.3.</span> <span class="nav-text">轮密钥是怎样生成的</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分组密码的模式"><span class="nav-number">1.3.4.</span> <span class="nav-text">分组密码的模式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#ECB"><span class="nav-number">1.3.4.1.</span> <span class="nav-text">ECB</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#CBC模式（密文分组链接模式）"><span class="nav-number">1.3.4.2.</span> <span class="nav-text">CBC模式（密文分组链接模式）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数论和有限域"><span class="nav-number">1.4.</span> <span class="nav-text">数论和有限域</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#欧几里得算法-Euclid-amp-GCD"><span class="nav-number">1.4.1.</span> <span class="nav-text">欧几里得算法 Euclid & GCD</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模运算"><span class="nav-number">1.4.2.</span> <span class="nav-text">模运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#乘法逆"><span class="nav-number">1.4.3.</span> <span class="nav-text">乘法逆</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#群、环、域"><span class="nav-number">1.4.4.</span> <span class="nav-text">群、环、域</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#有限域"><span class="nav-number">1.4.5.</span> <span class="nav-text">有限域</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#扩展的欧几里得算法及求乘法逆元"><span class="nav-number">1.4.5.1.</span> <span class="nav-text">扩展的欧几里得算法及求乘法逆元</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#公钥密码学与RSA"><span class="nav-number">1.5.</span> <span class="nav-text">公钥密码学与RSA</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基本概念："><span class="nav-number">1.5.1.</span> <span class="nav-text">基本概念：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对公钥密码的要求"><span class="nav-number">1.5.2.</span> <span class="nav-text">对公钥密码的要求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RSA算法"><span class="nav-number">1.5.3.</span> <span class="nav-text">RSA算法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#生成RSA密钥"><span class="nav-number">1.5.3.1.</span> <span class="nav-text">生成RSA密钥</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#RSA的使用"><span class="nav-number">1.5.3.2.</span> <span class="nav-text">RSA的使用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#RSA浅析"><span class="nav-number">1.5.3.3.</span> <span class="nav-text">RSA浅析</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#RSA证明"><span class="nav-number">1.5.3.4.</span> <span class="nav-text">RSA证明</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#RSA计算及技巧"><span class="nav-number">1.5.3.5.</span> <span class="nav-text">RSA计算及技巧</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#RSA安全性"><span class="nav-number">1.5.3.6.</span> <span class="nav-text">RSA安全性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#密钥管理及其它公钥密码体制"><span class="nav-number">1.6.</span> <span class="nav-text">密钥管理及其它公钥密码体制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#离散对数问题"><span class="nav-number">1.6.1.</span> <span class="nav-text">离散对数问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Diffie-Hellman-密钥交换"><span class="nav-number">1.6.2.</span> <span class="nav-text">Diffie-Hellman 密钥交换</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#安全性"><span class="nav-number">1.6.2.1.</span> <span class="nav-text">安全性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#主要过程"><span class="nav-number">1.6.2.2.</span> <span class="nav-text">主要过程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#算法解释"><span class="nav-number">1.6.2.3.</span> <span class="nav-text">算法解释</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Elgamal密码体制"><span class="nav-number">1.6.3.</span> <span class="nav-text">Elgamal密码体制</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#算法描述"><span class="nav-number">1.6.3.1.</span> <span class="nav-text">算法描述</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#密钥生成"><span class="nav-number">1.6.3.2.</span> <span class="nav-text">密钥生成</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#加密"><span class="nav-number">1.6.3.3.</span> <span class="nav-text">加密</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#解密"><span class="nav-number">1.6.3.4.</span> <span class="nav-text">解密</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#椭圆曲线密码"><span class="nav-number">1.6.4.</span> <span class="nav-text">椭圆曲线密码</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#加密解密-课本230"><span class="nav-number">1.6.4.1.</span> <span class="nav-text">加密解密[课本230]</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#实现密钥交换D-H"><span class="nav-number">1.6.4.2.</span> <span class="nav-text">实现密钥交换D_H</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#消息认证和Hash函数"><span class="nav-number">1.7.</span> <span class="nav-text">消息认证和Hash函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Hash-函数简介"><span class="nav-number">1.7.1.</span> <span class="nav-text">Hash 函数简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Hash-函数的要求"><span class="nav-number">1.7.2.</span> <span class="nav-text">Hash 函数的要求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对hash函数的两种攻击方式"><span class="nav-number">1.7.3.</span> <span class="nav-text">对hash函数的两种攻击方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#单向散列函数无法解决的问题"><span class="nav-number">1.7.4.</span> <span class="nav-text">单向散列函数无法解决的问题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其它"><span class="nav-number">1.8.</span> <span class="nav-text">其它</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#密钥分发"><span class="nav-number">1.8.1.</span> <span class="nav-text">密钥分发</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#消息认证"><span class="nav-number">1.8.2.</span> <span class="nav-text">消息认证</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#MAC函数应当有以下要求"><span class="nav-number">1.8.2.1.</span> <span class="nav-text">MAC函数应当有以下要求</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数字签名【防止发送方否认】"><span class="nav-number">1.8.3.</span> <span class="nav-text">数字签名【防止发送方否认】</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#数字签名的性质"><span class="nav-number">1.8.3.1.</span> <span class="nav-text">数字签名的性质</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#用户认证"><span class="nav-number">1.8.3.2.</span> <span class="nav-text">用户认证</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#基于对称加密的远程用户认证"><span class="nav-number">1.8.3.2.1.</span> <span class="nav-text">基于对称加密的远程用户认证</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Kerberos【单向认证】"><span class="nav-number">1.8.3.2.2.</span> <span class="nav-text">Kerberos【单向认证】</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#用于非对称加密的远程用户认证"><span class="nav-number">1.8.3.2.3.</span> <span class="nav-text">用于非对称加密的远程用户认证</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#对数字签名的攻击"><span class="nav-number">1.8.3.3.</span> <span class="nav-text">对数字签名的攻击</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#证书"><span class="nav-number">1.8.4.</span> <span class="nav-text">证书</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SSL-TLS"><span class="nav-number">1.8.5.</span> <span class="nav-text">SSL\TLS</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#零知识证明"><span class="nav-number">1.9.</span> <span class="nav-text">零知识证明</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yongbosmart</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.4.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Pisces</a> v6.2.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.2.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.2.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.2.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.2.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.2.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.2.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.2.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+  
+    <script type="text/javascript">
+    (function(){
+      var appid = 'cytAlxwFo';
+      var conf = 'a73591f0905614cd29cfe66d353f1924';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
+        window.changyan.api.config({appid:appid,conf:conf})});
+      }
+    })();
+    </script>
+    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
