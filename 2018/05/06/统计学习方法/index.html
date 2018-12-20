@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-corner-indicator.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.2.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon2.ico?v=6.2.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.2.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.2.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="统计学习方法概论阅读笔记统计学习：对象是数据，从数据出发，提取数据的特征，抽象出数据的模型，发现数据中知识，又回到对数据的分析预测中去。 方法：监督学习，非监督学习，半监督学习，强化学习。 监督学习概述输入空间，特征空间与输出空间。 在监督学习中，将输入与输出所有可能取值的集合分别称为输入空间与输出空间。输入空间与输出">
+<meta name="keywords" content="统计学习方法,阅读笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习基本概念">
+<meta property="og:url" content="https://yongbosmart.github.io/2018/05/06/统计学习方法/index.html">
+<meta property="og:site_name" content="Yongbosmart">
+<meta property="og:description" content="统计学习方法概论阅读笔记统计学习：对象是数据，从数据出发，提取数据的特征，抽象出数据的模型，发现数据中知识，又回到对数据的分析预测中去。 方法：监督学习，非监督学习，半监督学习，强化学习。 监督学习概述输入空间，特征空间与输出空间。 在监督学习中，将输入与输出所有可能取值的集合分别称为输入空间与输出空间。输入空间与输出空间可以是同一个空间，也可以是不同的空间，但通常输出空间远远小于输出空间。 每一">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-12-20T14:04:22.231Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="机器学习基本概念">
+<meta name="twitter:description" content="统计学习方法概论阅读笔记统计学习：对象是数据，从数据出发，提取数据的特征，抽象出数据的模型，发现数据中知识，又回到对数据的分析预测中去。 方法：监督学习，非监督学习，半监督学习，强化学习。 监督学习概述输入空间，特征空间与输出空间。 在监督学习中，将输入与输出所有可能取值的集合分别称为输入空间与输出空间。输入空间与输出空间可以是同一个空间，也可以是不同的空间，但通常输出空间远远小于输出空间。 每一">
+
+
+
+
+
+
+  <link rel="canonical" href="https://yongbosmart.github.io/2018/05/06/统计学习方法/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>机器学习基本概念 | Yongbosmart</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Yongbosmart</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"> Follow excellence ,and success will chase you</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签<span class="badge">11</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类<span class="badge">6</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档<span class="badge">13</span></a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yongbosmart.github.io/2018/05/06/统计学习方法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yongbosmart">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/mylogo3.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yongbosmart">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">机器学习基本概念
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-05-06 00:00:00" itemprop="dateCreated datePublished" datetime="2018-05-06T00:00:00+08:00">2018-05-06</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-12-20 22:04:22" itemprop="dateModified" datetime="2018-12-20T22:04:22+08:00">2018-12-20</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/机器学习/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="统计学习方法概论阅读笔记"><a href="#统计学习方法概论阅读笔记" class="headerlink" title="统计学习方法概论阅读笔记"></a>统计学习方法概论阅读笔记</h3><p>统计学习：对象是数据，从数据出发，提取数据的特征，抽象出数据的模型，发现数据中知识，又回到对数据的分析预测中去。</p>
+<p>方法：监督学习，非监督学习，半监督学习，强化学习。</p>
+<h4 id="监督学习"><a href="#监督学习" class="headerlink" title="监督学习"></a>监督学习</h4><h5 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h5><p>输入空间，特征空间与输出空间。</p>
+<p>在监督学习中，将输入与输出所有可能取值的集合分别称为输入空间与输出空间。输入空间与输出空间可以是同一个空间，也可以是不同的空间，但通常输出空间远远小于输出空间。</p>
+<p>每一个具体的输入是一个实例，通常由特征向量表示。这时，所有特征向量存在的空间称为特征空间。特征空间的每一维对应于一个特征。（输入空间有时=特征空间，也可以看做是实例从输入空间映射到特征空间）</p>
+<p>回归问题【输出变量为连续变量的预测问题】 </p>
+<p>分类问题 【输出变量为离散变量的预测问题】</p>
+<p>标注问题【输入输出变量均为变量序列的预测问题】</p>
+<h5 id="联合概率分布"><a href="#联合概率分布" class="headerlink" title="联合概率分布"></a>联合概率分布</h5><p>[我的理解就是，x,y同时发生的概率，即输入为x输出为y同时出现的概率]</p>
+<p>监督学习假设输入与输出的随机变量X和Y遵循联合概率分布P(X,Y)。但对学习系统来说，联合概率分布的具体定义是未知的，训练数据与测试数据被看做是依联合概率分布P(X,Y)独立同分布产生的。</p>
+<p>统计学习假设数据存在一定的统计规律，X和Y具有联合概率分布的假设就是监督学习关于数据的基本假设。</p>
+<p>维基百科【联合概率分布】</p>
+<ul>
+<li>对<strong>离散随机变量</strong>而言，<strong>联合分布概率质量函数</strong>为Pr(<em>X</em> = <em>x</em> &amp; <em>Y</em> = <em>y</em>)，即</li>
+</ul>
+<p>$P(X=x\ and \ Y=y)=P(Y=y|X=x)P(X=x)\\=P(X=x|Y=y)P(Y=y)$</p>
+<p>因为是概率分布函数，所以必须有</p>
+<p>$\sum_{x}\sum_{y}P(X=x\ and\ Y=y)=1$</p>
+<ul>
+<li>类似地，对<strong>连续随机变量</strong>而言，<strong>联合分布概率密度函数</strong>为$f_{X,Y}(x, y)$，其中$f_{Y|X}$(<em>y</em>|<em>x</em>)和$f_{X|Y}$（<em>x</em>|<em>y</em>)分别代表<em>X</em> = <em>x</em>时<em>Y</em>的条件分布以及<em>Y</em> = <em>y</em>时<em>X</em>的条件分布；$f_X(x)$和$f_Y(y)$分别代表<em>X</em>和<em>Y</em>的边缘分布。</li>
+</ul>
+<p>同样地，因为是概率分布函数，所以必须有</p>
+<p>$\int_{x}\int_y\ f_{X,Y}(x,y)dy\ dx=1$</p>
+<ul>
+<li>对于两相互独立的事件P(X)及P(Y)，任意<em>x</em>和<em>y</em>而言有离散随机变量$P(X=x\ and Y=y)=P(X=x) \cdot P(Y=y)$，或者有连续随机变量$P_{X,Y}(x,y)=p_X(x)\cdot \ p_Y(y)$。 </li>
+</ul>
+<h5 id="假设空间"><a href="#假设空间" class="headerlink" title="假设空间"></a>假设空间</h5><p>监督学习的目的在于学习一个由输入到输出的映射，这一映射由模型来表示。换句话说，学习的目的在于找到最好的这样的模型。模型属于由输入空间到输出空间的集合，这个集合就是假设空间。</p>
+<p>监督学习的模型可以是概率模型或非概率模型，由条件概率分布P(Y|X)或决策函数Y=f(X)表示，随具体学习方法而定。对具体的输入进行相应的输出预测时，写作P(y|x)或y=f(x)</p>
+<p>则得到的预测结果$y_{N+1}=\underset{y_{N+1}}{\operatorname{argmax}}  \hat{P}(y_{N+1}|x_{N+1})$或$y_{N+1}=\hat{f}(x_{N+1})$</p>
+<h5 id="损失函数与风险函数"><a href="#损失函数与风险函数" class="headerlink" title="损失函数与风险函数"></a>损失函数与风险函数</h5><p>统计学习的目标在于从假设空间中选取最优模型。</p>
+<p>首先引入损失函数与风险函数的概念。损失函数度量模型一次预测的好坏，风险函数度量平均意义下模型预测的好坏。</p>
+<p>损失函数有四种。损失函数L(Y,f(X))，一共有四种P23</p>
+<p>又由于X,Y是随机变量，遵循联合分布P(X,Y),所以损失函数期望可以得到。为理论上模型f(X)关于联合分布P(X，Y)的平均意义下的损失，称为风险函数或期望损失。$R_{exp}(f)=E_p[L(Y,f(x))]=\int_{x \times y}L(y,f(x))P(x,y)dxdy$</p>
+<p>模型f(x)关于训练数据集的平均损失称为为经验风险或经验损失：</p>
+<p>$R_{emp}(f)=\frac{1}{N}\sum_{i=1}^{N}L(y_i,f(x_i))$</p>
+<p>期望风险是模型关于<strong>联合分布的期望损失</strong>，经验风险是<strong>模型关于训练样本集的平均损失</strong>，当样本容量N趋近无穷时，经验风险趋近于期望风险。</p>
+<p>so一般使用经验风险估计期望风险。要矫正：经验风险最小化，结构风险最小化。</p>
+<p>经验风险最小化，认为经验风险最小即为最优模型，转化为最优化问题，在样本容量足够大是，能保证有比较好的学习效果。eg:极大似然估计，即当模型为条件概率分布，损失函数是对数损失函数时，经验风险最小化就等价于极大似然估计。</p>
+<p>样本容量很小时，经验风险最小化学习的效果未必很好，会产生“过拟合”现象。</p>
+<p>结构风险最小化（SRM)是为了防止过拟合而提出来的策略，结构风险最小化等价于正则化。结构风险在经验风险上加上表示模型复杂度的正则化项或罚项。在假设空间、损失函数以及训练数据集确定的情况下，结构风险的定义是：</p>
+<p>$R_{srm}(f)=\frac{1}{N}\sum^{N}_{i=1}L(y_{i},f(x_{i}))+\lambda J(f)$</p>
+<p>其中J(f)为模型的复杂度。是定义在空间$\mathcal{F}$上的泛函。模型f越复杂，复杂度J(f)就越大；反正，模型f越简单，复杂度J(f)就越小。$\lambda \geq 0$是系数，用以权衡经验风险和模型复杂度。结构风险小的模型，需要经验风险与模型复杂度同时小。对未知的测试数据有较好的预测。</p>
+<p>例如：贝叶斯估计中的最大后验概率估计。当模型是条件概率分布、损失函数是对数损失函数、模型复杂度由模型的先验概率表示时，结构风险最小化就等价于最大后验概率估计。</p>
+<p>结构风险最小化认为结构风险最小的模型是最远模型-》最优化问题。</p>
+<h4 id="模型评估与模型选择"><a href="#模型评估与模型选择" class="headerlink" title="模型评估与模型选择"></a>模型评估与模型选择</h4><h5 id="训练误差与测试误差"><a href="#训练误差与测试误差" class="headerlink" title="训练误差与测试误差"></a>训练误差与测试误差</h5><p>训练误差，针对训练数据集。测试误差，针对测试数据集。公式如下：</p>
+<p>$\frac{1}{N}\sum^{N}_{i=1}L(y_i,\hat{f}(x_i))$</p>
+<h5 id="过拟合与模型选择"><a href="#过拟合与模型选择" class="headerlink" title="过拟合与模型选择"></a>过拟合与模型选择</h5><p>当假设空间含有不同复杂度（例如，不同的参数个数）的模型时，就要面临模型旋转的问题。</p>
+<p>【在多项式函数拟合中，随着多项式次数（模型复杂度）的增加，训练误差会减小，直至趋向于0，但是测试误差却不如此，它会随着多项式次数（模型复杂度)的增加先减小而后增大（<strong>因为出现过拟合现象</strong>）。最终目的是使测试误差达到最小。】</p>
+<h4 id="正则化与交叉验证"><a href="#正则化与交叉验证" class="headerlink" title="正则化与交叉验证"></a>正则化与交叉验证</h4><p>模型选择的典型方法，正则化。【比如加个范数】</p>
+<p>选择模型：1.简单 2.很好地解释已知数据。</p>
+<p>交叉验证：切分数据，重复使用，进行验证</p>
+<h4 id="生成模型与判别模型"><a href="#生成模型与判别模型" class="headerlink" title="生成模型与判别模型"></a>生成模型与判别模型</h4><p>监督学习方法可以分为生成方法和判别方法。所学到的模型为生成模型和判别模型。</p>
+<p>生成方法，数据学习联合概率分布P(X,Y)，然后求出P(Y|X)</p>
+<p>生成模型：</p>
+<p>$P（Y|X)=\frac{P(X,Y)}{P(X)}$</p>
+<p>模型表示了给定输入X产生输出Y的生成关系。典型的生成模型有：朴素贝叶斯法和隐马尔克夫模型。</p>
+<p>判别方法，数据直接学习决策函数f(X)或者P(Y|X)作为预测的模型。关系的是对给定的输入X,应该预测怎样的输出Y典型的判别模型包括：感知机，决策树，支持向量机，条件随机场，最大熵模型等。</p>
+<h4 id="分类模型"><a href="#分类模型" class="headerlink" title="分类模型"></a>分类模型</h4>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/统计学习方法/" rel="tag"># 统计学习方法</a>
+          
+            <a href="/tags/阅读笔记/" rel="tag"># 阅读笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/26/算法作业-有向图/" rel="next" title="算法作业-有向图">
+                <i class="fa fa-chevron-left"></i> 算法作业-有向图
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/06/计算机图形学-半边数据结构/" rel="prev" title="半边数据结构&网格细分与简化">
+                半边数据结构&网格细分与简化 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/mylogo3.jpg"
+                alt="yongbosmart" />
+            
+              <p class="site-author-name" itemprop="name">yongbosmart</p>
+              <p class="site-description motion-element" itemprop="description">Follow excellence ,and success will chase U</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/yongbosmart" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:yongbosmart@gmail.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.zhihu.com/people/yongbosmart/activities" target="_blank" title="Zhihu"><i class="fa fa-fw fa-globe"></i>Zhihu</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://wx1900.github.io/" title="Xu Wang" target="_blank">Xu Wang</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://qiongli97.github.io/" title="Qiong Li" target="_blank">Qiong Li</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://nazinanuoni.github.io/" title="Huii" target="_blank">Huii</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#统计学习方法概论阅读笔记"><span class="nav-number">1.</span> <span class="nav-text">统计学习方法概论阅读笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#监督学习"><span class="nav-number">1.1.</span> <span class="nav-text">监督学习</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#概述"><span class="nav-number">1.1.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#联合概率分布"><span class="nav-number">1.1.2.</span> <span class="nav-text">联合概率分布</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#假设空间"><span class="nav-number">1.1.3.</span> <span class="nav-text">假设空间</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#损失函数与风险函数"><span class="nav-number">1.1.4.</span> <span class="nav-text">损失函数与风险函数</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模型评估与模型选择"><span class="nav-number">1.2.</span> <span class="nav-text">模型评估与模型选择</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#训练误差与测试误差"><span class="nav-number">1.2.1.</span> <span class="nav-text">训练误差与测试误差</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#过拟合与模型选择"><span class="nav-number">1.2.2.</span> <span class="nav-text">过拟合与模型选择</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#正则化与交叉验证"><span class="nav-number">1.3.</span> <span class="nav-text">正则化与交叉验证</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#生成模型与判别模型"><span class="nav-number">1.4.</span> <span class="nav-text">生成模型与判别模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分类模型"><span class="nav-number">1.5.</span> <span class="nav-text">分类模型</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yongbosmart</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.4.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Pisces</a> v6.2.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.2.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.2.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.2.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.2.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.2.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.2.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.2.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
