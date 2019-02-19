@@ -109,25 +109,25 @@
 
 
 
-  <meta name="description" content="问题描述有n个小朋友围成一圈玩游戏，小朋友从1至n编号，2号小朋友坐在1号小朋友的顺时针方向，3号小朋友坐在2号小朋友的顺时针方向，……，1号小朋友坐在n号小朋友的顺时针方向。 游戏开始，从1号小朋友开始顺时针报数，接下来每个小朋友的报数是上一个小朋友报的数加1。若一个小朋友报的数为k的倍数或其末位数（即数的个位）为k">
-<meta name="keywords" content="算法,日常练习">
+  <meta name="description" content="协同过滤算法参考书本： 项亮, 推荐系统实践. 2012  基于邻域的算法是推荐系统中最基本的算法，不仅在学术界得到深入研究，而且在业界得到了广泛应用。 基于用户的协同过滤算法本质：根据用户之间兴趣相似性。 (1)  找到和目标用户兴趣相似的用户集合。(2)  找到这个集合中的用户喜欢的，且目标用户没有听说过的物品推荐">
+<meta name="keywords" content="推荐系统">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ccf1202-游戏">
-<meta property="og:url" content="https://yongbosmart.github.io/2018/03/24/ccf1202-游戏/index.html">
+<meta property="og:title" content="基于用户的协同过滤算法">
+<meta property="og:url" content="https://yongbosmart.github.io/2019/02/16/基于用户的协同过滤算法/index.html">
 <meta property="og:site_name" content="Yongbosmart">
-<meta property="og:description" content="问题描述有n个小朋友围成一圈玩游戏，小朋友从1至n编号，2号小朋友坐在1号小朋友的顺时针方向，3号小朋友坐在2号小朋友的顺时针方向，……，1号小朋友坐在n号小朋友的顺时针方向。 游戏开始，从1号小朋友开始顺时针报数，接下来每个小朋友的报数是上一个小朋友报的数加1。若一个小朋友报的数为k的倍数或其末位数（即数的个位）为k，则该小朋友被淘汰出局，不再参加以后的报数。当游戏中只剩下一个小朋友时，该小朋友">
+<meta property="og:description" content="协同过滤算法参考书本： 项亮, 推荐系统实践. 2012  基于邻域的算法是推荐系统中最基本的算法，不仅在学术界得到深入研究，而且在业界得到了广泛应用。 基于用户的协同过滤算法本质：根据用户之间兴趣相似性。 (1)  找到和目标用户兴趣相似的用户集合。(2)  找到这个集合中的用户喜欢的，且目标用户没有听说过的物品推荐给目标用户。 给定用户 u 和用户 v ，令 N(u) 表示用户 u 曾经有过正">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-04-30T13:36:44.665Z">
+<meta property="og:updated_time" content="2019-02-19T13:26:24.141Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ccf1202-游戏">
-<meta name="twitter:description" content="问题描述有n个小朋友围成一圈玩游戏，小朋友从1至n编号，2号小朋友坐在1号小朋友的顺时针方向，3号小朋友坐在2号小朋友的顺时针方向，……，1号小朋友坐在n号小朋友的顺时针方向。 游戏开始，从1号小朋友开始顺时针报数，接下来每个小朋友的报数是上一个小朋友报的数加1。若一个小朋友报的数为k的倍数或其末位数（即数的个位）为k，则该小朋友被淘汰出局，不再参加以后的报数。当游戏中只剩下一个小朋友时，该小朋友">
+<meta name="twitter:title" content="基于用户的协同过滤算法">
+<meta name="twitter:description" content="协同过滤算法参考书本： 项亮, 推荐系统实践. 2012  基于邻域的算法是推荐系统中最基本的算法，不仅在学术界得到深入研究，而且在业界得到了广泛应用。 基于用户的协同过滤算法本质：根据用户之间兴趣相似性。 (1)  找到和目标用户兴趣相似的用户集合。(2)  找到这个集合中的用户喜欢的，且目标用户没有听说过的物品推荐给目标用户。 给定用户 u 和用户 v ，令 N(u) 表示用户 u 曾经有过正">
 
 
 
 
 
 
-  <link rel="canonical" href="https://yongbosmart.github.io/2018/03/24/ccf1202-游戏/"/>
+  <link rel="canonical" href="https://yongbosmart.github.io/2019/02/16/基于用户的协同过滤算法/"/>
 
 
 
@@ -137,7 +137,7 @@
   };
 </script>
 
-  <title>ccf1202-游戏 | Yongbosmart</title>
+  <title>基于用户的协同过滤算法 | Yongbosmart</title>
   
 
 
@@ -309,7 +309,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yongbosmart.github.io/2018/03/24/ccf1202-游戏/">
+    <link itemprop="mainEntityOfPage" href="https://yongbosmart.github.io/2019/02/16/基于用户的协同过滤算法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="yongbosmart">
@@ -326,7 +326,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">ccf1202-游戏
+          <h1 class="post-title" itemprop="name headline">基于用户的协同过滤算法
               
             
           </h1>
@@ -351,7 +351,7 @@
                 
               
 
-              <time title="创建时间：2018-03-24 00:00:00" itemprop="dateCreated datePublished" datetime="2018-03-24T00:00:00+08:00">2018-03-24</time>
+              <time title="创建时间：2019-02-16 00:00:00" itemprop="dateCreated datePublished" datetime="2019-02-16T00:00:00+08:00">2019-02-16</time>
             
 
             
@@ -368,7 +368,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-04-30 21:36:44" itemprop="dateModified" datetime="2018-04-30T21:36:44+08:00">2018-04-30</time>
+                <time title="修改时间：2019-02-19 21:26:24" itemprop="dateModified" datetime="2019-02-19T21:26:24+08:00">2019-02-19</time>
               
             
           </span>
@@ -385,7 +385,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/日常练习/" itemprop="url" rel="index"><span itemprop="name">日常练习</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/推荐系统/" itemprop="url" rel="index"><span itemprop="name">推荐系统</span></a></span>
 
                 
                 
@@ -419,35 +419,33 @@
       
 
       
-        <h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>有<em>n</em>个小朋友围成一圈玩游戏，小朋友从1至<em>n</em>编号，2号小朋友坐在1号小朋友的顺时针方向，3号小朋友坐在2号小朋友的顺时针方向，……，1号小朋友坐在<em>n</em>号小朋友的顺时针方向。</p>
-<p>游戏开始，从1号小朋友开始顺时针报数，接下来每个小朋友的报数是上一个小朋友报的数加1。若一个小朋友报的数为<em>k</em>的倍数或其末位数（即数的个位）为<em>k</em>，则该小朋友被淘汰出局，不再参加以后的报数。当游戏中只剩下一个小朋友时，该小朋友获胜。</p>
-<p>例如，当n=5, k=2时：</p>
-<p>1号小朋友报数1；</p>
-<p>2号小朋友报数2淘汰；</p>
-<p>3号小朋友报数3；</p>
-<p>4号小朋友报数4淘汰；</p>
-<p>5号小朋友报数5；</p>
-<p>1号小朋友报数6淘汰；</p>
-<p>3号小朋友报数7；</p>
-<p>5号小朋友报数8淘汰；</p>
-<p>3号小朋友获胜。</p>
-<p>给定<em>n</em>和<em>k</em>，请问最后获胜的小朋友编号为多少？</p>
-<p>输入格式</p>
-<p>输入一行，包括两个整数<em>n</em>和<em>k</em>，意义如题目所述。</p>
-<p>输出格式</p>
-<p>　　输出一行，包含一个整数，表示获胜的小朋友编号。</p>
-<p>样例输入</p>
-<p>5 2</p>
-<p>样例输出</p>
-<p>3</p>
-<p>样例输入</p>
-<p>7 3</p>
-<p>样例输出</p>
-<p>4</p>
-<p>数据规模和约定</p>
-<p>对于所有评测用例，1 ≤ <em>n</em> ≤ 1000，1 ≤ <em>k</em> ≤ 9。</p>
-<h3 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h3><p>用队列比较简单</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">package oj;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.LinkedList;</span><br><span class="line"><span class="keyword">import</span> java.util.Queue;</span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ccf1</span> &#123;</span></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// TODO 自动生成的方法存根</span></span><br><span class="line">		<span class="keyword">int</span> n, k;</span><br><span class="line">		<span class="keyword">int</span> tmp=<span class="number">1</span>;<span class="comment">//记录下一个要数的数</span></span><br><span class="line">		<span class="keyword">int</span> result=<span class="number">-1</span>;</span><br><span class="line">       Scanner sc = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        n = sc.nextInt();<span class="comment">//</span></span><br><span class="line">        k =sc.nextInt();</span><br><span class="line">		Queue&lt;Integer&gt; cf=<span class="keyword">new</span> LinkedList&lt;Integer&gt;();</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">			cf.offer(i+<span class="number">1</span>);</span><br><span class="line"><span class="comment">//			tmp++;</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(n==<span class="number">1</span>)&#123;</span><br><span class="line">			result=cf.peek();</span><br><span class="line">			System.out.println(result);</span><br><span class="line">			</span><br><span class="line">			</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">		<span class="keyword">while</span>(cf.size()&gt;<span class="number">1</span>)&#123;<span class="comment">//循环往复的问题,,这里第一轮忘记淘汰了</span></span><br><span class="line"><span class="comment">//			System.out.println(cf.size());</span></span><br><span class="line">			<span class="keyword">if</span>(tmp%k==<span class="number">0</span>||tmp%<span class="number">10</span>==k)&#123;<span class="comment">//可以被淘汰</span></span><br><span class="line">				cf.poll();</span><br><span class="line">				tmp++;&#125;</span><br><span class="line">			<span class="keyword">else</span>&#123;</span><br><span class="line">				result=cf.poll();</span><br><span class="line">				cf.offer(result);<span class="comment">//不淘汰</span></span><br><span class="line">				tmp++;</span><br><span class="line">			&#125;</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(cf.peek());<span class="comment">//最后这里开始输的是result  TAT,所以细心很，很，很重要</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h2 id="协同过滤算法"><a href="#协同过滤算法" class="headerlink" title="协同过滤算法"></a>协同过滤算法</h2><p>参考书本： 项亮, <em>推荐系统实践.</em> 2012 </p>
+<h3 id="基于邻域的算法"><a href="#基于邻域的算法" class="headerlink" title="基于邻域的算法"></a>基于邻域的算法</h3><p>是推荐系统中最基本的算法，不仅在学术界得到深入研究，而且在业界得到了广泛应用。</p>
+<h4 id="基于用户的协同过滤算法"><a href="#基于用户的协同过滤算法" class="headerlink" title="基于用户的协同过滤算法"></a>基于用户的协同过滤算法</h4><p>本质：根据用户之间兴趣相似性。</p>
+<p>(1)  找到和目标用户兴趣相似的用户集合。<br>(2)  找到这个集合中的用户喜欢的，且目标用户没有听说过的物品推荐给目标用户。</p>
+<p>给定用户 u 和用户 v ，令 N(u) 表示用户 u 曾经有过正反馈的物品集合，令 N(v)为用户 v 曾经有过正反馈的物品集合。那么，我们可以通过如下的 Jaccard 公式简单地计算 u 和 v 的兴趣相似度</p>
+<p>$w_{uv}=\frac{|N(u)\and N(v)|}{|N(u)\or N(v)|}$</p>
+<p>或者通过余弦相似度</p>
+<p>$w_{uv}=\frac{|N(u)\and N(v)|}{\sqrt {|N(u)|| N(v)|}}$</p>
+<p>but,利用余弦相似度时间复杂度较高，且很多用户没有相似点，即分子为0，因此可以先计算出分子不为0的用户。</p>
+<p>因此可先建立关于物品到用户的倒排表，得到对物品产生过行为的用户列表。令稀疏矩阵C[u][v]=|N(u)$\and$N(v)|。假设用户u，v同时属于倒排表中K个物品的用户列表，则有C[u][v]=C[v][u]=K。最后得到用户之间不为0的C[u][v]。得到的矩阵为余弦相似度中的分子。</p>
+<p>最后可以得到用户之间的兴趣相似度。</p>
+<p>得到用户之间的兴趣相似度后， UserCF 算法会给用户推荐和他兴趣最相似的 K 个用户喜欢的物品。</p>
+<p>以下公式度量了用户u对物体i的感兴趣程度。</p>
+<p>$p(u,i)=\sum_{v\in S(u,K)\cap N(i)}w_{uv}r_{vi}$</p>
+<p>S包含与u兴趣最先进的K个用户。N(i)表示对物品i有过行为的用户集合。$w_{uv}$表示u与v的兴趣相似度。$r_{vi}$表示用户v对物品i的兴趣程度，这里因为是单一行为所以取1。</p>
+<p>这里意思即是，求用户u对物品i的感兴趣程度：</p>
+<p>对与用户u最相似的K个用户</p>
+<p>1.对每一个用户v，得到uv相似度与v对物品感兴趣程度的积。</p>
+<p>2.把k个用户的这个值加起来。</p>
+<h5 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h5><p>性能参数：准确率 召回率 覆盖度 流行度</p>
+<p>性能评估：<br>Random 算法每次都随机挑选 10 个用户没有产生过行为的物品推荐给当前用户， MostPopular 算法则按照物品的流行度给用户推荐他没有产生过行为的物品中最热门的 10 个物品。</p>
+<p>这两种算法都是非个性化的推荐算法，但它们代表了两个极端。如表 2-5 所示， MostPopular 算法的准确率和召回率远远高于 Random 算法，但它的覆盖率非常低，结果都非常热门。可见， Random 算法的准确率和召回率很低，但覆盖度很高，结果平均流行度很低。</p>
+<p>指标分析：</p>
+<p>  准确率和召回率 可以看到，推荐系统的精度指标（准确率和召回率）并不和参数 K 成线性关系。在 MovieLens 数据集中，选择 K=80 左右会获得比较高的准确率和召回率。因此选择合适的 K 对于获得高的推荐系统精度比较重要。当然，推荐结果的精度对 K 也不是特别敏感，只要选在一定的区域内，就可以获得不错的精度。<br>  流行度 可以看到，在 3 个数据集上 K 越大则 UserCF 推荐结果就越热门。这是因为 K 决定了 UserCF 在给你做推荐时参考多少和你兴趣相似的其他用户的兴趣，那么如果 K 越大，参考的人越多，结果就越来越趋近于全局热门的物品。<br>  覆盖率 可以看到，在 3 个数据集上， K 越大则 UserCF 推荐结果的覆盖率越低。覆盖率的降低是因为流行度的增加，随着流行度增加， UserCF 越来越倾向于推荐热门的物品，从而对长尾物品的推荐越来越少，因此造成了覆盖率的降低。</p>
+<h5 id="改进"><a href="#改进" class="headerlink" title="改进"></a>改进</h5><p>两个用户对冷门物品采取过同样的行为更能说明他们兴趣的相似度。</p>
+<p>添加惩罚后的公式：</p>
+<p>$w_{uv}=\frac{\sum_{i\in N(u)\cap N(v)}\frac{1}{log1+|N(i)}}{\sqrt {|N(u)|| N(v)|}}$</p>
 
       
     </div>
@@ -468,9 +466,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/算法/" rel="tag"># 算法</a>
-          
-            <a href="/tags/日常练习/" rel="tag"># 日常练习</a>
+            <a href="/tags/推荐系统/" rel="tag"># 推荐系统</a>
           
         </div>
       
@@ -483,8 +479,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/02/04/nachos实验1-3/" rel="next" title="nachos实验1-3">
-                <i class="fa fa-chevron-left"></i> nachos实验1-3
+              <a href="/2018/12/20/朴素贝叶斯/" rel="next" title="朴素贝叶斯分类算法">
+                <i class="fa fa-chevron-left"></i> 朴素贝叶斯分类算法
               </a>
             
           </div>
@@ -492,10 +488,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/03/26/算法作业-有向图/" rel="prev" title="算法作业-有向图">
-                算法作业-有向图 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -714,7 +706,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题描述"><span class="nav-number">1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题分析"><span class="nav-number">2.</span> <span class="nav-text">问题分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-number">3.</span> <span class="nav-text">代码</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#协同过滤算法"><span class="nav-number">1.</span> <span class="nav-text">协同过滤算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基于邻域的算法"><span class="nav-number">1.1.</span> <span class="nav-text">基于邻域的算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基于用户的协同过滤算法"><span class="nav-number">1.1.1.</span> <span class="nav-text">基于用户的协同过滤算法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#性能"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">性能</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#改进"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">改进</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -918,6 +910,29 @@
   
   
 
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
   
 
 
