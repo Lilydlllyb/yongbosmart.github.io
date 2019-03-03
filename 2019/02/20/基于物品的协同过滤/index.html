@@ -109,25 +109,25 @@
 
 
 
-  <meta name="description" content="隐语义模型  参考书本： 项亮, 推荐系统实践. 2012  本文系阅读笔记 。 LFM （ latent factor model ）隐语义模型。该算法最早在文本挖掘领域被提出，用于找到文本的隐含语义。相关的名词有 LSI 、 pLSA 、 LDA 和 Topic Model 。 定义隐语义模型是最近几年推荐系统领域">
+  <meta name="description" content="基于物品的协同过滤 参考书本： 项亮, 推荐系统实践. 2012  本文系阅读笔记 。 基于用户的协同过滤的缺点1.网站用户基数增多，矩阵难以构造，时空复杂度增加。 2.难以对推荐结果做出解释。 基于物品的协同过滤ItemCF大致含义该算法会因为你购买过《数据挖掘导论》而给你推荐《机器学习》。不过， ItemCF 算法">
 <meta name="keywords" content="推荐系统,读书笔记">
 <meta property="og:type" content="article">
-<meta property="og:title" content="隐语义模型">
-<meta property="og:url" content="https://yongbosmart.github.io/2018/02/20/隐语义模型/index.html">
+<meta property="og:title" content="基于物品的协同过滤">
+<meta property="og:url" content="https://yongbosmart.github.io/2019/02/20/基于物品的协同过滤/index.html">
 <meta property="og:site_name" content="Yongbosmart">
-<meta property="og:description" content="隐语义模型  参考书本： 项亮, 推荐系统实践. 2012  本文系阅读笔记 。 LFM （ latent factor model ）隐语义模型。该算法最早在文本挖掘领域被提出，用于找到文本的隐含语义。相关的名词有 LSI 、 pLSA 、 LDA 和 Topic Model 。 定义隐语义模型是最近几年推荐系统领域最为热门的研究话题，它的核心思想是通过隐含特征(latent factor) 联">
+<meta property="og:description" content="基于物品的协同过滤 参考书本： 项亮, 推荐系统实践. 2012  本文系阅读笔记 。 基于用户的协同过滤的缺点1.网站用户基数增多，矩阵难以构造，时空复杂度增加。 2.难以对推荐结果做出解释。 基于物品的协同过滤ItemCF大致含义该算法会因为你购买过《数据挖掘导论》而给你推荐《机器学习》。不过， ItemCF 算法并不利用物品的内容属性计算物品之间的相似度，它主要通过分析用户的行为记录计算物品">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-02-28T01:26:43.764Z">
+<meta property="og:updated_time" content="2019-03-03T13:02:03.327Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="隐语义模型">
-<meta name="twitter:description" content="隐语义模型  参考书本： 项亮, 推荐系统实践. 2012  本文系阅读笔记 。 LFM （ latent factor model ）隐语义模型。该算法最早在文本挖掘领域被提出，用于找到文本的隐含语义。相关的名词有 LSI 、 pLSA 、 LDA 和 Topic Model 。 定义隐语义模型是最近几年推荐系统领域最为热门的研究话题，它的核心思想是通过隐含特征(latent factor) 联">
+<meta name="twitter:title" content="基于物品的协同过滤">
+<meta name="twitter:description" content="基于物品的协同过滤 参考书本： 项亮, 推荐系统实践. 2012  本文系阅读笔记 。 基于用户的协同过滤的缺点1.网站用户基数增多，矩阵难以构造，时空复杂度增加。 2.难以对推荐结果做出解释。 基于物品的协同过滤ItemCF大致含义该算法会因为你购买过《数据挖掘导论》而给你推荐《机器学习》。不过， ItemCF 算法并不利用物品的内容属性计算物品之间的相似度，它主要通过分析用户的行为记录计算物品">
 
 
 
 
 
 
-  <link rel="canonical" href="https://yongbosmart.github.io/2018/02/20/隐语义模型/"/>
+  <link rel="canonical" href="https://yongbosmart.github.io/2019/02/20/基于物品的协同过滤/"/>
 
 
 
@@ -137,7 +137,7 @@
   };
 </script>
 
-  <title>隐语义模型 | Yongbosmart</title>
+  <title>基于物品的协同过滤 | Yongbosmart</title>
   
 
 
@@ -309,7 +309,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yongbosmart.github.io/2018/02/20/隐语义模型/">
+    <link itemprop="mainEntityOfPage" href="https://yongbosmart.github.io/2019/02/20/基于物品的协同过滤/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="yongbosmart">
@@ -326,7 +326,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">隐语义模型
+          <h1 class="post-title" itemprop="name headline">基于物品的协同过滤
               
             
           </h1>
@@ -351,7 +351,7 @@
                 
               
 
-              <time title="创建时间：2018-02-20 00:00:00" itemprop="dateCreated datePublished" datetime="2018-02-20T00:00:00+08:00">2018-02-20</time>
+              <time title="创建时间：2019-02-20 00:00:00" itemprop="dateCreated datePublished" datetime="2019-02-20T00:00:00+08:00">2019-02-20</time>
             
 
             
@@ -368,7 +368,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-28 09:26:43" itemprop="dateModified" datetime="2019-02-28T09:26:43+08:00">2019-02-28</time>
+                <time title="修改时间：2019-03-03 21:02:03" itemprop="dateModified" datetime="2019-03-03T21:02:03+08:00">2019-03-03</time>
               
             
           </span>
@@ -419,53 +419,43 @@
       
 
       
-        <h2 id="隐语义模型"><a href="#隐语义模型" class="headerlink" title="隐语义模型"></a>隐语义模型</h2><hr>
-<hr>
+        <h2 id="基于物品的协同过滤"><a href="#基于物品的协同过滤" class="headerlink" title="基于物品的协同过滤"></a>基于物品的协同过滤</h2><hr>
 <p>参考书本： 项亮, <em>推荐系统实践.</em> 2012 </p>
 <p>本文系阅读笔记 。</p>
-<p>LFM （ latent factor model ）隐语义模型。该算法最早在文本挖掘领域被提出，用于找到文本的隐含语义。相关的名词有 LSI 、 pLSA 、 LDA 和 Topic Model 。</p>
-<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>隐语义模型是最近几年推荐系统领域最为热门的研究话题，它的核心思想是通过隐含特征(latent factor) 联系用户兴趣和物品。</p>
-<p>eg:</p>
-<p>用户 A 的兴趣涉及侦探小说、科普图书以及一些计算机技术书，而用户 B 的兴趣比较集中在数学和机器学习方面。可以对书和物品的兴趣进行分类。对于某个用户，首先得到他的兴趣分类，然后从分类中挑选他可能喜欢的物品。</p>
-<p>但是往往来说，编辑的分类不能代表用户的真实意见，或者可能有各种各样的偏差。隐含语义分析技术（ latent variable analysis ）出现了。隐含语义分析技术因为采取基于用户行为统计的自动聚类。</p>
-<p>相关模型： pLSA 、 LDA 、隐含类别模型（ latent class model ）、隐含主题模型（ latent topic model ）、矩阵分解（ matrix factorization ）。</p>
-<h3 id="LFM"><a href="#LFM" class="headerlink" title="LFM"></a>LFM</h3><p>通过如下公式计算用户 u 对物品 i 的兴趣：</p>
-<p>$Proference(u,i)=r_{ui}=p_u^Tq_i=\sum^F_{f=1}p_{u,k}q_{i,k}$</p>
-<p>$p_{u,k}$度量了用户u和第k个隐类的关系，$q_{i,k}$度量了第k个隐类和物品i直接的关系。</p>
-<p>要计算这两个参数，需要一个训练集，对于每个用户 u ，训练集里都包含了用户 u 喜欢的物品和不感兴趣的物品，通过学习这个数据集，就可以获得上面的模型参数。<br>推荐系统的用户行为分为显性反馈和隐性反馈。 LFM 在显性反馈数据（也就是评分数据）上解决评分预测问题并达到了很好的精度。不过本章主要讨论的是隐性反馈数据集，这种数据集的特点是只有正样本（用户喜欢什么物品），而没有负样本（用户对什么物品不感兴趣）。<br>那么，在隐性反馈数据集上应用LFM解决TopN推荐的第一个关键问题就是如何给每个用户生成负样本。</p>
-<p><strong>对负样本采样时应该遵循以下原则。</strong><br>  对每个用户，要保证正负样本的平衡（数目相似）。<br>  对每个用户采样负样本时，要选取那些很热门，而用户却没有行为的物品。<br>一般认为，很热门而用户却没有行为更加代表用户对这个物品不感兴趣。因为对于冷门的物品，用户可能是压根没在网站中发现这个物品，所以谈不上是否感兴趣。</p>
-<p>经过采样，可以得到一个用户 — 物品集 K={(u,i)}，其中如果(u, i)是正样本，则有 $r_{ui}​$=1,否则，有$r_{ui}​$=0，则优化如下损失函数来得到p,q</p>
-<p>$C=\sum_{(u,i\in K)}(r_{ui}-\hat{r_{ui}})^2=\\ \sum_{(u,i\in K)}(r_{ui}-\sum^k_{k=1}p_{u,k}q_{i,k})^2+\lambda\Arrowvert p_u \Arrowvert^2+\lambda\Arrowvert q_i \Arrowvert^2$</p>
-<p>其中后面两项是用来防止过拟合的正则化项，λ由实验获得。</p>
-<p>可以利用随机梯度下降使以上函数最小化。</p>
-<p>梯度下降对两个参数求偏导。得到下降公式，学习到学习速率$\alpha$</p>
-<p>【具体代码和公式见书，这一细节为机器学习的细节】</p>
-<h3 id="评测"><a href="#评测" class="headerlink" title="评测"></a>评测</h3><p>我们同样通过离线实验评测LFM的性能。首先，我们在MovieLens数据集上用LFM计算出用户兴趣向量p和物品向量q，然后对于每个隐类找出权重最大的物品。表中展示了4个隐类中排名最高（$q_{ik}$ 最大）的一些电影。结果表明，每一类的电影都是合理的，都代表了一类用户喜欢看的电影。从而说明LFM确实可以实现通过用户行为将物品聚类的功能。</p>
-<p>其次，我们通过实验对比了LFM在TopN推荐中的性能。在LFM中，重要的参数有4个：<br>  隐特征的个数 F ；<br>  学习速率 alpha ；<br>  正则化参数 lambda ；<br>  负样本/正样本比例  ratio 。<br>通过实验发现， ratio 参数对LFM的性能影响最大。因此，固定 F =100、 alpha =0.02、lambda =0.01，然后研究负样本/正样本比例 ratio 对推荐结果性能的影响。</p>
-<p>随着负样本数目的增加， LFM 的准确率和召回率有明显提高。不过当<br>ratio &gt;10 以后，准确率和召回率基本就比较稳定了。同时，随着负样本数目的增加，覆盖率不断降低，而推荐结果的流行度不断增加，说明 ratio 参数控制了推荐算法发掘长尾的能力。</p>
-<p>[在这里的实验，LFM性能优于userIF和itemIF,不过当数据集非常稀疏时， LFM 的性能会明显下降，甚至不如 UserCF 和 ItemCF 的性能。]</p>
-<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><p>雅虎的研究人员以 CTR （点击通过率，点击数，点击到达率）作为优化目标，利用 LFM 来预测用户是否会单击一个链接。为此，他们将用户历史上对首页上链接的行为记录作为训练集。其中，如果用户 u 单击过链接 i ，那么<br>就定义 (u, i) 是正样本，即 $r_{ui}$  = 1 。如果链接 i 展示给用户 u ，但用户 u 从来没有单击过，那么就定义 (u, i) 是负样本，即$r_{ui}$  = -1 。然后，雅虎的研究人员利用前文提到的 LFM 预测用户是否会单击链接：<br>$r_{ui}=p_u^T\cdot q_i$<br>当然，雅虎的研究人员在上面的模型基础上进行了一些修改，利用了一些改进的 LFM 模型。</p>
-<p>但是， LFM 模型在实际使用中有一个困难，那就是它<strong>很难实现实时的推荐</strong>。经典的 LFM 模型每次训练时都需要扫描所有的用户行为记录，这样才能计算出用户隐类向量（ $p_u$ ）和物品隐类向量（ $q_i$ ）。而且 LFM 的训练需要在用户行为记录上反复迭代才能获得比较好的性能。因此， LFM的每次训练都很耗时，一般在实际应用中只能每天训练一次，并且计算出所有用户的推荐结果。从而 LFM 模型不能因为用户行为的变化实时地调整推荐结果来满足用户最近的行为。</p>
-<p>but新闻need实时性，首先，他们利用新闻链接的内容属性（关键词、类别等）得到链接 i 的内容特征向量 $y_i$ 。其次，他们会实时地收集用户对链接的行为，并且用这些数据得到链接 i 的隐特征向量$q_i$ 。然后，他们会利用如下公式预测用户 u 是否会单击链接 i </p>
-<p>$r_{ui}=x_u^T\cdot y_i+p_u^T\cdot q_i$</p>
-<p>y:根据内容属性直接生产</p>
-<p>x:用户u对内容特征k的兴趣程度，根据历史记录获得。x每天只需要训练一次。</p>
-<p>p/q根据用户最近几小时行为训练LFM获得。</p>
-<p>对于一个新加入的物品i，先通过x,y估计用户对物品的兴趣，几个小时后通过计算LFM得到更加准确的值。</p>
-<p>【可参考雅虎论文】</p>
-<h3 id="比较"><a href="#比较" class="headerlink" title="比较"></a>比较</h3><p>和基于邻域的方法（比如 UserCF 、 ItemCF ）相比</p>
-<p>  理论基础  </p>
-<p>LFM 具有比较好的理论基础，它是一种学习方法，通过优化一个设定的指标建立最优的模型。基于邻域的方法更多的是一种基于统计的方法，并没有学习过程。</p>
-<p>  离线计算的空间复杂度 </p>
-<p>基于邻域的方法需要维护一张离线的相关表。在离线计算相关表的过程中，如果用户 / 物品数很多，将会占据很大的内存。假设有 M 个用户和 N 个物品，在计算相关表的过程中，我们可能会获得一张比较稠密的临时相关表（尽管最终我们对每个物品只保留 K 个最相关的物品，但在中间计算过程中稠密的相关表是不可避免的）</p>
-<p>在 Netflix Prize 中，因为用户数很庞大（ 40 多万），很少有人使用 UserCF 算法（据说需要 30 GB 左右的内存），而 LFM 由于大量节省了训练过程中的内存（只需要 4 GB ），从而成为 Netflix Prize 中最流行的算法。</p>
-<p> 离线计算的时间复杂度</p>
-<p>在一般情况下， LFM 的时间复杂度要稍微高于 UserCF 和 ItemCF ，这主要是因为该算法需要多次迭代。但总体上，这两种算法在时间复杂度上没有质的差别</p>
-<p>  在线实时推荐  </p>
-<p>UserCF 和 ItemCF 在线服务算法需要将相关表缓存在内存中，然后可以在<br>线进行实时的预测。以 ItemCF 算法为例，一旦用户喜欢了新的物品，就可以通过查询内存中的相关表将和该物品相似的其他物品推荐给用户。因此，一旦用户有了新的行为，而且该行为被实时地记录到后台的数据库系统中，他的推荐列表就会发生变化。而从 LFM的预测公式可以看到， LFM 在给用户生成推荐列表时，需要计算用户对所有物品的兴趣权重，然后排名，返回权重最大的 N 个物品。那么，在物品数很多时，这一过程的时间复杂度非常高。</p>
-<p>因此， LFM 不太适合用于物品数非常庞大的系统，如果要用，我们也需要一个比较快的算法给用户先计算一个比较小的候选列表，然后再用LFM 重新排名。另一方面， LFM 在生成一个用户推荐列表时速度太慢，因此不能在线实<br>时计算，而需要离线将所有用户的推荐结果事先计算好存储在数据库中。因此， LFM 不能进行在线实时推荐，也就是说，当用户有了新的行为后，他的推荐列表不会发生变化。</p>
-<p>  推荐解释  </p>
-<p>ItemCF 算法支持很好的推荐解释，它可以利用用户的历史行为解释推荐结果。但 LFM 无法提供这样的解释，它计算出的隐类虽然在语义上确实代表了一类兴趣和物品，却很难用自然语言描述并生成解释展现给用户。</p>
+<h3 id="基于用户的协同过滤的缺点"><a href="#基于用户的协同过滤的缺点" class="headerlink" title="基于用户的协同过滤的缺点"></a>基于用户的协同过滤的缺点</h3><p>1.网站用户基数增多，矩阵难以构造，时空复杂度增加。</p>
+<p>2.难以对推荐结果做出解释。</p>
+<h3 id="基于物品的协同过滤ItemCF"><a href="#基于物品的协同过滤ItemCF" class="headerlink" title="基于物品的协同过滤ItemCF"></a>基于物品的协同过滤ItemCF</h3><h4 id="大致含义"><a href="#大致含义" class="headerlink" title="大致含义"></a>大致含义</h4><p>该算法会因为你购买过《数据挖掘导论》而给你推荐《机器学习》。不过， ItemCF 算法并不利用物品的内容属性计算物品之间的相似度，它主要通过分析用户的行为记录计算物品之间的相似度。<strong>该算法认为，物品 A 和物品 B 具有很大的相似度是因为喜欢物品 A 的用户大都也喜欢物品B</strong> 。</p>
+<p>基于物品的协同过滤算法可以利用用户的历史行为给推荐结果提供推荐解释，比如给用户推荐《天龙八部》的解释可以是因为用户之前喜欢《射雕英雄传》。</p>
+<h4 id="具体步骤"><a href="#具体步骤" class="headerlink" title="具体步骤"></a>具体步骤</h4><p>基于物品的协同过滤算法主要分为两步。<br>(1)  计算物品之间的相似度。<br>(2)  根据物品的相似度和用户的历史行为给用户生成推荐列表。</p>
+<p>具体公式（ij直接的相似度）：</p>
+<p>$w_{ij}=\frac{|N(i)\cap N(j)|}{|N(i)|}$</p>
+<p>N(i)表示喜欢物品i的用户数。</p>
+<p>但是如果物品j很热门，几乎每个人都喜欢，如《哈利波特》与新华字典，则关系度会接近于1。</p>
+<p>为了避免推荐热门物品，则有公式：</p>
+<p>$w_{ij}=\frac{|N(i)\cap N(j)|}{\sqrt{|N(i)||N(j)|}}$</p>
+<p>这个公式惩罚了物品j的权重，减轻了热门物品会和很多物品相似的可能性。</p>
+<p>尽管上面的公式分母已经考虑到了 j 的流行度，但在实际应用中，热门的 j 仍然会获得比较大的相似度。因此可在分母上进行惩罚。</p>
+<p>$w_{ij}=\frac{|N(i)\cap N(j)|}{|N(i)|^{1-\alpha}|N(j)|^{\alpha}}$</p>
+<p>$\alpha \in [0.5,1]$</p>
+<p>但不能完全解决，两个不同领域的最热门物品之间往往具有比较高的相似度。这个时候，仅仅靠用户行为数据是不能解决这个问题的，因为用户的行为表示这种物品之间应该相似度很高。此时，我们只能依靠引入物品的内容数据解决这个问题，比如对不同领域的物品降低权重等。这些就不是协同过滤讨论的范畴了。</p>
+<h4 id="实现方法"><a href="#实现方法" class="headerlink" title="实现方法"></a>实现方法</h4><p>可以首先建立用户-物品倒排表，即每一个用户建立一个包含他喜欢的物品的列表。</p>
+<p>比如电影，一般来说，同系列的电影、同主角的电影、同风格的电影、同国家和地区的电影会有比较大的相似度。</p>
+<p>在得到物品之间相似度后，itemCF运用以下公式计算用户u对一个物品j的兴趣：</p>
+<p>$p_{wj}=\sum_{i\in N(u)\cap S(j,K) }w_{ij}r_{wi}$</p>
+<p>$S(j,K)​$与物品j最相似的K个物品的集合</p>
+<p>$w_{ij}$为物品相似度。$r_{wi}$即用户u对物品i的兴趣程度，这里可看做有过行为为1。</p>
+<p>对既属于用户喜欢的物品，又在与j物品相似的物品集合内的每一个物品，得到权重相加和（即相似度乘感兴趣程度）。</p>
+<h4 id="相关指标"><a href="#相关指标" class="headerlink" title="相关指标"></a>相关指标</h4><p>  精度（准确率和召回率） 可以看到 ItemCF 推荐结果的精度也是不和 K 成正相关或者负相关的，因此选择合适的 K 对获得最高精度是非常重要的。<br>  流行度 和 UserCF 不同，参数 K 对 ItemCF 推荐结果流行度的影响也不是完全正相关的。<br>随着 K 的增加（流行物品相对增多），结果流行度会逐渐提高，但当 K 增加到一定程度，流行度就不会再有明显变化。<br>  覆盖率  K 增加会降低系统的覆盖率（流行率增加）。</p>
+<h4 id="方法改进"><a href="#方法改进" class="headerlink" title="方法改进"></a>方法改进</h4><p>A.</p>
+<p>假设有这么一个用户，他是开书店的，并且买了当当网上 80% 的书准备用来自己卖。那么，他的购物车里包含当当网 80% 的书。假设当当网有 100 万本书，也就是说他买了 80 万本。从前面对 ItemCF 的讨论可以看到，这意味着因为存在这么一个用户，有 80 万本书两两之间就产生了相似度，也就是说，内存里即将诞生一个 80 万乘 80 万的稠密矩阵。</p>
+<p>John S. Breese 在论文中提出了一个称为 IUF （ Inverse User Frequence ），即用户活跃度对数的倒数的参数，他也认为活跃用户对物品相似度的贡献应该小于不活跃的用户，他提出应该增加 IUF参数来修正物品相似度的计算公式：ItemCF-IUF算法</p>
+<p>$w_{ij}=\frac{\sum{u\in N(i)\cap N(j)}\frac{1}{\log1 +|N(u)|}}{\sqrt{|N(i)||N(j)|}}$</p>
+<p>同ItemCF相比，降低了流行度，提高了推荐结果的覆盖率。</p>
+<p>B.</p>
+<p>物品相似度归一化。</p>
+<p>Karypis 在研究中发现如果将 ItemCF 的相似度矩阵按最大值归一化，可以提高推荐的准确率。<br>其研究表明，如果已经得到了物品相似度矩阵 w ，那么可以用如下公式得到归一化之后的相似度矩阵 w’ ：</p>
+<p>$w’_{ij}=\frac{w_{ij}}{\underset{j}{\operatorname{max}}w_{ij}}$</p>
+<p>相似度的归一化可以提高推荐的多样性。[解释看原书]</p>
 
       
     </div>
@@ -501,8 +491,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/02/04/nachos实验1-3/" rel="next" title="nachos实验1-3">
-                <i class="fa fa-chevron-left"></i> nachos实验1-3
+              <a href="/2019/02/16/基于用户的协同过滤算法/" rel="next" title="基于用户的协同过滤算法">
+                <i class="fa fa-chevron-left"></i> 基于用户的协同过滤算法
               </a>
             
           </div>
@@ -511,8 +501,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/02/20/基于物品的协同过滤/" rel="prev" title="基于物品的协同过滤">
-                基于物品的协同过滤 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/02/20/隐语义模型/" rel="prev" title="隐语义模型">
+                隐语义模型 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -734,7 +724,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#隐语义模型"><span class="nav-number">1.</span> <span class="nav-text">隐语义模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义"><span class="nav-number">1.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LFM"><span class="nav-number">1.2.</span> <span class="nav-text">LFM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#评测"><span class="nav-number">1.3.</span> <span class="nav-text">评测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例"><span class="nav-number">1.4.</span> <span class="nav-text">实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#比较"><span class="nav-number">1.5.</span> <span class="nav-text">比较</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基于物品的协同过滤"><span class="nav-number">1.</span> <span class="nav-text">基于物品的协同过滤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基于用户的协同过滤的缺点"><span class="nav-number">1.1.</span> <span class="nav-text">基于用户的协同过滤的缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基于物品的协同过滤ItemCF"><span class="nav-number">1.2.</span> <span class="nav-text">基于物品的协同过滤ItemCF</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#大致含义"><span class="nav-number">1.2.1.</span> <span class="nav-text">大致含义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#具体步骤"><span class="nav-number">1.2.2.</span> <span class="nav-text">具体步骤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现方法"><span class="nav-number">1.2.3.</span> <span class="nav-text">实现方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#相关指标"><span class="nav-number">1.2.4.</span> <span class="nav-text">相关指标</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法改进"><span class="nav-number">1.2.5.</span> <span class="nav-text">方法改进</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
