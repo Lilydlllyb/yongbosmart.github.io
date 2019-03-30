@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-corner-indicator.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.2.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon2.ico?v=6.2.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.2.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.2.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="用pkuseg分词并制作词云参考：https://www.jb51.net/article/146986.htm之前参考以上博客，利用jieba分词并制作了《格林德沃之罪》的词云。但是不太理想，这一次刚好看到了新发布的pkuseg，利用这个新的分词工具做词云。这一次加入了自己的词典 1234567891011盖勒特格林">
+<meta name="keywords" content="日常练习,数据分析">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用pkuseg分词并制作词云">
+<meta property="og:url" content="https://yongbosmart.github.io/2019/02/09/用pkuseg分词并制作词云/index.html">
+<meta property="og:site_name" content="Yongbosmart">
+<meta property="og:description" content="用pkuseg分词并制作词云参考：https://www.jb51.net/article/146986.htm之前参考以上博客，利用jieba分词并制作了《格林德沃之罪》的词云。但是不太理想，这一次刚好看到了新发布的pkuseg，利用这个新的分词工具做词云。这一次加入了自己的词典 1234567891011盖勒特格林德沃邓布利多霍格沃茨霍格沃兹哈利波特哈里波特罗琳纽特蒂娜火蜥蜴 主要代码，参考见">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://yongbosmart.github.io/2019/02/09/用pkuseg分词并制作词云/2th.png">
+<meta property="og:image" content="https://yongbosmart.github.io/2019/02/09/用pkuseg分词并制作词云/0th.png">
+<meta property="og:image" content="https://yongbosmart.github.io/2019/02/09/用pkuseg分词并制作词云/jieba.png">
+<meta property="og:updated_time" content="2019-03-30T02:09:54.717Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="用pkuseg分词并制作词云">
+<meta name="twitter:description" content="用pkuseg分词并制作词云参考：https://www.jb51.net/article/146986.htm之前参考以上博客，利用jieba分词并制作了《格林德沃之罪》的词云。但是不太理想，这一次刚好看到了新发布的pkuseg，利用这个新的分词工具做词云。这一次加入了自己的词典 1234567891011盖勒特格林德沃邓布利多霍格沃茨霍格沃兹哈利波特哈里波特罗琳纽特蒂娜火蜥蜴 主要代码，参考见">
+<meta name="twitter:image" content="https://yongbosmart.github.io/2019/02/09/用pkuseg分词并制作词云/2th.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://yongbosmart.github.io/2019/02/09/用pkuseg分词并制作词云/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>用pkuseg分词并制作词云 | Yongbosmart</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Yongbosmart</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"> Follow excellence ,and success will chase you</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签<span class="badge">17</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类<span class="badge">11</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档<span class="badge">20</span></a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yongbosmart.github.io/2019/02/09/用pkuseg分词并制作词云/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yongbosmart">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/mylogo3.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yongbosmart">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">用pkuseg分词并制作词云
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-02-09 00:00:00" itemprop="dateCreated datePublished" datetime="2019-02-09T00:00:00+08:00">2019-02-09</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-30 10:09:54" itemprop="dateModified" datetime="2019-03-30T10:09:54+08:00">2019-03-30</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据分析/" itemprop="url" rel="index"><span itemprop="name">数据分析</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="用pkuseg分词并制作词云"><a href="#用pkuseg分词并制作词云" class="headerlink" title="用pkuseg分词并制作词云"></a>用pkuseg分词并制作词云</h2><p>参考：<a href="https://www.jb51.net/article/146986.htm" target="_blank" rel="noopener">https://www.jb51.net/article/146986.htm</a><br>之前参考以上博客，利用jieba分词并制作了《格林德沃之罪》的词云。<br>但是不太理想，这一次刚好看到了新发布的pkuseg，利用这个新的分词工具做词云。<br>这一次加入了自己的词典</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">盖勒特</span><br><span class="line">格林德沃</span><br><span class="line">邓布利多</span><br><span class="line">霍格沃茨</span><br><span class="line">霍格沃兹</span><br><span class="line">哈利波特</span><br><span class="line">哈里波特</span><br><span class="line">罗琳</span><br><span class="line">纽特</span><br><span class="line">蒂娜</span><br><span class="line">火蜥蜴</span><br></pre></td></tr></table></figure>
+<p>主要代码，参考见置顶网址</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re<span class="comment">#正则表达式</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> scipy.misc <span class="keyword">import</span> imread  <span class="comment"># 这是一个处理图像的函数</span></span><br><span class="line"><span class="keyword">from</span> wordcloud <span class="keyword">import</span> WordCloud, STOPWORDS, ImageColorGenerator</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> pkuseg</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">wordCount</span><span class="params">(segment_list)</span>:</span></span><br><span class="line">    word_dict = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> item2 <span class="keyword">in</span> segment_list:</span><br><span class="line">        <span class="keyword">if</span> item2 <span class="keyword">not</span> <span class="keyword">in</span> word_dict:</span><br><span class="line">            word_dict[item2] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            word_dict[item2] += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> word_dict</span><br><span class="line"><span class="comment">#词频统计 代码参考：https://blog.csdn.net/fengjianc/article/details/78929121</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">f = open(<span class="string">"哈工大停用词表.txt"</span>,encoding=<span class="string">'utf-8'</span>)</span><br><span class="line">stopword_list = [line.strip() <span class="keyword">for</span> line <span class="keyword">in</span> f.readlines()]</span><br><span class="line">new_comments = []</span><br><span class="line">data = pd.read_csv(<span class="string">"sqdw影评.csv"</span>,engine=<span class="string">'python'</span>,encoding =<span class="string">'utf-8'</span>)</span><br><span class="line">dataset = data.values</span><br><span class="line">List = []</span><br><span class="line"><span class="keyword">for</span> k <span class="keyword">in</span> dataset:</span><br><span class="line">   List.append(k[<span class="number">1</span>])</span><br><span class="line">seg=pkuseg.pkuseg(user_dict=<span class="string">'mydict.txt'</span>)</span><br><span class="line"><span class="keyword">for</span> comment <span class="keyword">in</span> List:</span><br><span class="line">    new_comment = re.sub(<span class="string">r'[^\u4e00-\u9fa5]'</span>, <span class="string">''</span>, comment)  <span class="comment">#去标点 https://github.com/fxsjy/jieba/issues/528</span></span><br><span class="line">    new_comments.append(new_comment)</span><br><span class="line">word_list = [word <span class="keyword">for</span> word <span class="keyword">in</span> seg.cut(<span class="string">''</span>.join(new_comments)) <span class="keyword">if</span> word <span class="keyword">not</span> <span class="keyword">in</span> stopword_list]</span><br><span class="line"></span><br><span class="line">back_color = imread(<span class="string">'1.png'</span>)  <span class="comment"># 解析该图片</span></span><br><span class="line">wc = WordCloud(background_color=<span class="string">'black'</span>,  <span class="comment"># 背景颜色</span></span><br><span class="line">               max_words=<span class="number">2000</span>,  <span class="comment"># 最大词数</span></span><br><span class="line">               mask=back_color,  <span class="comment"># 以该参数值作图绘制词云，这个参数不为空时，width和height会被忽略</span></span><br><span class="line">               collocations=<span class="keyword">False</span>,</span><br><span class="line">               <span class="comment">#max_font_size=100,  # 字体最大值</span></span><br><span class="line">               <span class="comment">#min_font_size=20,  # 字体最小值</span></span><br><span class="line">               font_path=<span class="string">"C:/Windows/Fonts/SIMYOU.ttf"</span>,  <span class="comment"># 解决显示口字型乱码问题，可进入C:/Windows/Fonts/目录更换字体</span></span><br><span class="line">               <span class="comment"># random_state=42,  # 为每个词返回一个PIL颜色</span></span><br><span class="line">               )</span><br><span class="line">wc.generate_from_text(<span class="string">" "</span>.join(word_list))<span class="comment">#根据文本绘制云图</span></span><br><span class="line"><span class="comment"># wc.generate_from_frequencies(wordCount(word_list)) #使用频率绘制云图</span></span><br><span class="line">print(wordCount(word_list))<span class="comment">#得到分词各个词频</span></span><br><span class="line"><span class="comment"># 基于彩色图像生成相应彩色</span></span><br><span class="line">image_colors = ImageColorGenerator(back_color)</span><br><span class="line"><span class="comment"># 显示图片</span></span><br><span class="line"><span class="comment">#plt.imshow(wc)</span></span><br><span class="line"><span class="comment"># 关闭坐标轴</span></span><br><span class="line"><span class="comment">#plt.axis('off')</span></span><br><span class="line"><span class="comment"># 绘制词云</span></span><br><span class="line">plt.figure()</span><br><span class="line"></span><br><span class="line"><span class="comment"># plt.imshow(wc, interpolation="bilinear")</span></span><br><span class="line">plt.imshow(wc.recolor(color_func=image_colors))</span><br><span class="line">plt.axis(<span class="string">'off'</span>)</span><br><span class="line"><span class="comment"># 保存图片</span></span><br><span class="line">wc.to_file(<span class="string">'pku2.png'</span>)</span><br></pre></td></tr></table></figure>
+<p>词云结果<br><img src="/2019/02/09/用pkuseg分词并制作词云/2th.png" alt="2th"></p>
+<p>十分满意的一个结果，利用文本制作词云</p>
+<p><img src="/2019/02/09/用pkuseg分词并制作词云/0th.png" alt="0th"></p>
+<p>利用频率制作词云，可以看到停用词去除的不太完善，不如文本制作词云。<br><img src="/2019/02/09/用pkuseg分词并制作词云/jieba.png" alt="jieba"></p>
+<p>重新用结巴分词，加入词典，可以看到结果也是好了很多。</p>
+<p>pkuseg分词结果一览（部分）<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="string">'邓布利多'</span>: <span class="number">84</span>, <span class="string">'格林德'</span>: <span class="number">3</span>, <span class="string">'沃领'</span>: <span class="number">1</span>, <span class="string">'结婚证'</span>: <span class="number">3</span>, <span class="string">'伤害'</span>: <span class="number">4</span>, <span class="string">'对方'</span>: <span class="number">4</span>, <span class="string">'后来'</span>: <span class="number">3</span>, <span class="string">'嗅嗅'</span>: <span class="number">14</span>, <span class="string">'帮'</span>: <span class="number">2</span>, <span class="string">'偷到'</span>: <span class="number">1</span>, <span class="string">'准备'</span>: <span class="number">5</span>, <span class="string">'销毁'</span>: <span class="number">1</span>, <span class="string">'格林德沃'</span>: <span class="number">86</span>, <span class="string">'离婚'</span>: <span class="number">3</span>, <span class="string">'故事'</span>: <span class="number">99</span>, <span class="string">'强大'</span>: <span class="number">5</span>, <span class="string">'年轻'</span>: <span class="number">12</span>, <span class="string">'脱发'</span>: <span class="number">1</span>, <span class="string">'老'</span>: <span class="number">5</span>, <span class="string">'却'</span>: <span class="number">26</span>, <span class="string">'长'</span>: <span class="number">13</span>, <span class="string">'出'</span>: <span class="number">33</span>, <span class="string">'浓密'</span>: <span class="number">2</span>, <span class="string">'秀发'</span>: <span class="number">1</span>, <span class="string">'非常'</span>: <span class="number">33</span>, <span class="string">'值得'</span>: <span class="number">5</span>, <span class="string">'上班族'</span>: <span class="number">1</span>, <span class="string">'中'</span>: <span class="number">52</span>, <span class="string">'普及'</span>: <span class="number">1</span>, <span class="string">'克雷登斯'</span>: <span class="number">7</span>,<span class="string">'格林德沃法'</span>: <span class="number">1</span>, <span class="string">'力不及伏'</span>: <span class="number">1</span>, <span class="string">'魔但'</span>: <span class="number">1</span>,<span class="string">'普老年'</span>: <span class="number">1</span>&#125;</span><br><span class="line"><span class="comment"># 以上截取的部分可以看出还是有缺陷。</span></span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/日常练习/" rel="tag"># 日常练习</a>
+          
+            <a href="/tags/数据分析/" rel="tag"># 数据分析</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/20/朴素贝叶斯/" rel="next" title="朴素贝叶斯分类算法">
+                <i class="fa fa-chevron-left"></i> 朴素贝叶斯分类算法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/16/基于用户的协同过滤算法/" rel="prev" title="基于用户的协同过滤算法">
+                基于用户的协同过滤算法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/mylogo3.jpg"
+                alt="yongbosmart" />
+            
+              <p class="site-author-name" itemprop="name">yongbosmart</p>
+              <p class="site-description motion-element" itemprop="description">Follow excellence ,and success will chase U</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">20</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/yongbosmart" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:yongbosmart@gmail.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.zhihu.com/people/yongbosmart/activities" target="_blank" title="Zhihu"><i class="fa fa-fw fa-globe"></i>Zhihu</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://wx1900.github.io/" title="Xu Wang" target="_blank">Xu Wang</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://qiongli97.github.io/" title="Qiong Li" target="_blank">Qiong Li</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://nazinanuoni.github.io/" title="Huii" target="_blank">Huii</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#用pkuseg分词并制作词云"><span class="nav-number">1.</span> <span class="nav-text">用pkuseg分词并制作词云</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yongbosmart</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.4.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Pisces</a> v6.2.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.2.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.2.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.2.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.2.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.2.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.2.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.2.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
