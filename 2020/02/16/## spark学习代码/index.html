@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-corner-indicator.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.2.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon2.ico?v=6.2.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.2.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.2.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="spark练习总结嵌套json处理json形如{“ope”:12,”user”:[{“apple”:13,”pear”:{“color”:”yellow”}},{“apple”:15,”pear”:{“color”:”red”}}]} 这种一层嵌套一层。 在网上搜到两种处理方法。 1.得到map/list结构 List">
+<meta name="keywords" content="日常练习,读书笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="spark练习总结">
+<meta property="og:url" content="https://yongbosmart.github.io/2020/02/16/## spark学习代码/index.html">
+<meta property="og:site_name" content="Yongbosmart">
+<meta property="og:description" content="spark练习总结嵌套json处理json形如{“ope”:12,”user”:[{“apple”:13,”pear”:{“color”:”yellow”}},{“apple”:15,”pear”:{“color”:”red”}}]} 这种一层嵌套一层。 在网上搜到两种处理方法。 1.得到map/list结构 List(Map(name-&amp;gt;”sdf”，dict-&amp;gt;List(…)) 12">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-02-16T09:54:41.051Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="spark练习总结">
+<meta name="twitter:description" content="spark练习总结嵌套json处理json形如{“ope”:12,”user”:[{“apple”:13,”pear”:{“color”:”yellow”}},{“apple”:15,”pear”:{“color”:”red”}}]} 这种一层嵌套一层。 在网上搜到两种处理方法。 1.得到map/list结构 List(Map(name-&amp;gt;”sdf”，dict-&amp;gt;List(…)) 12">
+
+
+
+
+
+
+  <link rel="canonical" href="https://yongbosmart.github.io/2020/02/16/## spark学习代码/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>spark练习总结 | Yongbosmart</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Yongbosmart</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"> Follow excellence ,and success will chase you</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签<span class="badge">17</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类<span class="badge">12</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档<span class="badge">24</span></a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yongbosmart.github.io/2020/02/16/## spark学习代码/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yongbosmart">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/mylogo3.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yongbosmart">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">spark练习总结
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-02-16 00:00:00 / 修改时间：17:54:41" itemprop="dateCreated datePublished" datetime="2020-02-16T00:00:00+08:00">2020-02-16</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据分析/" itemprop="url" rel="index"><span itemprop="name">数据分析</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="spark练习总结"><a href="#spark练习总结" class="headerlink" title="spark练习总结"></a>spark练习总结</h2><h3 id="嵌套json处理"><a href="#嵌套json处理" class="headerlink" title="嵌套json处理"></a>嵌套json处理</h3><p>json形如{“ope”:12,”user”:[{“apple”:13,”pear”:{“color”:”yellow”}},{“apple”:15,”pear”:{“color”:”red”}}]}</p>
+<p>这种一层嵌套一层。</p>
+<p>在网上搜到两种处理方法。</p>
+<p>1.得到map/list结构</p>
+<p>List(Map(name-&gt;”sdf”，dict-&gt;List(…))</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">  <span class="comment">//repp为json字符串</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">regJson</span></span>(json: <span class="type">Option</span>[<span class="type">Any</span>]) = json <span class="keyword">match</span> &#123;</span><br><span class="line">      <span class="keyword">case</span> <span class="type">Some</span>(map: <span class="type">Map</span>[<span class="type">String</span>, <span class="type">Any</span>]) =&gt; map</span><br><span class="line">      <span class="comment">//      case other =&gt; "Unknow data structure : " + other</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">val</span> jsonS = <span class="type">JSON</span>.parseFull(repp)</span><br><span class="line">    <span class="keyword">val</span> first = regJson(jsonS)</span><br><span class="line"><span class="keyword">val</span> rddData = sc.parallelize(first.values.toList.head.asInstanceOf[<span class="type">List</span>[<span class="type">Object</span>]])<span class="comment">//转化成RDD</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">import</span> org.json4s._</span><br><span class="line">    <span class="keyword">import</span> org.json4s.jackson.<span class="type">JsonMethods</span>._</span><br><span class="line"><span class="keyword">val</span> z = rddData.map(x =&gt; compact(render(<span class="type">Extraction</span>.decompose(x)(<span class="type">DefaultFormats</span>)))).collect()<span class="comment">//得到RDD转回的json格式</span></span><br></pre></td></tr></table></figure>
+<p>2.利用sparksql</p>
+<p>遇到array用explode散开，遇到dict当做父子关系。比如pear.color，再比如explode(user)</p>
+<p>{“ope”:12,”user”:[{“apple”:13,”pear”:{“color”:”yellow”}},{“apple”:15,”pear”:{“color”:”red”}}]}</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">val</span> conf = <span class="keyword">new</span> <span class="type">SparkConf</span>().setMaster(<span class="string">"local"</span>).setAppName(<span class="string">"JSONApp"</span>);</span><br><span class="line">    <span class="comment">//通过conf来创建sparkcontext</span></span><br><span class="line">    <span class="keyword">val</span> sc = <span class="keyword">new</span> <span class="type">SparkContext</span>(conf);</span><br><span class="line">    <span class="keyword">val</span> ss = <span class="type">SparkSession</span>.builder().config(conf).getOrCreate()</span><br><span class="line">    ss.read.json(<span class="string">"tmp.json"</span>).createOrReplaceTempView(<span class="string">"users"</span>) <span class="comment">//得到复杂的json文件</span></span><br><span class="line">    <span class="keyword">val</span> df1 = ss.sql(<span class="string">"select explode(user) from users"</span>)</span><br><span class="line">    df1.printSchema()</span><br><span class="line">    df1.show()</span><br><span class="line">    <span class="keyword">val</span> dft = df1.select(df1(<span class="string">"col.id"</span>), df1(<span class="string">"col.info"</span>), df1(<span class="string">"col.hits"</span>)).toDF(<span class="string">"id"</span>, <span class="string">"info"</span>, <span class="string">"hits"</span>)</span><br><span class="line"></span><br><span class="line">dft.toJSON.collectAsList().toString()<span class="comment">//得到dataframe的json形式</span></span><br></pre></td></tr></table></figure>
+<h3 id="dataframe常用操作"><a href="#dataframe常用操作" class="headerlink" title="dataframe常用操作"></a>dataframe常用操作</h3><h4 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h4><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> ids = dft.select(dft(<span class="string">"id"</span>)).collect() <span class="comment">//先求collect</span></span><br><span class="line"><span class="keyword">val</span> len = ids.length<span class="comment">//再求长度</span></span><br><span class="line"><span class="keyword">var</span> q = <span class="number">0</span></span><br><span class="line"><span class="keyword">var</span> opess = dft.select(dft(<span class="string">"id"</span>))</span><br><span class="line"><span class="keyword">while</span> (q &lt; len) &#123; </span><br><span class="line">  <span class="keyword">val</span> table = dft.where(<span class="string">"id=%s"</span>.format(ids(q)(<span class="number">0</span>))) </span><br><span class="line">    println(ids(q)(<span class="number">0</span>))<span class="comment">//ids(q)是一个row</span></span><br><span class="line"> q+=<span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但是求collect需要慎重，因为很可能dataframe数值很多很大，引起问题。</p>
+<h4 id="json构造dataframe（一个有趣的知识点）"><a href="#json构造dataframe（一个有趣的知识点）" class="headerlink" title="json构造dataframe（一个有趣的知识点）"></a>json构造dataframe（一个有趣的知识点）</h4><p><a href="https://blog.csdn.net/liangrui1988/article/details/97665409" target="_blank" rel="noopener">https://blog.csdn.net/liangrui1988/article/details/97665409</a> </p>
+<p>需要构造好scheme</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//压平list还要构造结构（因为未来还要还原结构）</span></span><br><span class="line"><span class="keyword">val</span> arrayStruct = <span class="type">ArrayType</span>(<span class="type">StructType</span>(<span class="type">Seq</span>(</span><br><span class="line">  <span class="type">StructField</span>(<span class="string">"date"</span>, <span class="type">StringType</span>, <span class="literal">true</span>),</span><br><span class="line">  <span class="type">StructField</span>(<span class="string">"name"</span>, <span class="type">StringType</span>, <span class="literal">true</span>),</span><br><span class="line">  <span class="type">StructField</span>(<span class="string">"rid"</span>, <span class="type">StringType</span>, <span class="literal">true</span>),</span><br><span class="line">  <span class="type">StructField</span>(<span class="string">"value"</span>, <span class="type">LongType</span>, <span class="literal">true</span>),</span><br><span class="line">  <span class="type">StructField</span>(<span class="string">"days"</span>, <span class="type">StringType</span>, <span class="literal">true</span>))), <span class="literal">true</span>)</span><br><span class="line"><span class="keyword">val</span> ashema = <span class="type">StructType</span>(<span class="type">List</span>(<span class="type">StructField</span>(<span class="string">"oid"</span>, <span class="type">StringType</span>, <span class="literal">true</span>), <span class="type">StructField</span>(<span class="string">"recs"</span>, arrayStruct, <span class="literal">true</span>)))</span><br><span class="line"><span class="keyword">val</span> bshema = <span class="type">StructType</span>(<span class="type">List</span>(<span class="type">StructField</span>(<span class="string">"oid"</span>, <span class="type">StringType</span>, <span class="literal">true</span>), <span class="type">StructField</span>(<span class="string">"reps"</span>, arrayStruct, <span class="literal">true</span>)))</span><br><span class="line"><span class="keyword">val</span> schema = <span class="type">StructType</span>(<span class="type">List</span>(<span class="type">StructField</span>(<span class="string">"recs"</span>, <span class="type">StringType</span>, <span class="literal">true</span>)))</span><br><span class="line"><span class="keyword">val</span> schema2 = <span class="type">StructType</span>(<span class="type">List</span>(<span class="type">StructField</span>(<span class="string">"reps"</span>, <span class="type">StringType</span>, <span class="literal">true</span>)))</span><br><span class="line"><span class="comment">// true代表不为空</span></span><br></pre></td></tr></table></figure>
+<h4 id="UDF"><a href="#UDF" class="headerlink" title="UDF"></a>UDF</h4><p>可以使用自定义方法，在SQL语句和列。</p>
+<p>写的比较好的博客：</p>
+<p><a href="https://www.cnblogs.com/cc11001100/p/9463909.html" target="_blank" rel="noopener">https://www.cnblogs.com/cc11001100/p/9463909.html</a> </p>
+<p><a href="https://www.jianshu.com/p/b1e9d5cc6193" target="_blank" rel="noopener">https://www.jianshu.com/p/b1e9d5cc6193</a> </p>
+<h3 id="特殊方法"><a href="#特殊方法" class="headerlink" title="特殊方法"></a>特殊方法</h3><p>scala判断类型方法 getClass()</p>
+<p>scala强制转换方法.asInstanceOf[List[Object]] (注意是中括号)</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/日常练习/" rel="tag"># 日常练习</a>
+          
+            <a href="/tags/读书笔记/" rel="tag"># 读书笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/06/因子分析/" rel="next" title="PCA和因子分析">
+                <i class="fa fa-chevron-left"></i> PCA和因子分析
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/02/16/dfs及搜索问题/" rel="prev" title="dfs以及搜索问题">
+                dfs以及搜索问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/mylogo3.jpg"
+                alt="yongbosmart" />
+            
+              <p class="site-author-name" itemprop="name">yongbosmart</p>
+              <p class="site-description motion-element" itemprop="description">Follow excellence ,and success will chase U</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">24</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/yongbosmart" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:yongbosmart@gmail.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.zhihu.com/people/yongbosmart/activities" target="_blank" title="Zhihu"><i class="fa fa-fw fa-globe"></i>Zhihu</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://wx1900.github.io/" title="Xu Wang" target="_blank">Xu Wang</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://qiongli97.github.io/" title="Qiong Li" target="_blank">Qiong Li</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://nazinanuoni.github.io/" title="Huii" target="_blank">Huii</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#spark练习总结"><span class="nav-number">1.</span> <span class="nav-text">spark练习总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#嵌套json处理"><span class="nav-number">1.1.</span> <span class="nav-text">嵌套json处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dataframe常用操作"><span class="nav-number">1.2.</span> <span class="nav-text">dataframe常用操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#遍历"><span class="nav-number">1.2.1.</span> <span class="nav-text">遍历</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#json构造dataframe（一个有趣的知识点）"><span class="nav-number">1.2.2.</span> <span class="nav-text">json构造dataframe（一个有趣的知识点）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UDF"><span class="nav-number">1.2.3.</span> <span class="nav-text">UDF</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特殊方法"><span class="nav-number">1.3.</span> <span class="nav-text">特殊方法</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yongbosmart</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.4.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Pisces</a> v6.2.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.2.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.2.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.2.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.2.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.2.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.2.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.2.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

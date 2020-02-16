@@ -142,7 +142,7 @@
 <meta property="og:image" content="https://yongbosmart.github.io/2018/07/22/信息安全/scheme改进.png">
 <meta property="og:image" content="https://yongbosmart.github.io/2018/07/22/信息安全/协议分析2.png">
 <meta property="og:image" content="https://yongbosmart.github.io/2018/07/22/信息安全/协议分析3.png">
-<meta property="og:updated_time" content="2018-07-22T02:51:47.002Z">
+<meta property="og:updated_time" content="2019-06-14T07:51:31.398Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="信息安全学习总结&amp;复习纲要">
 <meta name="twitter:description" content="信息安全学习总结&amp;amp;复习纲要by yongbo 基本概念 密码算法和协议又可以分为4个主要的领域：  对称加密：用于加密任意大小的数据块或数据流的内容，包括消息、文件、加密密钥、口令。 非对称加密：用户加密小的数据库，如原来加密密钥或者hash值。 数据完整性算法：用于保护数据块（如一条消息）的内容免于修改。 认证协议：有许多基于密码算法的认证方案，用于认证实体的真实性。   CIA三元组，">
@@ -276,7 +276,7 @@
           
           <li class="menu-item menu-item-categories">
     <a href="/categories/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类<span class="badge">11</span></a>
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类<span class="badge">12</span></a>
   </li>
         
         
@@ -284,7 +284,7 @@
           
           <li class="menu-item menu-item-archives">
     <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档<span class="badge">20</span></a>
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档<span class="badge">24</span></a>
   </li>
 
       
@@ -377,12 +377,24 @@
                 
               
 
-              <time title="创建时间：2018-07-22 00:00:00 / 修改时间：10:51:47" itemprop="dateCreated datePublished" datetime="2018-07-22T00:00:00+08:00">2018-07-22</time>
+              <time title="创建时间：2018-07-22 00:00:00" itemprop="dateCreated datePublished" datetime="2018-07-22T00:00:00+08:00">2018-07-22</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-14 15:51:31" itemprop="dateModified" datetime="2019-06-14T15:51:31+08:00">2019-06-14</time>
               
             
           </span>
@@ -822,9 +834,6 @@
 <p>由于pq互质，pq=N，则根据中国余数定理：$M^{ed} \mod N=M$</p>
 <p>(0$\leq$M&lt;N,大于n（1024bit）可能会有部分解不出来)</p>
 <p>【中国余数定理】$如果n_1,n_2,\cdots n_k两两互质，n=n_1n_2n_3\cdots n_k,则对于所有的整数x和a,\\x\equiv a(\mod n_i)当且仅当 x\equiv a(\mod n)$</p>
-<p>[错误证明，差点一错再错，而且是一个重点🔼  TAT 😭 ]</p>
-<p>2.M和N互素，根据欧拉公式，$M^{\phi(N)} \mod N=1$</p>
-<p>$M^{ed}\mod n=M^{1+k\phi(n)}\mod n\\=(M\mod n)\times ((M^{(p-1)})^{k(q-1)}\mod n)\\=(M\mod n)\times ((M^{\phi(p)})^{k(q-1)}\mod n)\\=(M\mod n)\times 1^{k(q-1)}=M\mod n$</p>
 <h5 id="RSA计算及技巧"><a href="#RSA计算及技巧" class="headerlink" title="RSA计算及技巧"></a>RSA计算及技巧</h5><p><img src="/2018/07/22/信息安全/复杂性.png" alt="复杂性"></p>
 <p><img src="/2018/07/22/信息安全/计算.png" alt="计算"></p>
 <h5 id="RSA安全性"><a href="#RSA安全性" class="headerlink" title="RSA安全性"></a>RSA安全性</h5><p>关键在于大数的分解，当N（1024bit）很大时，分解成两个素数很难</p>
@@ -1251,7 +1260,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">20</span>
+                    <span class="site-state-item-count">24</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1286,7 +1295,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">11</span>
+                      
+                    
+                    <span class="site-state-item-count">12</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -1430,7 +1441,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
